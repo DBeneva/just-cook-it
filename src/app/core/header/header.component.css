@@ -1,0 +1,33 @@
+ul {
+    background-color: #4a6b8b;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    margin: 0;
+}
+
+a {
+    color: lightgray;
+    text-decoration: none;
+    padding: 20px;
+    display: inline-block;
+}
+
+.logo {
+    font-family: "Merienda";
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.navigation {
+    list-style-type: none;
+    font-size: 20px;
+    padding: 15px;
+}
+
+
+
+img {
+    width: 25px;
+    padding: 2px;
+}

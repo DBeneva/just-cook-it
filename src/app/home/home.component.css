@@ -1,0 +1,42 @@
+div {
+    text-align: center;
+    background-color: #F1F6FD;
+}
+
+img {
+    width: 60%;
+    padding-top: 250px;
+    border-radius: 20px;
+    opacity: 0.8;
+}
+
+.text {
+    position: absolute;
+    top: 150px;
+    left: 420px;
+    color: #4a6b8b;
+    font-size: 40px;
+    width: 45%;
+    font-family: "Merienda";
+}
+
+p {
+    margin: 0 0 10px 0;
+}
+
+a {
+    text-decoration: none;
+    font-family: Verdana;
+    font-size: 20px;
+    background-color: #4a6b8b;
+    color: lightgray;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+a:hover {
+    background-color: lightgray;
+    color: #4a6b8b;
+    box-shadow: 2px 2px 5px 0 gray;
+}

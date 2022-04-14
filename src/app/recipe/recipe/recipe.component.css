@@ -1,0 +1,41 @@
+.card {
+    width: 400px;
+    box-shadow: 2px 2px 20px 0 gray;
+    border-radius: 20px;
+    margin: 40px;
+    color: #4a6b8b;
+}
+
+.card-image {
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.card-title {
+    text-align: center;
+    margin-top: 10px;
+}
+
+li {
+    list-style-type: none;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.card-section {
+    display: flex;
+    padding-left: 20px;
+}
+
+.ingredients-list {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.directions {
+    margin: 20px;
+    font-size: 14px;
+}
+
