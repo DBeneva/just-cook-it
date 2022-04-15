@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CoreModule } from './core/core.module';
 import { UserModule } from './user/user.module';
 import { RecipeModule } from './recipe/recipe.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RecipeModule } from './recipe/recipe.module';
     CoreModule,
     UserModule,
     RecipeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

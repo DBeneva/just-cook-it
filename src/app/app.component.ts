@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './core/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'just-cook-it';
+  get isAuthenticating(): boolean {
+    return this.userService.user === undefined;
+  }
+
+  constructor(private userService: UserService) {
+    this.userService.getProfileInfo().subscribe({
+      error: () => {
+        this.userService.user = null;
+      }
+    });
+  }
 }
