@@ -13,7 +13,8 @@ module.exports = () => (req, res, next) => {
         next();
     }
 
-    async function register(username, email, password) {
+    async function register({ username, email, password, repass }) {
+        console.log('in register auth.js');
         const existingUsername = await req.storage.getUserByUsername(username);
         const existingEmail = await req.storage.getUserByEmail(email);
 
@@ -32,7 +33,7 @@ module.exports = () => (req, res, next) => {
         return token;
     }
 
-    async function login(username, password) {
+    async function login({ username, password }) {
         const user = await req.storage.getUserByUsername(username);
         const hasMatch = user ? await bcrypt.compare(password, user.hashedPassword) : false;
 

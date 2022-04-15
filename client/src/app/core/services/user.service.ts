@@ -19,14 +19,14 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  login(user: { email: string; password: string }) {
-    return this.http.post<IUser>(`${API_URL}/login`, user).pipe(
+  login(user: { username: string; password: string }) {
+    return this.http.post<IUser>(`${API_URL}/auth/login`, user).pipe(
       tap((user) => this.user = user)
     );
   }
 
-  register(user: { username: string; email: string; tel: string; password: string }) {
-    return this.http.post<IUser>('/api/register', user).pipe(
+  register(user: { username: string; email: string; password: string; repass: string }) {
+    return this.http.post<IUser>(`${API_URL}/auth/register`, user).pipe(
       tap((user) => this.user = user)
     );
   }

@@ -9,8 +9,8 @@ router.get('/register', isGuest(), (req, res) => {
 router.post(
     '/register',
     isGuest(),
-    body('email', 'Invalid email').isEmail(),
     body('username').notEmpty().withMessage('Username is required'),
+    body('email', 'Invalid email').isEmail(),
     body('password')
         .isLength({ min: 5 }).withMessage('Password must be at least 5 characters long').bail()
         .matches(/^[a-zA-Z0-9]+$/).withMessage('Password may contain only numbers and latin letters'),
@@ -21,6 +21,7 @@ router.post(
         return true;
     }),
     async (req, res) => {
+        console.log('in authcontroller.js router.post(register)');
         const { errors } = validationResult(req);
         console.log(req.body);
 
@@ -45,12 +46,12 @@ router.post(
                 }
             };
 
-            res.render('register', ctx);
+            res.json(ctx);
         }
     });
 
 router.get('/login', isGuest(), (req, res) => {
-    res.render('login', { title: 'Login' });
+    res.json({ title: 'Login' });
 });
 
 router.post('/login', isGuest(), async (req, res) => {
@@ -66,7 +67,7 @@ router.post('/login', isGuest(), async (req, res) => {
             username: req.body.username
         };
 
-        res.render('login', ctx);
+        res.json(ctx);
     }
 });
 
