@@ -56,6 +56,7 @@ module.exports = () => (req, res, next) => {
     }
 
     function logout() {
+        console.log('in auth logout');
         res.clearCookie(COOKIE_NAME);
     }
 }

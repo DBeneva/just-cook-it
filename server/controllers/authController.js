@@ -59,12 +59,11 @@ router.post('/login', isGuest(), async (req, res) => {
     try {
         await req.auth.login(req.body.username.trim(), req.body.password.trim());
         console.log('successful login');
-        res.redirect('/');
+        res.json({ username: req.body.username });
     } catch (err) {
         console.log(err.message);
 
         const ctx = {
-            title: 'Login',
             errors: err.type == 'credential' ? ['Incorrect username or password'] : [err.message],
             username: req.body.username
         };
@@ -78,8 +77,8 @@ router.get('/profile', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
+    console.log('in auth controller logout');
     req.auth.logout();
-    res.redirect('/');
 });
 
 module.exports = router;

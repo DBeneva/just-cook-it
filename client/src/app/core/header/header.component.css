@@ -1,4 +1,4 @@
-ul {
+.container {
     background-color: #4a6b8b;
     display: flex;
     justify-content: space-between;
@@ -10,22 +10,21 @@ a {
     color: lightgray;
     text-decoration: none;
     padding: 20px;
-    display: inline-block;
 }
 
-.logo {
+.logo span {
     font-family: "Merienda";
     font-size: 40px;
     letter-spacing: 2px;
 }
 
-.navigation {
-    list-style-type: none;
-    font-size: 20px;
-    padding: 15px;
+li {
+    display: inline-block;
 }
 
-
+.navigation li {
+    font-size: 18px;
+}
 
 img {
     width: 25px;

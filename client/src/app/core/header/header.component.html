@@ -1,11 +1,29 @@
-<ul>
-    <a class="logo" routerLink="home">Just c<img src="assets/bar-1972444_1280.png" alt="egg" /><img src="assets/bar-1972444_1280.png" alt="egg" />k it!</a>
-    <li class="navigation">
-        <a routerLink="recipes">Recipes</a>
-        <a routerLink="recipes">New Recipe</a>
-        <a routerLink="login">Login</a>
-        <a routerLink="register">Register</a>
-        <a routerLink="register">Logout</a>
-        <a routerLink="register">About</a>
-    </li>
-</ul>
+<div class="container">
+    <div class="logo">
+        <span routerLink="home">
+            Just c<img src="assets/bar-1972444_1280.png" alt="egg" /><img
+                src="assets/bar-1972444_1280.png" alt="egg" />k it!
+            </span>
+    </div>
+
+    <nav class="navigation">
+        <ul>
+            
+            <div *ngIf="!isLogged">
+                <li><a routerLink="recipes">Recipes</a></li>
+                <li><a routerLink="login">Login</a></li>
+                <li><a routerLink="register">Register</a></li>
+                <!-- <li><a routerLink="register">About</a></li> -->
+            </div>
+            
+            <div *ngIf="isLogged">
+                <li><a routerLink="recipes">Recipes</a></li>
+                <li><a routerLink="new-recipe">New Recipe</a></li>
+                <li><a routerLink="profile">{{username}}'s profile</a></li>
+                <li class="button" (click)="logout()">Logout</li>
+                <!-- <li><a routerLink="register">About</a></li> -->
+            </div>
+            
+        </ul>
+    </nav>
+</div>
