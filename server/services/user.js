@@ -13,8 +13,8 @@ async function createUser(username, email, hashedPassword) {
 }
 
 async function getUserByUsername(username) {
-    const pattern = new RegExp(`^${username}$`, 'i');
-    const user = await User.findOne({ username: { $regex: pattern } }).lean();
+    const user = await User.findOne({ username: { $regex: username, $options: 'i' } }).lean();
+    console.log('in services/user.js', user);
     return user;
 }
 

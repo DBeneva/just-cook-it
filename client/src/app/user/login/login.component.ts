@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
-import { emailValidator } from 'src/app/shared/validators';
 
 
 @Component({
@@ -14,7 +13,6 @@ import { emailValidator } from 'src/app/shared/validators';
 export class LoginComponent {
 
   form: FormGroup;
-  emailValidator = emailValidator;  
 
   constructor(
     private userService: UserService,
@@ -22,7 +20,7 @@ export class LoginComponent {
     private router: Router,
     private fb: FormBuilder) {
       this.form = this.fb.group({
-        email: ['', [Validators.required, emailValidator]],
+        username: ['', [Validators.required, Validators.minLength(3)]],
         password: ['', [Validators.required, Validators.minLength(5)]]
       });
     }
@@ -31,7 +29,7 @@ export class LoginComponent {
       if (form.invalid) { return; }
   
       const { username, password } = form.value;
-      this.userService.login({ username, password }).subscribe({
+      this.userService.login(username, password).subscribe({
         next: () => {
           const redirectUrl = this.activatedRoute.snapshot.queryParams.redirectUrl || '/';
           this.router.navigate([redirectUrl]);

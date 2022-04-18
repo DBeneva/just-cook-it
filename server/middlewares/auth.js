@@ -13,10 +13,11 @@ module.exports = () => (req, res, next) => {
         next();
     }
 
-    async function register({ username, email, password, repass }) {
+    async function register(username, email, password) {
         console.log('in register auth.js');
         const existingUsername = await req.storage.getUserByUsername(username);
         const existingEmail = await req.storage.getUserByEmail(email);
+        console.log(existingEmail, existingUsername);
 
         if (existingUsername) {
             throw new Error('Username is taken!');
@@ -24,8 +25,11 @@ module.exports = () => (req, res, next) => {
             throw new Error('Email is taken!');
         }
 
+        console.log('username email password', username, email, password);
         const hashedPassword = await bcrypt.hash(password, 10);
+        console.log(hashedPassword);
         const user = await req.storage.createUser(username, email, hashedPassword);
+        console.log(user);
 
         const token = generateToken(user);
         res.cookie(COOKIE_NAME, token);
@@ -33,8 +37,10 @@ module.exports = () => (req, res, next) => {
         return token;
     }
 
-    async function login({ username, password }) {
+    async function login(username, password) {
+        console.log('username', username);
         const user = await req.storage.getUserByUsername(username);
+        console.log('user', user);
         const hasMatch = user ? await bcrypt.compare(password, user.hashedPassword) : false;
 
         if (!user || !hasMatch) {
@@ -73,7 +79,7 @@ function parseToken(req, res) {
             console.log('Known user', req.user.username);
         } catch (err) {
             res.clearCookie(COOKIE_NAME);
-            res.redirect('/auth/login');
+            res.redirect('/login');
 
             return false;
         }

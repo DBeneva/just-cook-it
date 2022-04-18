@@ -1,0 +1,62 @@
+.login {
+    text-align: center;
+    color: #4a6b8b;
+}
+
+.field {
+    padding: 10px 0;
+}
+
+input {
+    font-size: 16px;
+    width: 300px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #4a6b8b;
+    border-left: 0.3em solid green;
+}
+
+input.ng-invalid.ng-touched {
+    border-left: 0.3em solid red;
+}
+
+.fas {
+    margin-right: 10px;
+}
+
+button {
+    text-decoration: none;
+    font-family: Verdana;
+    font-size: 20px;
+    background-color: #4a6b8b;
+    color: lightgray;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+    
+button:hover {
+    background-color: lightgray;
+    color: #4a6b8b;
+    box-shadow: 2px 2px 5px 0 gray;
+}
+
+button[disabled], button[disabled]:hover {
+    background-color: #4a6a8b8c;
+    color: lightgray;
+    box-shadow: none;
+}
+
+.register-link {
+    margin-bottom: 160px;
+}
+
+.register-link a {
+    color: #4a6b8b;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    padding-left: 20px;
+}

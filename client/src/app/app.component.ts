@@ -12,10 +12,10 @@ export class AppComponent {
   }
 
   constructor(private userService: UserService) {
-    this.userService.getProfileInfo().subscribe({
-      error: () => {
-        this.userService.user = null;
-      }
-    });
+    // this.userService.getProfileInfo().subscribe({
+    //   error: () => {
+    //     this.userService.user = null;
+    //   }
+    // });
   }
 }
