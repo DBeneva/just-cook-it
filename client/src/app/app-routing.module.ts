@@ -12,9 +12,9 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'recipes', component: RecipesComponent },
-  { path: 'auth/register', component: RegisterComponent },
-  { path: 'auth/login', component: LoginComponent },
-  { path: 'user/profile', component: ProfileComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

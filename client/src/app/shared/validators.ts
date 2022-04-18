@@ -1,21 +1,13 @@
 import { AbstractControl, ValidationErrors } from "@angular/forms";
 import { Observable, Subscription } from "rxjs";
-import { filter, startWith, switchMap, takeUntil } from "rxjs/operators";
+import { takeUntil } from "rxjs/operators";
 
 
 export function emailValidator(control: AbstractControl): ValidationErrors | null {
     if (!control.value) { return null; }
 
-    return /^.{6,}@gmail\.(bg|com)$/.test(control.value) ? null : {
+    return /^.*@gmail\.(bg|com)$/.test(control.value) ? null : {
         invalidEmail: true
-    };
-}
-
-export function phoneValidator(control: AbstractControl): ValidationErrors {
-    if (!control.value) { return; }
-
-    return /^[0-9]{3} [0-9]{3} [0-9]{3}$/.test(control.value) ? null : {
-        invalidPhone: true
     };
 }
 

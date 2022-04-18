@@ -4,6 +4,8 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -11,7 +13,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [RegisterComponent, LoginComponent, ProfileComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    RouterModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class UserModule { }
