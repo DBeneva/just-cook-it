@@ -1,25 +1,14 @@
 const router = require('express').Router();
-const { body, validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 const { isGuest } = require('../middlewares/guards');
 
 router.post(
     '/register',
     isGuest(),
-    // body('username').notEmpty().withMessage('Username is required'),
-    // body('email', 'Invalid email').isEmail(),
-    // body('password')
-    //     .isLength({ min: 5 }).withMessage('Password must be at least 5 characters long').bail()
-    //     .matches(/^[a-zA-Z0-9]+$/).withMessage('Password may contain only numbers and latin letters'),
-    // body('repass').custom((value, { req }) => {
-    //     if (value != req.body.password) {
-    //         throw new Error('Passwords don\'t match');
-    //     }
-    //     return true;
-    // }),
     async (req, res) => {
         console.log('in authcontroller.js router.post(register)');
         const { errors } = validationResult(req);
-        console.log(req.body);
+        console.log('errors in authcontroller', errors);
 
         try {
             if (errors.length > 0) {

@@ -19,7 +19,7 @@
                     Username is required!
                 </p>
                 <p *ngIf="form.get('username').errors?.minlength" class="error">
-                    Username must be at least 5 characters long!
+                    Username must be at least 3 characters long!
                 </p>
             </ng-container>
 
@@ -33,7 +33,7 @@
                 <p *ngIf="form.get('email').errors?.required" class="error">
                     Email is required!
                 </p>
-                <p *ngIf="form.get('email').errors?.invalidEmail" class="error">
+                <p *ngIf="!(form.get('email').errors?.required) && (form.get('email').invalid)" class="error">
                     Email is not valid!
                 </p>
             </ng-container>

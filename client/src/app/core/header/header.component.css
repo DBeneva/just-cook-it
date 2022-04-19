@@ -3,7 +3,7 @@
     color: lightgray;
     display: flex;
     justify-content: space-between;
-    padding: 0 50px;
+    padding: 15px 50px;
     margin: 0;
 }
 
@@ -17,6 +17,7 @@ a {
     font-family: "Merienda";
     font-size: 40px;
     letter-spacing: 2px;
+    cursor: pointer;
 }
 
 li {

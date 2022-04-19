@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { emailValidator, passwordValidator, sameValueAsFactory } from 'src/app/shared/validators';
+import { passwordValidator, sameValueAsFactory } from 'src/app/shared/validators';
 import { UserService } from '../../core/services/user.service';
 
 @Component({
@@ -14,7 +14,6 @@ export class RegisterComponent implements OnDestroy {
   killSubscription = new Subject();
   form: FormGroup;
   error: string = '';
-  emailValidator = emailValidator;
   passwordValidator = passwordValidator;
 
   constructor(
@@ -24,12 +23,13 @@ export class RegisterComponent implements OnDestroy {
   ) {
     this.form = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, emailValidator]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, passwordValidator]],
       repass: ['', [Validators.required, sameValueAsFactory(
         () => this.form ? this.form.get('password') : null, this.killSubscription
-      )]]
-    });
+        )]]
+      });
+      console.log('error email register', this.form.get('email').invalid);
   }
 
   register(): void {
