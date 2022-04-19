@@ -1,49 +1,47 @@
 <div class="container">
     <form [formGroup]="form" (ngSubmit)="login(form)" class="login" action="" method="post">
-        <fieldset>
-            <h2>Login Form</h2>
+        <h2>Login Form</h2>
 
-            <ng-container *ngIf="error">
-                <p class="error">
-                    {{error}}
-                </p>
-            </ng-container>
-
-            <p class="field field-icon">
-                <label for="password"><span><i class="fas fa-user"></i></span></label>
-                <input formControlName="username" class="input-error" type="text" name="username" id="username"
-                    placeholder="Johny" required>
+        <ng-container *ngIf="error">
+            <p class="error">
+                {{error}}
             </p>
-            <ng-container *ngIf="form.get('username').touched">
-                <p *ngIf="form.get('username').errors?.required" class="error">
-                    Username is required!
-                </p>
-                <p *ngIf="form.get('username').errors?.minlength" class="error">
-                    Username must be at least 5 characters long!
-                </p>
-            </ng-container>
+        </ng-container>
 
-            <p class="field field-icon">
-                <label for="password"><span><i class="fas fa-lock"></i></span></label>
-                <input formControlName="password" type="password" name="password" id="password" placeholder="******"
-                    required>
+        <p class="field field-icon">
+            <label for="password"><span><i class="fas fa-user"></i></span></label>
+            <input formControlName="username" class="input-error" type="text" name="username" id="username"
+                placeholder="Johny" required>
+        </p>
+        <ng-container *ngIf="form.get('username').touched">
+            <p *ngIf="form.get('username').errors?.required" class="error">
+                Username is required!
             </p>
-
-            <ng-container *ngIf="form.get('password').touched">
-                <p *ngIf="form.get('password').errors?.required" class="error">
-                    Password is required!
-                </p>
-                <p *ngIf="form.get('password').errors?.minlength" class="error">
-                    Password must be at least 5 characters!
-                </p>
-            </ng-container>
-
-            <button [disabled]="form.invalid">Login</button>
-
-            <p class="register-link">
-                Don't have an account?
-                <a routerLink="/register">Click here!</a>
+            <p *ngIf="form.get('username').errors?.minlength" class="error">
+                Username must be at least 3 characters long!
             </p>
-        </fieldset>
+        </ng-container>
+
+        <p class="field field-icon">
+            <label for="password"><span><i class="fas fa-lock"></i></span></label>
+            <input formControlName="password" type="password" name="password" id="password" placeholder="******"
+                required>
+        </p>
+
+        <ng-container *ngIf="form.get('password').touched">
+            <p *ngIf="form.get('password').errors?.required" class="error">
+                Password is required!
+            </p>
+            <p *ngIf="form.get('password').errors?.minlength" class="error">
+                Password must be at least 5 characters!
+            </p>
+        </ng-container>
+
+        <button [disabled]="form.invalid">Login</button>
+
+        <p class="register-link">
+            Don't have an account?
+            <a routerLink="/register">Click here!</a>
+        </p>
     </form>
 </div>

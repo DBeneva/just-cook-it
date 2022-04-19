@@ -13,7 +13,7 @@ async function createUser(username, email, hashedPassword) {
 }
 
 async function getUserByUsername(username) {
-    const user = await User.findOne({ username: { $regex: username, $options: 'i' } }).lean();
+    const user = await User.findOne({ username: { $regex: `^${username}$`, $options: 'i' } }).lean();
     console.log('User in server, user service:', user);
     return user;
 }

@@ -4,7 +4,7 @@
 }
 
 .field {
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 input {
@@ -32,7 +32,7 @@ button {
     color: lightgray;
     padding: 10px 20px;
     border-radius: 15px;
-    margin-top: 20px;
+    margin: 15px 0 0 15px;
 }
     
 button:hover {
@@ -47,10 +47,6 @@ button[disabled], button[disabled]:hover {
     box-shadow: none;
 }
 
-.register-link {
-    margin-bottom: 160px;
-}
-
 .register-link a {
     color: #4a6b8b;
 }
@@ -58,5 +54,5 @@ button[disabled], button[disabled]:hover {
 .error {
     color: red;
     font-size: 14px;
-    padding-left: 20px;
+    padding: 0 0 0 20px;
 }
