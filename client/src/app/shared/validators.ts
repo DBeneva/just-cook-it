@@ -3,14 +3,6 @@ import { Observable, Subscription } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 
-export function emailValidator(control: AbstractControl): ValidationErrors | null {
-    if (!control.value) { return null; }
-
-    return /^.*@gmail\.(bg|com)$/.test(control.value) ? null : {
-        invalidEmail: true
-    };
-}
-
 export function passwordValidator(control: AbstractControl): ValidationErrors {
     if (!control.value) { return; }
 
