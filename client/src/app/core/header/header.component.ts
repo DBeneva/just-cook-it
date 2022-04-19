@@ -13,7 +13,6 @@ export class HeaderComponent {
   }
 
   get username(): string {
-    console.log(this.userService);
     return this.userService.user ? this.userService.user.username : '';
   }
   

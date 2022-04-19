@@ -55,13 +55,16 @@ router.post(
 // });
 
 router.post('/login', isGuest(), async (req, res) => {
-    console.log('req. body in authcontroller', req.body);
+    console.log('req.body in authController:', req.body);
+    console.log('Username in server, authController:', req.body.username);
+
     try {
         await req.auth.login(req.body.username.trim(), req.body.password.trim());
-        console.log('successful login');
+        console.log(req.body.username, 'logged in successfully (server, authController)');
+
         res.json({ username: req.body.username });
     } catch (err) {
-        console.log(err.message);
+        console.log('There has been an error in server, authController:', err.message);
 
         const ctx = {
             errors: err.type == 'credential' ? ['Incorrect username or password'] : [err.message],

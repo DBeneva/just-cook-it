@@ -20,25 +20,31 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
-    return this.http.post<IUser>(`${API_URL}/auth/login`, { username, password }).pipe(
-      tap((user) => this.user = user)
-    );
+    console.log(username, 'is logging in with password', password, '(user service)');
+
+    return this.http.post<IUser>(`${API_URL}/auth/login`, { username, password })
+      .pipe(tap((user) => {
+        this.user = user;
+        document.cookie = `USER=${JSON.stringify(user)}`;
+      }));
   }
 
   register(user: { username: string; email: string; password: string }) {
-    return this.http.post<IUser>(`${API_URL}/auth/register`, user).pipe(
-      tap((user) => this.user = user)
-    );
+    return this.http.post<IUser>(`${API_URL}/auth/register`, user)
+      .pipe(tap((user) => {
+        this.user = user;
+        document.cookie = `USER=${JSON.stringify(user)}`;
+      }));
   }
 
   getProfileInfo() {
-    return this.http.get<IUser>(`${API_URL}/auth/profile`).pipe(
-      tap((user) => this.user = user)
-    );
+    return this.http.get<IUser>(`${API_URL}/auth/profile`)
+      .pipe(tap((user) => this.user = user));
   }
 
   logout() {
-    return this.http.post<IUser>(`${API_URL}/auth/logout`, {}).pipe(
+    document.cookie = `USER=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
+    return this.http.get(`${API_URL}/auth/logout`).pipe(
       tap(() => this.user = null)
     );
   }

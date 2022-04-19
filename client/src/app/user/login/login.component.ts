@@ -29,6 +29,8 @@ export class LoginComponent {
       if (form.invalid) { return; }
   
       const { username, password } = form.value;
+      console.log(username, 'is logging in with password', password, '(login component)');
+
       this.userService.login(username, password).subscribe({
         next: () => {
           const redirectUrl = this.activatedRoute.snapshot.queryParams.redirectUrl || '/';

@@ -5,11 +5,11 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 module.exports = (app) => {
+    app.use(cors({ credentials: true, origin: 'http://localhost:4200' }));
+    app.use(cookieParser());
     app.engine('.hbs', hbs({ extname: '.hbs' }));
     app.set('view engine', '.hbs');
     app.use('/static', express.static('static'));
     app.use(express.urlencoded({ extended: true }));
-    app.use(cookieParser());
     app.use(bodyParser());
-    app.use(cors());
 };

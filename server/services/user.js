@@ -14,7 +14,7 @@ async function createUser(username, email, hashedPassword) {
 
 async function getUserByUsername(username) {
     const user = await User.findOne({ username: { $regex: username, $options: 'i' } }).lean();
-    console.log('in services/user.js', user);
+    console.log('User in server, user service:', user);
     return user;
 }
 

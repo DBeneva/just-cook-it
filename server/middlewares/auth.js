@@ -38,10 +38,11 @@ module.exports = () => (req, res, next) => {
     }
 
     async function login(username, password) {
-        console.log('username', username);
         const user = await req.storage.getUserByUsername(username);
-        console.log('user', user);
+        
         const hasMatch = user ? await bcrypt.compare(password, user.hashedPassword) : false;
+
+        console.log('Is it the correct password?:', hasMatch);
 
         if (!user || !hasMatch) {
             const err = !user ? new Error('No such user') : new Error('Incorrect password');
@@ -51,6 +52,9 @@ module.exports = () => (req, res, next) => {
 
         const token = generateToken(user);
         res.cookie(COOKIE_NAME, token);
+
+        console.log('Cookies in server, auth middleware:', req.cookies);
+        console.log('Signed cookies in server, auth middleware:', req.signedCookies);
 
         return token;
     }

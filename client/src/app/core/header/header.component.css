@@ -1,5 +1,6 @@
 .container {
     background-color: #4a6b8b;
+    color: lightgray;
     display: flex;
     justify-content: space-between;
     padding: 0 50px;
@@ -29,4 +30,8 @@ li {
 img {
     width: 25px;
     padding: 2px;
+}
+
+.button:hover {
+    cursor: pointer;
 }
