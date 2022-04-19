@@ -13,6 +13,7 @@ import { UserService } from 'src/app/core/services/user.service';
 export class LoginComponent {
 
   form: FormGroup;
+  error: string = '';
 
   constructor(
     private userService: UserService,
@@ -29,14 +30,15 @@ export class LoginComponent {
       if (form.invalid) { return; }
   
       const { username, password } = form.value;
-      console.log(username, 'is logging in with password', password, '(login component)');
 
       this.userService.login(username, password).subscribe({
         next: () => {
           const redirectUrl = this.activatedRoute.snapshot.queryParams.redirectUrl || '/';
           this.router.navigate([redirectUrl]);
         },
-        error: (err) => { console.log(err); }
+        error: (err) => { 
+          this.error = err.error;
+        }
       });
     }
 }

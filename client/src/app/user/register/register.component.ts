@@ -13,6 +13,7 @@ import { UserService } from '../../core/services/user.service';
 export class RegisterComponent implements OnDestroy {
   killSubscription = new Subject();
   form: FormGroup;
+  error: string = '';
   emailValidator = emailValidator;
   passwordValidator = passwordValidator;
 
@@ -32,14 +33,16 @@ export class RegisterComponent implements OnDestroy {
   }
 
   register(): void {
-    console.log('in register component');
     if (this.form.invalid) { return; }
 
     const { username, email, password, repass } = this.form.value;
     console.log('in register component: this.form.value', username, email, password, repass);
     this.userService.register({ username, email, password }).subscribe({
       next: () => { this.router.navigate(['/']) },
-      error: (err) => { console.error(err) }
+      error: (err) => {
+        this.error = err.error;
+        console.error(err);
+      }
     });
   }
 

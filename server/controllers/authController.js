@@ -2,10 +2,6 @@ const router = require('express').Router();
 const { body, validationResult } = require('express-validator');
 const { isGuest } = require('../middlewares/guards');
 
-// router.get('/register', isGuest(), (req, res) => {
-//     res.render('register', { title: 'Register' });
-// });
-
 router.post(
     '/register',
     isGuest(),
@@ -33,45 +29,27 @@ router.post(
 
             await req.auth.register(req.body.username.trim(), req.body.email.trim(), req.body.password.trim());
 
-            res.redirect('/');
+            res.json({ username: req.body.username });
         } catch (err) {
-            console.log(err.message);
+            console.error('There has been an error in authController:', err.message);
 
-            const ctx = {
-                title: 'Register',
-                errors: err.message.split('\n'),
-                userData: {
-                    username: req.body.username,
-                    email: req.body.email
-                }
-            };
-
-            res.json(ctx);
+            res.status(err.status || 400).json(err.message);
         }
     });
 
-// router.get('/login', isGuest(), (req, res) => {
-//     res.json({ title: 'Login' });
-// });
-
 router.post('/login', isGuest(), async (req, res) => {
-    console.log('req.body in authController:', req.body);
-    console.log('Username in server, authController:', req.body.username);
+    console.log(req.body.username, 'is about to log in in server, authController');
 
     try {
         await req.auth.login(req.body.username.trim(), req.body.password.trim());
-        console.log(req.body.username, 'logged in successfully (server, authController)');
+        console.log(req.body.username, 'logged in successfully in server, authController');
 
         res.json({ username: req.body.username });
     } catch (err) {
-        console.log('There has been an error in server, authController:', err.message);
+        console.error('There has been an error in authController:', err.message);
 
-        const ctx = {
-            errors: err.type == 'credential' ? ['Incorrect username or password'] : [err.message],
-            username: req.body.username
-        };
-
-        res.json(ctx);
+        const message = err.type == 'credential' ? 'Incorrect username or password!' : err.message;
+        res.status(err.status || 400).json(message);
     }
 });
 
@@ -80,8 +58,9 @@ router.get('/profile', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-    console.log('in auth controller logout');
-    req.auth.logout();
+    console.log('User has logged out');
+
+    res.json({});
 });
 
 module.exports = router;

@@ -3,6 +3,12 @@
         <fieldset>
             <h2>Registration Form</h2>
 
+            <ng-container *ngIf="error">
+                <p class="error">
+                    {{error}}
+                </p>
+            </ng-container>
+
             <p class="field field-icon">
                 <label for="username"><span><i class="fas fa-user"></i></span></label>
                 <input formControlName="username" class="input-error" type="text" name="username" id="username"
