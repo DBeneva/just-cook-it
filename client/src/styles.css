@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;

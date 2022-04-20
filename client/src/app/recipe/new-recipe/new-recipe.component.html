@@ -1,1 +1,55 @@
-<p>new-recipe works!</p>
+<div class="container">
+    <div class="page-title">
+        <h2>New Recipe</h2>
+    </div>
+    <form #form="ngForm" (ngSubmit)="createRecipe(form)">
+        <div class="title">
+            <label for="recipeName">Title <span class="red">*</span></label>
+            <input ngModel #recipeInput="ngModel" type="text" name="recipeName" id="recipeName" required minlength="5">
+            <ng-container *ngIf="recipeName.touched">
+                <p *ngIf="recipeName.errors?.required" class="error">
+                    Recipe name is required!
+                </p>
+                <p *ngIf="recipeName.errors?.minlength" class="error">
+                    Recipe name must be at least 5 characters long!
+                </p>
+            </ng-container>
+        </div>
+        <div class="ingredients">
+            <label for="ingredients">Ingredients <span class="red">*</span></label>
+            <textarea ngModel #ingredients="ngModel" type="text" name="ingredients" id="ingredients" rows="3" required>
+            </textarea>
+            <ng-container *ngIf="ingredients.touched">
+                <p *ngIf="ingredients.errors?.required" class="error">
+                    Please enter ingredients for your recipe!
+                </p>
+            </ng-container>
+        </div>
+        <div class="directions">
+            <label for="directions">Directions <span class="red">*</span></label>
+            <textarea ngModel #directions="ngModel" type="text" name="directions" id="directions" rows="3" required>
+            </textarea>
+            <ng-container *ngIf="directions.touched">
+                <p *ngIf="directions.errors?.required" class="error">
+                    Please enter directions for your recipe!
+                </p>
+            </ng-container>
+        </div>
+        <div class="image">
+            <label for="recipeImage">Image URL <span class="red">*</span></label>
+            <input ngModel #recipeInput="ngModel" type="text" name="recipeImage" id="recipeImage" required>
+            <ng-container *ngIf="recipeName.touched">
+                <p *ngIf="recipeName.errors?.required" class="error">
+                    Recipe image is required!
+                </p>
+                <p *ngIf="recipeName.errors?.minlength" class="error">
+                    Please enter a valid URL!
+                </p>
+            </ng-container>
+        </div>
+        <div class="buttons">
+            <button routerLink="/recipes" class="cancel">Cancel</button>
+            <button type="submit" [disabled]="form.invalid" class="submit">Create a New Recipe</button>
+        </div>
+    </form>
+</div>

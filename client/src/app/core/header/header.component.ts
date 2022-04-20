@@ -9,8 +9,6 @@ import { UserService } from '../services/user.service';
 })
 export class HeaderComponent {
   get isLogged(): boolean {
-    console.log('Is the user logged in?', this.userService.isLogged);
-
     return this.userService.isLogged;
   }
 
