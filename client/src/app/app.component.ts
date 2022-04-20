@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
     if (user) {
       try {
-        this.userService.user = user; 
+        this.userService.user = user;
       } catch (err) {
         console.log(err);
       }

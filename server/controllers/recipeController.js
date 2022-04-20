@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { isUser } = require('../middlewares/guards');
 
 router.get('/', async (req, res) => {
+    console.log('in recipe controller');
     const recipes = await req.storage.getAllRecipes();
     res.json(recipes);
 });

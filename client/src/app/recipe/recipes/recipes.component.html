@@ -1,1 +1,31 @@
-<app-recipe></app-recipe>
+<div class="container">
+    <div class="recipes" *ngIf="recipes">
+        <div class="recipe-card" *ngFor="let recipe of recipes">
+            {{recipes | json}}
+            <div class="title">
+                <a [routerLink]="['/recipes', recipe._id]">
+                    <h2>{{recipe.recipeName}}</h2>
+                </a>
+            </div>
+            <div class="main">
+                <div class="image">
+                    {{recipe.imageUrl}}
+                </div>
+                <div class="content">
+                    <p>Username: <span>{{recipe.owner}}</span></p>
+                    <p>Ingredients: {{recipe.ingerdients}}</p>
+                </div>
+            </div>
+            <div class="likes">
+                <div *ngIf="isLogged">
+                    <button *ngIf="!recipe.likedBy.includes(user._id)" class="like"
+                        (click)="like(recipe._id)">Like</button>
+                    <button *ngIf="recipe.likedBy.includes(user._id)" class="unlike"
+                        (click)="unsubscribe(theme._id)">Unlike</button>
+                </div>
+                <p>Likes: <span>{{recipe.likedBy.length}}</span></p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!themes">Loading...</div>
+</div>

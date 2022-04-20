@@ -7,7 +7,7 @@ module.exports = {
 
 function isUser() {
     return (req, res, next) => {
-        console.log('req.user in isUser middleware', req.body.user);
+        console.log('req.user in isUser middleware', req.user);
 
         if (req.body.user) {
             next();
@@ -21,7 +21,7 @@ function isGuest() {
     console.log('Is the user a guest?');
 
     return (req, res, next) => {
-        if (!req.user) {
+        if (!req.body.user) {
             next();
         } else {
             res.status(403).json({ message: 'Logged in users cannot access this page!' });

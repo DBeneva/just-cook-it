@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { IRecipe } from 'src/app/shared/interfaces';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { IRecipe, IUser } from 'src/app/shared/interfaces';
 
 const API_URL = environment.apiURL;
 
@@ -18,8 +18,12 @@ export class ContentService {
     return this.http.get<IRecipe>(`${API_URL}/recipes/${id}`);
   }
 
-  loadRecipes() {
-    return this.http.get<IRecipe[]>(`${API_URL}/recipes`);
+  loadRecipes(user: IUser) {
+    return this.http.get<IRecipe[]>(`${API_URL}/recipes`, {
+      headers: new HttpHeaders({
+        'x-authorization': user ? user.token : ''
+      })
+    });
   }
   
   saveRecipe(data: any) {

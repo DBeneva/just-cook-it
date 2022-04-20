@@ -11,15 +11,16 @@ module.exports = {
 };
 
 async function getAllRecipes() {
-    const hotel = await Recipe.find({}).lean();
+    console.log('in server recipe service');
+    const recipes = await Recipe.find({}).lean();
 
-    return hotel.sort((a, b) => b.rooms - a.rooms);
+    return recipes;
 }
 
 async function getRecipeById(id) {
-    const hotel = await Recipe.findById(id).lean();
+    const recipe = await Recipe.findById(id).lean();
 
-    return hotel;
+    return recipe;
 }
 
 async function createRecipe(recipeData) {
@@ -38,22 +39,21 @@ async function editRecipe(id, hotelData) {
     return await Recipe.findByIdAndUpdate(id, hotelData, { runValidators: true }).lean();
 }
 
-async function likeRecipe(hotelId, userId) {
-    const hotel = await Recipe.findById(hotelId);
+async function likeRecipe(recipeId, userId) {
+    const recipe = await Recipe.findById(recipeId);
     const user = await User.findById(userId);
 
-    if (user._id == hotel.owner) {
+    if (user._id == recipe.owner) {
         throw new Error('You cannot book your own hotel!');
     }
 
-    user.reservations.push(hotelId);
-    hotel.bookedBy.push(user);
-    hotel.rooms--;
+    user.likedRecipies.push(recipeId);
+    recipe.likedBy.push(user);
+    // recipe.likes--;
 
-    return Promise.all([user.save(), hotel.save()]);
+    return Promise.all([user.save(), recipe.save()]);
 }
 
 async function deleteRecipe(id) {
-    await Recipe.findByIdAndRemove(id);
-    return hotel;
+    return await Recipe.findByIdAndRemove(id);
 }

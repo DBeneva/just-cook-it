@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from 'src/app/shared/interfaces';
 import { environment } from 'src/environments/environment';
@@ -20,7 +20,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
-    return this.http.post<IUser>(`${API_URL}/auth/login`, { username, password })
+    return this.http.post<IUser>(`${API_URL}/auth/login`, { username, password }, {
+      headers: new HttpHeaders({
+        'x-authorization': this.user ? this.user.token : ''
+      })
+    })
       .pipe(
         tap(user => {
           this.user = user;

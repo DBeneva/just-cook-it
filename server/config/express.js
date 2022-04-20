@@ -1,14 +1,12 @@
 const express = require('express');
-const hbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
 module.exports = (app) => {
-    app.use(cors({ credentials: true, origin: 'http://localhost:4200' }));
+    app.use(cors({ credentials: true, origin: 'http://localhost:4200', allowedHeaders: ['Content-Type', 'X-Authorization'] }));
     app.use(cookieParser());
-    app.engine('.hbs', hbs({ extname: '.hbs' }));
-    app.set('view engine', '.hbs');
+    app.use(express.json());
     app.use('/static', express.static('static'));
     app.use(express.urlencoded({ extended: true }));
     app.use(bodyParser());
