@@ -43,7 +43,7 @@ router.post('/login', isGuest(), async (req, res) => {
 });
 
 router.get('/profile', (req, res) => {
-    req.auth.getUserById();
+    req.auth.getUserById(req.body.userId);
 });
 
 router.get('/logout', (req, res) => {

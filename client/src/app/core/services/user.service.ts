@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { IUser } from 'src/app/shared/interfaces';
 import { environment } from 'src/environments/environment';
 import { catchError, tap } from 'rxjs/operators';
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
 const API_URL = environment.apiURL;
 
@@ -11,21 +12,19 @@ const API_URL = environment.apiURL;
   providedIn: 'root'
 })
 export class UserService {
-  user: IUser | null | undefined = undefined;
+  user: string | undefined = undefined;
 
   get isLogged(): boolean {
-    return !!this.user;
+      return !!this.user;
   }
 
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
-    console.log(username, 'is logging in with password', password, '(user service)');
-
     return this.http.post<IUser>(`${API_URL}/auth/login`, { username, password })
       .pipe(
         tap(user => {
-          this.user = user;
+          this.user = user.username;
           document.cookie = `USER=${JSON.stringify(user)}`;
         }),
         catchError(error => {
@@ -34,11 +33,11 @@ export class UserService {
       );
   }
 
-  register(user: { username: string; email: string; password: string }) {
-        return this.http.post<IUser>(`${API_URL}/auth/register`, user)
+  register(username: string, email: string, password: string) {
+        return this.http.post<IUser>(`${API_URL}/auth/register`, { username, email, password })
           .pipe(
             tap(user => {
-              this.user = user;
+              this.user = user.username;
               document.cookie = `USER=${JSON.stringify(user)}`;
             }),
             catchError(error => {
@@ -49,19 +48,20 @@ export class UserService {
 
   getProfileInfo() {
         return this.http.get<IUser>(`${API_URL}/auth/profile`)
-          .pipe(tap((user) => this.user = user));
+          .pipe(tap((user) => this.user = user.username));
       }
 
   logout() {
-        document.cookie = `USER=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
+        document.cookie = 'USER=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+
         return this.http.get(`${API_URL}/auth/logout`).pipe(
-          tap(() => this.user = null)
+          tap(() => this.user = undefined)
         );
       }
 
   updateProfile(user: { username: string; email: string; tel: string }) {
         return this.http.put<IUser>(`${API_URL}/auth/login`, user).pipe(
-          tap((user) => this.user = user)
+          tap((user) => this.user = user.username)
         );
       }
 }

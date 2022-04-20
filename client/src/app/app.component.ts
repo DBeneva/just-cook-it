@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from './core/services/user.service';
 
 @Component({
@@ -6,16 +6,20 @@ import { UserService } from './core/services/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  get isAuthenticating(): boolean {
-    return this.userService.user === undefined;
-  }
+export class AppComponent implements OnInit {
+  constructor(private userService: UserService) { }
 
-  constructor(private userService: UserService) {
-    // this.userService.getProfileInfo().subscribe({
-    //   error: () => {
-    //     this.userService.user = null;
-    //   }
-    // });
-  }
+  ngOnInit(): void {
+    const userCookie = document.cookie;
+    console.log('userCookie', userCookie);
+    const username = userCookie ? userCookie.split(':"')[1].slice(0, -2) : '';
+
+    if (username) {
+      try {
+        this.userService.user = username; 
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }  
 }

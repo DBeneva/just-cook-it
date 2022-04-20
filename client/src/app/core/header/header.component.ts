@@ -9,11 +9,13 @@ import { UserService } from '../services/user.service';
 })
 export class HeaderComponent {
   get isLogged(): boolean {
+    console.log('Is the user logged in?', this.userService.isLogged);
+
     return this.userService.isLogged;
   }
 
   get username(): string {
-    return this.userService.user ? this.userService.user.username : '';
+    return this.userService.user || '';
   }
   
   errorMessage: string;

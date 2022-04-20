@@ -10,6 +10,7 @@ import { UserService } from '../../core/services/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnDestroy {
   killSubscription = new Subject();
   form: FormGroup;
@@ -37,7 +38,7 @@ export class RegisterComponent implements OnDestroy {
 
     const { username, email, password, repass } = this.form.value;
     console.log('in register component: this.form.value', username, email, password, repass);
-    this.userService.register({ username, email, password }).subscribe({
+    this.userService.register(username, email, password).subscribe({
       next: () => { this.router.navigate(['/']) },
       error: (err) => {
         this.error = err.error;

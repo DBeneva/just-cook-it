@@ -1,6 +1,8 @@
 module.exports = {
     isUser,
-    isGuest
+    isGuest,
+    isOwner,
+    isNotOwner
 };
 
 function isUser() {
@@ -8,17 +10,43 @@ function isUser() {
         if (req.user) {
             next();
         } else {
-            res.redirect('/auth/login');
+            res.status(401).json({ message: 'Please sign in!' });
         }
     }
 }
 
 function isGuest() {
+    console.log('Is the user a guest?');
+
     return (req, res, next) => {
         if (!req.user) {
             next();
         } else {
-            res.redirect('/');
+            res.status(403).json({ message: 'Logged in users cannot access this page!' });
+        }
+    }
+}
+
+function isOwner() {
+    return (req, res, next) => {
+        const userIsOwner = req.user?._id === req.data.owner._id;
+
+        if (userIsOwner) {
+            next();
+        } else {
+            res.status(403).json({ message: 'You are not allowed to modify this recipe!' });
+        }
+    }
+}
+
+function isNotOwner() {
+    return (req, res, next) => {
+        const userIsOwner = req.user?._id === req.data.owner._id;
+
+        if (!userIsOwner) {
+            next();
+        } else {
+            res.status(403).json({ message: 'You are not allowed to modify this recipe!' });
         }
     }
 }
