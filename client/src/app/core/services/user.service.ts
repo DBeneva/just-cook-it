@@ -11,7 +11,7 @@ const API_URL = environment.apiURL;
   providedIn: 'root'
 })
 export class UserService {
-  user: string | undefined = undefined;
+  user: IUser | undefined = undefined;
 
   get isLogged(): boolean {
       return !!this.user;
@@ -23,7 +23,8 @@ export class UserService {
     return this.http.post<IUser>(`${API_URL}/auth/login`, { username, password })
       .pipe(
         tap(user => {
-          this.user = user.username;
+          this.user = user;
+          console.log('user in user service login', this.user);
           document.cookie = `USER=${JSON.stringify(user)}`;
         }),
         catchError(error => {
@@ -36,7 +37,7 @@ export class UserService {
         return this.http.post<IUser>(`${API_URL}/auth/register`, { username, email, password })
           .pipe(
             tap(user => {
-              this.user = user.username;
+              this.user = user;
               document.cookie = `USER=${JSON.stringify(user)}`;
             }),
             catchError(error => {
@@ -47,7 +48,7 @@ export class UserService {
 
   getProfileInfo() {
         return this.http.get<IUser>(`${API_URL}/auth/profile`)
-          .pipe(tap((user) => this.user = user.username));
+          .pipe(tap((user) => this.user = user));
       }
 
   logout() {
@@ -60,7 +61,7 @@ export class UserService {
 
   updateProfile(user: { username: string; email: string; tel: string }) {
         return this.http.put<IUser>(`${API_URL}/auth/login`, user).pipe(
-          tap((user) => this.user = user.username)
+          tap((user) => this.user = user)
         );
       }
 }

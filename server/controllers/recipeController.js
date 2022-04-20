@@ -8,13 +8,15 @@ router.get('/', async (req, res) => {
 
 router.post('/', isUser(), async (req, res) => {
     const recipeData = {
-        name: req.body.name,
+        name: req.body.recipeName,
         ingredients: req.body.ingredients,
         directions: req.body.directions,
         imageUrl: req.body.imageUrl,
         likedBy: [],
-        owner: req.user._id
+        owner: req.body.user
     };
+
+    console.log('user in recipeController', req.body.user);
 
     try {
         const recipe = await req.storage.createRecipe(recipeData);
@@ -24,6 +26,7 @@ router.post('/', isUser(), async (req, res) => {
 
         if (err.name == 'ValidationError'){
             message = Object.values(err.errors).map(e => e.properties.message)[0];
+            console.log(message);
         }
 
         res.status(err.status || 400).json({ message });

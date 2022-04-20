@@ -30,10 +30,10 @@ router.post('/login', isGuest(), async (req, res) => {
     console.log(req.body.username, 'is about to log in in server, authController');
 
     try {
-        await req.auth.login(req.body.username.trim(), req.body.password.trim());
+        const user = await req.auth.login(req.body.username.trim(), req.body.password.trim());
         console.log(req.body.username, 'logged in successfully in server, authController');
 
-        res.json({ username: req.body.username });
+        res.json(user);
     } catch (err) {
         console.error('There has been an error in authController:', err.message);
 

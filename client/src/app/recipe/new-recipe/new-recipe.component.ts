@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContentService } from 'src/app/core/services/content.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-new-recipe',
@@ -9,21 +10,29 @@ import { ContentService } from 'src/app/core/services/content.service';
   styleUrls: ['./new-recipe.component.css']
 })
 export class NewRecipeComponent {
+  error: string = '';
 
   constructor(
     private contentService: ContentService,
+    private userService: UserService,
     private router: Router
   ) { }
 
-  createTheme(form: NgForm): void {
+  createRecipe(form: NgForm): void {
     if (form.invalid) return;
+    console.log(form.value);
 
-    this.contentService.saveRecipe(form.value).subscribe({
+    const data = form.value;
+    data.user = this.userService.user._id;
+    console.log('user sent to server', data.user);
+
+    this.contentService.saveRecipe(data).subscribe({
       next: () => { 
         this.router.navigate(['/recipes']);
       },
       error: (err) => {
         console.error(err);
+        this.error = err.error.message;
       }
     });
   }

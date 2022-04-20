@@ -6,8 +6,8 @@ div {
     padding: 10px;
     font-size: 14px;
     width: 100%;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed; */
+    /* bottom: -20px; */
     display: flex;
     justify-content: space-around;
 }

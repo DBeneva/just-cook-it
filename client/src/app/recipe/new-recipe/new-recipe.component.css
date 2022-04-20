@@ -17,10 +17,13 @@ form {
 
 input, textarea {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #4a6b8b;
     border-radius: 5px;
     resize: none;
+    color: #4a6b8b;
+    font-family: Verdana;
+    font-size: 14px; 
 }
 
 input:focus, textarea:focus {
@@ -65,4 +68,11 @@ button[disabled], button[disabled]:hover {
     background-color: #4a6a8b8c;
     color: lightgray;
     box-shadow: none;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    padding: 10px;
+    margin: 0;
 }

@@ -2,15 +2,22 @@
     <div class="page-title">
         <h2>New Recipe</h2>
     </div>
+    
+    <ng-container *ngIf="error">
+        <p class="error">
+            {{error}}
+        </p>
+    </ng-container>
+
     <form #form="ngForm" (ngSubmit)="createRecipe(form)">
         <div class="title">
             <label for="recipeName">Title <span class="red">*</span></label>
-            <input ngModel #recipeInput="ngModel" type="text" name="recipeName" id="recipeName" required minlength="5">
+            <input ngModel #recipeName="ngModel" type="text" name="recipeName" id="recipeName" required minlength="5">
             <ng-container *ngIf="recipeName.touched">
-                <p *ngIf="recipeName.errors?.required" class="error">
+                <p class="error" *ngIf="recipeName.errors?.required" class="error">
                     Recipe name is required!
                 </p>
-                <p *ngIf="recipeName.errors?.minlength" class="error">
+                <p class="error" *ngIf="recipeName.errors?.minlength" class="error">
                     Recipe name must be at least 5 characters long!
                 </p>
             </ng-container>
@@ -20,7 +27,7 @@
             <textarea ngModel #ingredients="ngModel" type="text" name="ingredients" id="ingredients" rows="3" required>
             </textarea>
             <ng-container *ngIf="ingredients.touched">
-                <p *ngIf="ingredients.errors?.required" class="error">
+                <p class="error" *ngIf="ingredients.errors?.required" class="error">
                     Please enter ingredients for your recipe!
                 </p>
             </ng-container>
@@ -30,19 +37,19 @@
             <textarea ngModel #directions="ngModel" type="text" name="directions" id="directions" rows="3" required>
             </textarea>
             <ng-container *ngIf="directions.touched">
-                <p *ngIf="directions.errors?.required" class="error">
+                <p class="error" *ngIf="directions.errors?.required" class="error">
                     Please enter directions for your recipe!
                 </p>
             </ng-container>
         </div>
         <div class="image">
             <label for="imageUrl">Image URL <span class="red">*</span></label>
-            <input ngModel #recipeInput="ngModel" type="text" name="imageUrl" id="imageUrl" required>
+            <input ngModel #imageUrl="ngModel" type="text" name="imageUrl" id="imageUrl" required pattern="https?://.*">
             <ng-container *ngIf="imageUrl.touched">
-                <p *ngIf="imageUrl.errors?.required" class="error">
+                <p class="error" *ngIf="imageUrl.errors?.required" class="error">
                     Recipe image is required!
                 </p>
-                <p *ngIf="imageUrl.errors?.minlength" class="error">
+                <p class="error" *ngIf="imageUrl.errors?.pattern" class="error">
                     Please enter a valid URL!
                 </p>
             </ng-container>

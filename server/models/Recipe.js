@@ -13,7 +13,7 @@ const schema = new Schema({
     },
     directions: {
         type: String,
-        required: [true, 'Ingredients are required'],
+        required: [true, 'Directions are required'],
         minLength: 3
     },
     imageUrl: {

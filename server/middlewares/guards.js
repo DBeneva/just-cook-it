@@ -7,7 +7,9 @@ module.exports = {
 
 function isUser() {
     return (req, res, next) => {
-        if (req.user) {
+        console.log('req.user in isUser middleware', req.body.user);
+
+        if (req.body.user) {
             next();
         } else {
             res.status(401).json({ message: 'Please sign in!' });

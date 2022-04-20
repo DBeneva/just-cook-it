@@ -22,8 +22,8 @@ export class ContentService {
     return this.http.get<IRecipe[]>(`${API_URL}/recipes`);
   }
   
-  saveRecipe(recipe: any) {
-    return this.http.post<IRecipe>(`${API_URL}/recipes`, recipe);
+  saveRecipe(data: any) {
+    return this.http.post<IRecipe>(`${API_URL}/recipes`, data);
   }
 
   likeRecipe(recipeId: string) {

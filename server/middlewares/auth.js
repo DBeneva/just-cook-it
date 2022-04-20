@@ -33,6 +33,7 @@ module.exports = () => (req, res, next) => {
         const isCorrectPassword = user ? await bcrypt.compare(password, user.hashedPassword) : false;
 
         console.log(`Has ${username} entered the correct password?: ${isCorrectPassword}`);
+        console.log('user in auth login', user);
 
         if (!user || !isCorrectPassword) {
             const err = !user ? new Error('No such user') : new Error('Incorrect password');
@@ -40,7 +41,9 @@ module.exports = () => (req, res, next) => {
             throw err;
         }
 
-        return generateToken(user);
+        generateToken(user);
+
+        return user;
     }
 }
 

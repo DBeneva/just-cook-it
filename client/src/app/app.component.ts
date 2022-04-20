@@ -7,16 +7,16 @@ import { UserService } from './core/services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) { console.log('cookie', document.cookie); }
 
   ngOnInit(): void {
-    const userCookie = document.cookie;
-    console.log('userCookie', userCookie);
-    const username = userCookie ? userCookie.split(':"')[1].slice(0, -2) : '';
+    console.log('cookie', document.cookie);
+    const user = JSON.parse(document.cookie.split('USER=')[1]);
+    console.log('user in app component', user);
 
-    if (username) {
+    if (user) {
       try {
-        this.userService.user = username; 
+        this.userService.user = user; 
       } catch (err) {
         console.log(err);
       }

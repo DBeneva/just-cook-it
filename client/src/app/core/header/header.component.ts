@@ -13,7 +13,7 @@ export class HeaderComponent {
   }
 
   get username(): string {
-    return this.userService.user || '';
+    return this.userService.user ? this.userService.user.username : '';
   }
   
   errorMessage: string;

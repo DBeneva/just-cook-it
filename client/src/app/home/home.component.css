@@ -5,6 +5,9 @@ div {
 
 img {
     width: 60%;
+    height: 570px;
+    object-fit: none;
+    object-position: 0px 0px;
     padding-top: 250px;
     border-radius: 20px;
     opacity: 0.8;
