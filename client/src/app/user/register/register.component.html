@@ -50,8 +50,11 @@
             <p *ngIf="form.get('password').errors?.lessThanFiveChars" class="error">
                 Password must be at least 5 characters long!
             </p>
-            <p *ngIf="form.get('password').errors?.notAllowedChars" class="error">
-                Password may only contain latin letters and digits!
+            <p *ngIf="form.get('password').errors?.notAllowedAlphabet" class="error">
+                Latin characters only!
+            </p>
+            <p *ngIf="form.get('password').errors?.noSpecialCharacter" class="error">
+                Please include at least one special symbol (!?@#$%^&*())!
             </p>
         </ng-container>
 

@@ -6,14 +6,14 @@ import { takeUntil } from "rxjs/operators";
 export function passwordValidator(control: AbstractControl): ValidationErrors {
     if (!control.value) { return; }
 
-    if (/^[A-Za-z0-9]+$/.test(control.value)) {
-        if (control.value.length >= 5) {
-            return null;
-        } else {
-            return { lessThanFiveChars: true };
-        }
+    if (control.value.length < 5) {
+        return { lessThanFiveChars: true };
+    } else if (/[а-яА-Я]/.test(control.value)) {
+        return { notAllowedAlphabet: true };
+    } else if (/[\!\?\@\#\$\%\^\&\*\(\)]/.test(control.value)) {
+        return null;
     } else {
-        return { notAllowedChars: true };
+        return { noSpecialCharacter: true };
     }
 }
 

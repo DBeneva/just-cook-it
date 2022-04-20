@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { IUser } from 'src/app/shared/interfaces';
 import { environment } from 'src/environments/environment';
 import { catchError, tap } from 'rxjs/operators';
-import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
 const API_URL = environment.apiURL;
 
