@@ -36,13 +36,13 @@
             </ng-container>
         </div>
         <div class="image">
-            <label for="recipeImage">Image URL <span class="red">*</span></label>
-            <input ngModel #recipeInput="ngModel" type="text" name="recipeImage" id="recipeImage" required>
-            <ng-container *ngIf="recipeName.touched">
-                <p *ngIf="recipeName.errors?.required" class="error">
+            <label for="imageUrl">Image URL <span class="red">*</span></label>
+            <input ngModel #recipeInput="ngModel" type="text" name="imageUrl" id="imageUrl" required>
+            <ng-container *ngIf="imageUrl.touched">
+                <p *ngIf="imageUrl.errors?.required" class="error">
                     Recipe image is required!
                 </p>
-                <p *ngIf="recipeName.errors?.minlength" class="error">
+                <p *ngIf="imageUrl.errors?.minlength" class="error">
                     Please enter a valid URL!
                 </p>
             </ng-container>

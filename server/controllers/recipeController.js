@@ -6,12 +6,8 @@ router.get('/', async (req, res) => {
     res.json(recipes);
 });
 
-router.get('/add', isUser(), (req, res) => {
-    res.json({ title: 'Add Recipe' });
-});
-
-router.post('/add', isUser(), async (req, res) => {
-    const recipe = {
+router.post('/', isUser(), async (req, res) => {
+    const recipeData = {
         name: req.body.name,
         ingredients: req.body.ingredients,
         directions: req.body.directions,
@@ -21,22 +17,16 @@ router.post('/add', isUser(), async (req, res) => {
     };
 
     try {
-        await req.storage.createRecipe(recipe);
-        res.redirect('/');
+        const recipe = await req.storage.createRecipe(recipeData);
+        res.json(recipe);
     } catch (err) {
-        const errors = err.errors ? Object.values(err.errors).map(e => e.properties.message) : [err.message];
+        let message = err.message;
 
-        const ctx = {
-            errors,
-            recipe: {
-                name: req.body.name,
-                ingredients: req.body.ingredients,
-                directions: req.body.directions,
-                imageUrl: req.body.imageUrl
-            }
-        };
+        if (err.name == 'ValidationError'){
+            message = Object.values(err.errors).map(e => e.properties.message)[0];
+        }
 
-        res.json(ctx);
+        res.status(err.status || 400).json({ message });
     }
 });
 

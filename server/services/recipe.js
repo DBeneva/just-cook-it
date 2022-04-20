@@ -22,16 +22,16 @@ async function getRecipeById(id) {
     return hotel;
 }
 
-async function createRecipe(hotelData) {
-    const hotel = new Recipe(hotelData)
-    await hotel.save();
+async function createRecipe(recipeData) {
+    const recipe = new Recipe(recipeData)
+    await recipe.save();
 
-    const owner = await User.findById(hotel.owner);
-    const offers = owner.offers;
-    offers.push(hotel._id);
+    const owner = await User.findById(recipe.owner);
+    const userRecipes = owner.recipes;
+    userRecipes.push(recipe._id);
     await owner.save();
     
-    return hotel;
+    return recipe;
 }
 
 async function editRecipe(id, hotelData) {
