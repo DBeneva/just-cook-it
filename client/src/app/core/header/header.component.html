@@ -12,7 +12,6 @@
             <div *ngIf="!isLogged">
                 <li><a routerLink="login">Login</a></li>
                 <li><a routerLink="register">Register</a></li>
-                <li><a routerLink="about">About</a></li>
             </div>
             
             <div *ngIf="isLogged">
@@ -20,7 +19,6 @@
                 <li><a routerLink="new-recipe">New Recipe</a></li>
                 <li><a routerLink="profile">{{username}}'s profile</a></li>
                 <li class="button" (click)="logout()">Logout</li>
-                <li><a routerLink="about">About</a></li>
             </div>
             
         </ul>

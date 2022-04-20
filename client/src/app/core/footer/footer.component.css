@@ -3,9 +3,16 @@ div {
     color: lightgray;
     height: 50px;
     text-align: center;
-    padding-top: 40px;
+    padding: 10px 10px;
     font-size: 14px;
     width: 100%;
     position: fixed;
     bottom: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+p a {
+    color: lightgray;
+    text-decoration: none;
 }
