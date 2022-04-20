@@ -3,6 +3,7 @@
     <div class="text">
         <p>Welcome to our very special place for sharing recipes!</p>
         <a routerLink="/recipes">See Recipes</a>
-        <a routerLink="/login">Login</a>
+        <a *ngIf="!isLogged" routerLink="/login">Login</a>
+        <a *ngIf="isLogged" routerLink="/new-recipe">Add New Recipe</a>
     </div>
 </div>
