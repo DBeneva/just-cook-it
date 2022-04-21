@@ -16,9 +16,9 @@ router.post(
                 throw new Error(message);
             }
 
-            await req.auth.register(req.body.username.trim(), req.body.email.trim(), req.body.password.trim());
+            const user = await req.auth.register(req.body.username.trim(), req.body.email.trim(), req.body.password.trim());
 
-            res.json({ username: req.body.username });
+            res.json(user);
         } catch (err) {
             console.error('There has been an error in authController:', err.message);
 

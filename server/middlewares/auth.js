@@ -25,7 +25,12 @@ module.exports = () => (req, res, next) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await req.storage.createUser(username, email, hashedPassword);
 
-        return generateToken(user);
+        return {
+            username: user.username,
+            _id: user._id,
+            email: user.email,
+            token: generateToken(user)
+        };
     }
 
     async function login(username, password) {
@@ -41,7 +46,12 @@ module.exports = () => (req, res, next) => {
             throw err;
         }
 
-        return { ...user, token: generateToken(user) };
+        return {
+            username: user.username,
+            _id: user._id,
+            email: user.email,
+            token: generateToken(user)
+        };
     }
 }
 
@@ -55,7 +65,6 @@ function generateToken(userData) {
 
 function parseToken(req, res) {
     const token = req.headers['x-authorization'];
-    console.log('token in parse token', req.headers);
 
     if (token) {
         try {
