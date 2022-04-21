@@ -1,6 +1,7 @@
 .recipes {
     display: flex;
     flex-wrap: wrap;
+    min-height: 79.5vh;
 }
 
 .card {
@@ -45,13 +46,17 @@ table {
     margin-bottom: 10px;
 }
 
+td {
+    vertical-align: top;
+}
+
 td h4, td p {
     margin: 5px;
 }
 
 .ingredients, .directions {
     font-size: 14px;
-    max-height: 38px;
+    height: 38px;
     overflow: hidden;
 }
 
