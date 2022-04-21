@@ -13,11 +13,10 @@ router.post('/', isUser(), async (req, res) => {
         ingredients: req.body.ingredients,
         directions: req.body.directions,
         imageUrl: req.body.imageUrl,
+        time: req.body.time,
         likedBy: [],
         owner: req.body.user
     };
-
-    console.log('user in recipeController', req.body.user);
 
     try {
         const recipe = await req.storage.createRecipe(recipeData);

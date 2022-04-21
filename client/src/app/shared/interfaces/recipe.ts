@@ -2,6 +2,7 @@ export interface IRecipe {
     likedBy: string[];
     _id: string;
     recipeName: string;
+    time: number;
     userId: {
         recipes: string[],
         likedRecipes: string[],

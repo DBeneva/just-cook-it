@@ -8,17 +8,21 @@ const schema = new Schema({
     },
     ingredients: {
         type: String,
-        required: [true, 'Ingredients are required'],
+        required: [true, 'Please add ingredients!'],
         minLength: 3
     },
     directions: {
         type: String,
-        required: [true, 'Directions are required'],
+        required: [true, 'Please add cooking directions!'],
         minLength: 3
+    },
+    time: {
+        type: Number,
+        required: [true, 'Please add cooking time!']
     },
     imageUrl: {
         type: String,
-        required: [true, 'Image URL is required'],
+        required: [true, 'Please add an image URL!'],
         match: [/^https?:\/\//, 'Image must be a valid URL']
     },
     likedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],

@@ -12,7 +12,23 @@
 form {
     border: 1px solid #4a6b8b;
     border-radius: 10px;
-    padding: 20px 20px 10px 20px;
+    padding: 10px 20px 10px 20px;
+}
+
+.title-section {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.title-section div {
+    width: 49.5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    margin-right: 5px;
 }
 
 input, textarea {
