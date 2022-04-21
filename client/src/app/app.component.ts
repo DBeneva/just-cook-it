@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('cookie', document.cookie);
-    const user = JSON.parse(document.cookie.split('USER=')[1]);
+    const user = document.cookie ? JSON.parse(document.cookie.split('USER=')[1]) : '';
     console.log('user in app component', user);
 
     if (user) {

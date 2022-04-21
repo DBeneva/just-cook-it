@@ -9,7 +9,7 @@ function isUser() {
     return (req, res, next) => {
         console.log('req.user in isUser middleware', req.user);
 
-        if (req.body.user) {
+        if (req.user) {
             next();
         } else {
             res.status(401).json({ message: 'Please sign in!' });
@@ -21,7 +21,7 @@ function isGuest() {
     console.log('Is the user a guest?');
 
     return (req, res, next) => {
-        if (!req.body.user) {
+        if (!req.user) {
             next();
         } else {
             res.status(403).json({ message: 'Logged in users cannot access this page!' });

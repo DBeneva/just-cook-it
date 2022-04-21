@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from 'src/app/core/services/content.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { IRecipe } from 'src/app/shared/interfaces';
@@ -17,7 +17,8 @@ export class RecipeComponent {
   constructor(
     private contentService: ContentService,
     private userService: UserService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.fetchRecipe();
   }
@@ -25,9 +26,15 @@ export class RecipeComponent {
   fetchRecipe(): void {
     this.recipe = undefined;
     const id = this.activatedRoute.snapshot.params.recipeId;
-    this.contentService.loadRecipe(id, this.user).subscribe(recipe => {
+    this.contentService.loadRecipe(id, this.user).subscribe({
+      next: (recipe) => {
       this.recipe = recipe;
       console.log('user in recipe component', this.user);
-    });
+    },
+    error: (err) => {
+      console.log(err);
+      this.router.navigate(['/recipes']);
+    }
+  });
   }
 }
