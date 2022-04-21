@@ -1,41 +1,82 @@
+.container {
+    min-height: 73.9vh;
+}
+
 .card {
-    width: 400px;
+    width: 300px;
+    height: 400px;
     box-shadow: 2px 2px 20px 0 gray;
     border-radius: 20px;
-    margin: 40px;
+    margin: 40px auto;
     color: #4a6b8b;
+    position: relative;
 }
 
 .card-image {
     width: 100%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .card-title {
     text-align: center;
-    margin-top: 10px;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
 }
 
-li {
-    list-style-type: none;
-    font-size: 14px;
-    padding: 5px 10px;
+.card-title h3 {
+    margin: 8px 0;
+}
+
+.card-title p {
+    margin: 12px 0 0 0;
+    font-size: 12px;
+}
+
+table {
+    margin: 0 10px;
 }
 
 .card-section {
-    display: flex;
-    padding-left: 20px;
+    margin-bottom: 10px;
 }
 
-.ingredients-list {
-    display: flex;
-    align-content: flex-start;
-    flex-wrap: wrap;
+td {
+    vertical-align: top;
 }
 
-.directions {
-    margin: 20px;
+td h4, td p {
+    margin: 5px;
+}
+
+.ingredients, .directions {
     font-size: 14px;
+    height: 38px;
+    overflow: hidden;
+}
+
+.likes {
+    width: 100%;
+    background-color: #4a6b8b;
+    color: lightgray;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    padding: 0 60px;
+    font-family: "Merienda";
+    position: absolute;
+    bottom: -1px;
+}
+
+.like, .unlike {
+    display: inline-block;
+    margin: 14px 0 14px 20px;
+}
+
+h4 img {
+    width: 20px;
 }
 

@@ -5,6 +5,7 @@ import { AuthActivate } from './core/guards/auth.activate';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NewRecipeComponent } from './recipe/new-recipe/new-recipe.component';
+import { RecipeComponent } from './recipe/recipe/recipe.component';
 import { RecipesComponent } from './recipe/recipes/recipes.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'recipes', component: RecipesComponent },
+  { path: 'recipes/:recipeId', component: RecipeComponent },
   {
     path: 'new-recipe',
     component: NewRecipeComponent,

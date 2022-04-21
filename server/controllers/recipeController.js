@@ -33,20 +33,19 @@ router.post('/', isUser(), async (req, res) => {
     }
 });
 
-router.get('/details/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const recipe = await req.storage.getRecipeById(req.params.id);
         recipe.isUser = Boolean(req.user);
         recipe.isOwner = req.user && recipe.owner == req.user._id;
-        console.log(req.user);
         recipe.hasLiked = req.user && recipe.likedBy.find(u => u._id == req.user._id);
+        console.log('recipeController', recipe);
 
-        res.json({ title: recipe.name, recipe });
+        res.json(recipe);
     } catch (err) {
         console.log(err.message);
-        res.redirect('/not-found');
+        res.status(404).json(err.message);
     }
-
 });
 
 router.get('/edit/:id', isUser(), async (req, res) => {

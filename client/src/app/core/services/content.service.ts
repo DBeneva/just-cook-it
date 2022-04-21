@@ -14,8 +14,12 @@ export class ContentService {
 
   constructor(private http: HttpClient) { }
   
-  loadRecipe(id: string) {
-    return this.http.get<IRecipe>(`${API_URL}/recipes/${id}`);
+  loadRecipe(id: string, user) {
+    return this.http.get<IRecipe>(`${API_URL}/recipes/${id}`, {
+      headers: new HttpHeaders({
+        'x-authorization': user ? user.token : ''
+      })
+    });
   }
 
   loadRecipes(user: IUser) {
@@ -27,7 +31,11 @@ export class ContentService {
   }
   
   saveRecipe(data: any) {
-    return this.http.post<IRecipe>(`${API_URL}/recipes`, data);
+    return this.http.post<IRecipe>(`${API_URL}/recipes`, data, {
+      headers: new HttpHeaders({
+        'x-authorization': data.user ? data.user.token : ''
+      })
+    });
   }
 
   likeRecipe(recipeId: string) {

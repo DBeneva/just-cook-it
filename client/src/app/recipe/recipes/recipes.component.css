@@ -12,6 +12,7 @@
     margin: 40px;
     color: #4a6b8b;
     position: relative;
+    cursor: pointer;
 }
 
 .card-image {
@@ -67,15 +68,14 @@ td h4, td p {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     display: flex;
-    padding: 0 60px;
+    padding: 12px;
     font-family: "Merienda";
     position: absolute;
     bottom: -1px;
 }
 
-.like, .unlike {
-    display: inline-block;
-    margin: 14px 0 14px 20px;
+.likes p {
+    margin: auto;
 }
 
 h4 img {

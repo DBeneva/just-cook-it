@@ -1,15 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ContentService } from 'src/app/core/services/content.service';
+import { UserService } from 'src/app/core/services/user.service';
+import { IRecipe } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.css']
 })
-export class RecipeComponent implements OnInit {
+export class RecipeComponent {
+  recipe: IRecipe;
+  isLogged = this.userService.isLogged;
+  user = this.userService.user; 
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    private contentService: ContentService,
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.fetchRecipe();
   }
 
+  fetchRecipe(): void {
+    this.recipe = undefined;
+    const id = this.activatedRoute.snapshot.params.recipeId;
+    this.contentService.loadRecipe(id, this.user).subscribe(recipe => {
+      this.recipe = recipe;
+      console.log('user in recipe component', this.user);
+    });
+  }
 }
