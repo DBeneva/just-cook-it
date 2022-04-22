@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { isUser } = require('../middlewares/guards');
 
 router.get('/', async (req, res) => {
-    console.log('in recipe controller');
     const recipes = await req.storage.getAllRecipes();
     res.json(recipes);
 });
@@ -17,12 +16,13 @@ router.post('/', isUser(), async (req, res) => {
         likedBy: [],
         owner: req.body.user
     };
-
+    
     try {
         const recipe = await req.storage.createRecipe(recipeData);
         res.json(recipe);
     } catch (err) {
         let message = err.message;
+        console.log(message);
 
         if (err.name == 'ValidationError'){
             message = Object.values(err.errors).map(e => e.properties.message)[0];

@@ -15,8 +15,8 @@
                         <h4><i class="fas fa-list"></i></h4>
                     </td>
                     <td>
-                        <p class="ingredients">{{recipe.ingredients | slice:0:63}}<span
-                                *ngIf="recipe.ingredients.length > 63">...</span></p>
+                        <p class="ingredients">{{recipe.ingredients | slice:0:50}}<span
+                                *ngIf="recipe.ingredients.length > 50">...</span></p>
                     </td>
                 </tr>
                 <tr class="card-section">
@@ -24,8 +24,8 @@
                         <h4><img src="/assets/directions.png" alt="Directions"></h4>
                     </td>
                     <td>
-                        <p class="directions">{{recipe.directions | slice:0:63}}<span
-                                *ngIf="recipe.directions.length > 63">...</span></p>
+                        <p class="directions">{{recipe.directions | slice:0:50}}<span
+                                *ngIf="recipe.directions.length > 50">...</span></p>
                     </td>
                 </tr>
             </table>

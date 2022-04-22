@@ -25,8 +25,10 @@ export class RecipeComponent {
 
   fetchRecipe(): void {
     this.recipe = undefined;
-    const id = this.activatedRoute.snapshot.params.recipeId;
-    this.contentService.loadRecipe(id, this.user).subscribe({
+    const recipeId = this.activatedRoute.snapshot.params.recipeId;
+    const data = { recipeId, user: this.user };
+
+    this.contentService.loadRecipe(data).subscribe({
       next: (recipe) => {
       this.recipe = recipe;
       console.log('user in recipe component', this.user);
@@ -36,5 +38,9 @@ export class RecipeComponent {
       this.router.navigate(['/recipes']);
     }
   });
+  }
+
+  deleteRecipe() {
+    
   }
 }

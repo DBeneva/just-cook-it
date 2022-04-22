@@ -14,10 +14,10 @@ export class ContentService {
 
   constructor(private http: HttpClient) { }
   
-  loadRecipe(id: string, user) {
-    return this.http.get<IRecipe>(`${API_URL}/recipes/${id}`, {
+  loadRecipe(data: any) {
+    return this.http.get<IRecipe>(`${API_URL}/recipes/${data.recipeId}`, {
       headers: new HttpHeaders({
-        'x-authorization': user ? user.token : ''
+        'x-authorization': data.user ? data.user.token : ''
       })
     });
   }
