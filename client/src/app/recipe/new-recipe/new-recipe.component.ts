@@ -20,11 +20,9 @@ export class NewRecipeComponent {
 
   createRecipe(form: NgForm): void {
     if (form.invalid) return;
-    console.log(form.value);
 
     const data = form.value;
     data.user = this.userService.user;
-    console.log('user sent to server', data.user);
 
     this.contentService.saveRecipe(data).subscribe({
       next: () => { 

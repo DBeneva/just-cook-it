@@ -43,13 +43,13 @@
                 </p>
             </ng-container>
         </div>
-        <div class="directions">
-            <label for="directions">Directions <span class="red">*</span></label>
-            <textarea ngModel #directions="ngModel" type="text" name="directions" id="directions" rows="3" required>
+        <div class="instructions">
+            <label for="instructions">Instructions <span class="red">*</span></label>
+            <textarea ngModel #instructions="ngModel" type="text" name="instructions" id="instructions" rows="3" required>
             </textarea>
-            <ng-container *ngIf="directions.touched">
-                <p class="error" *ngIf="directions.errors?.required" class="error">
-                    Please enter directions for your recipe!
+            <ng-container *ngIf="instructions.touched">
+                <p class="error" *ngIf="instructions.errors?.required" class="error">
+                    Please enter instructions for your recipe!
                 </p>
             </ng-container>
         </div>

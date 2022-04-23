@@ -53,7 +53,7 @@ td h4, td p {
     margin: 5px;
 }
 
-.ingredients, .directions {
+.ingredients, .instructions {
     font-size: 14px;
 }
 
@@ -67,7 +67,7 @@ td h4, td p {
     justify-content: space-between;
     padding: 0 60px;
     font-family: "Merienda";
-    position: relative;
+    position: absolute;
     bottom: -1px;
 }
 

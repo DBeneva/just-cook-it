@@ -5,26 +5,23 @@ module.exports = {
     getAllRecipes,
     getRecipeById,
     createRecipe,
-    editRecipe,
-    likeRecipe,
+    // editRecipe,
+    // likeRecipe,
     deleteRecipe
 };
 
 async function getAllRecipes() {
-    console.log('in server recipe service');
-    const recipes = await Recipe.find({}).lean();
-
-    return recipes;
+    const recipes = Recipe.find({});
+    return await recipes.lean();
 }
 
 async function getRecipeById(id) {
-    const recipe = await Recipe.findById(id).lean();
-
-    return recipe;
+    const recipe = Recipe.findById(id);
+    return await recipe.lean();
 }
 
 async function createRecipe(recipeData) {
-    const recipe = new Recipe(recipeData)
+    const recipe = new Recipe(recipeData);
     await recipe.save();
 
     const owner = await User.findById(recipe.owner);
@@ -35,26 +32,26 @@ async function createRecipe(recipeData) {
     return recipe;
 }
 
-async function editRecipe(id, hotelData) {
-    return await Recipe.findByIdAndUpdate(id, hotelData, { runValidators: true }).lean();
-}
+// async function editRecipe(id, hotelData) {
+//     const editedRecipe = Recipe.findByIdAndUpdate(id, hotelData, { runValidators: true });
+//     return await editedRecipe.lean();
+// }
 
-async function likeRecipe(recipeId, userId) {
-    const recipe = await Recipe.findById(recipeId);
-    const user = await User.findById(userId);
+// async function likeRecipe(recipeId, userId) {
+//     const recipe = await Recipe.findById(recipeId);
+//     const user = await User.findById(userId);
 
-    if (user._id == recipe.owner) {
-        throw new Error('You cannot book your own hotel!');
-    }
+//     if (user._id == recipe.owner) {
+//         throw new Error('You cannot book your own hotel!');
+//     }
 
-    user.likedRecipies.push(recipeId);
-    recipe.likedBy.push(user);
-    // recipe.likes--;
+//     user.likedRecipies.push(recipeId);
+//     recipe.likedBy.push(user);
+//     recipe.likes--;
 
-    return Promise.all([user.save(), recipe.save()]);
-}
+//     return Promise.all([user.save(), recipe.save()]);
+// }
 
 async function deleteRecipe(id) {
-    console.log('deleting in server recipe service', id);
     return await Recipe.findByIdAndRemove(id);
 }

@@ -10,7 +10,7 @@ router.post('/', isUser(), async (req, res) => {
     const recipeData = {
         name: req.body.recipeName,
         ingredients: req.body.ingredients,
-        directions: req.body.directions,
+        instructions: req.body.instructions,
         imageUrl: req.body.imageUrl,
         time: req.body.time,
         likedBy: [],
@@ -90,7 +90,7 @@ router.post('/edit/:id', isUser(), async (req, res) => {
                 _id: req.params.id,
                 name: req.body.name,
                 ingredients: req.body.ingredients,
-                directions: req.body.directions,
+                instructions: req.body.instructions,
                 imageUrl: req.body.imageUrl,
             }
         };

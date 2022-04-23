@@ -17,9 +17,9 @@ module.exports = () => (req, res, next) => {
         const existingEmail = await req.storage.getUserByEmail(email);
 
         if (existingUsername) {
-            throw new Error('Username is taken!');
+            throw new Error('Sorry, this username is taken!');
         } else if (existingEmail) {
-            throw new Error('Email is taken!');
+            throw new Error('Sorry, this email is taken!');
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -37,13 +37,10 @@ module.exports = () => (req, res, next) => {
         const user = await req.storage.getUserByUsername(username);
         const isCorrectPassword = user ? await bcrypt.compare(password, user.hashedPassword) : false;
 
-        console.log(`Has ${username} entered the correct password?: ${isCorrectPassword}`);
-        console.log('user in auth login', user);
-
         if (!user || !isCorrectPassword) {
-            const err = !user ? new Error('No such user') : new Error('Incorrect password');
-            err.type = 'credential';
-            throw err;
+            const error = !user ? new Error('This username does not exist') : new Error('Incorrect password');
+            error.type = 'credential';
+            throw error;
         }
 
         return {
@@ -70,7 +67,8 @@ function parseToken(req, res) {
         try {
             const userData = jwt.verify(token, TOKEN_SECRET);
             req.user = userData;
-            console.log('Known user', req.user.username);
+
+            console.log('Known user:', req.user.username);
         } catch (err) {
             return res.status(401).json({ message: 'Please sign in!' });
         }

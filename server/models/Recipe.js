@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const schema = new Schema({
     name: {
         type: String,
-        required: [true, 'Meal name is required'],
+        required: [true, 'Please add meal name!'],
         minLength: 4
     },
     ingredients: {
@@ -11,9 +11,9 @@ const schema = new Schema({
         required: [true, 'Please add ingredients!'],
         minLength: 3
     },
-    directions: {
+    instructions: {
         type: String,
-        required: [true, 'Please add cooking directions!'],
+        required: [true, 'Please add cooking instructions!'],
         minLength: 3
     },
     time: {

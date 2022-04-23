@@ -13,13 +13,27 @@ import { RegisterComponent } from './user/register/register.component';
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'recipes', component: RecipesComponent },
-  { path: 'recipes/:recipeId', component: RecipeComponent },
   {
-    path: 'new-recipe',
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'recipes',
+    pathMatch: 'full',
+    component: RecipesComponent
+  },
+  {
+    path: 'recipes/new-recipe',
+    pathMatch: 'full',
     component: NewRecipeComponent,
     canActivate: [AuthActivate],
     data: {
@@ -27,6 +41,10 @@ const routes: Routes = [
       authFailureRedirectUrl: 'login'
     }
   },
+  {
+    path: 'recipes/:recipeId',
+    component: RecipeComponent
+  },  
   { 
     path: 'register',
     component: RegisterComponent,
