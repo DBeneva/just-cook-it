@@ -7,12 +7,10 @@ import { UserService } from './core/services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private userService: UserService) { console.log('cookie', document.cookie); }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    console.log('cookie', document.cookie);
     const user = document.cookie ? JSON.parse(document.cookie.split('USER=')[1]) : '';
-    console.log('user in app component', user);
 
     if (user) {
       try {

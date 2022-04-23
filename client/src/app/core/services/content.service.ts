@@ -38,11 +38,20 @@ export class ContentService {
     });
   }
 
+  deleteRecipe(data: any) {
+    console.log('deleting in content service', data.recipe._id);
+    return this.http.delete<IRecipe>(`${API_URL}/recipes/${data.recipe._id}`, {
+      headers: new HttpHeaders({
+        'x-authorization': data.user ? data.user.token : ''
+      })
+    });
+  }
+
   likeRecipe(recipeId: string) {
-    return this.http.put<IRecipe>(`${API_URL}/recipes/${recipeId}`, {});
+    return this.http.put<IRecipe>(`${API_URL}/recipes/like/${recipeId}`, {});
   }
 
   unlikeRecipe(recipeId: string) {
-    return this.http.put<IRecipe>(`${API_URL}/recipes/${recipeId}/unlike`, {});
+    return this.http.put<IRecipe>(`${API_URL}/recipes/unlike/${recipeId}`, {});
   }
 }

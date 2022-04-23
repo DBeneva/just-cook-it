@@ -12,7 +12,8 @@ import { IRecipe } from 'src/app/shared/interfaces';
 export class RecipeComponent {
   recipe: IRecipe;
   isLogged = this.userService.isLogged;
-  user = this.userService.user; 
+  user = this.userService.user;
+  isDeletingRecipe = false;
 
   constructor(
     private contentService: ContentService,
@@ -30,17 +31,32 @@ export class RecipeComponent {
 
     this.contentService.loadRecipe(data).subscribe({
       next: (recipe) => {
-      this.recipe = recipe;
-      console.log('user in recipe component', this.user);
-    },
-    error: (err) => {
-      console.log(err);
-      this.router.navigate(['/recipes']);
-    }
-  });
+        this.recipe = recipe;
+        console.log('user in recipe component', this.user);
+      },
+      error: (err) => {
+        console.log(err);
+        this.router.navigate(['/recipes']);
+      }
+    });
+  }
+
+  toggleDeleteModal() {
+    this.isDeletingRecipe = !this.isDeletingRecipe;
   }
 
   deleteRecipe() {
-    
+    const data = { recipe: this.recipe, user: this.user };
+
+    this.contentService.deleteRecipe(data).subscribe({
+      next: () => {
+        console.log('Record with id', this.recipe._id, 'has been deleted');
+        this.router.navigate(['/recipes']);
+      },
+      error: (err) => {
+        console.log(err);
+        this.router.navigate(['/recipes']);
+      }
+    });
   }
 }

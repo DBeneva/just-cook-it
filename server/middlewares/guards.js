@@ -31,12 +31,13 @@ function isGuest() {
 
 function isOwner() {
     return (req, res, next) => {
-        const userIsOwner = req.user?._id === req.data.owner._id;
+        const userIsOwner = req.user?._id === req.recipe.owner;
+        console.log('is owner', userIsOwner);
 
         if (userIsOwner) {
             next();
         } else {
-            res.status(403).json({ message: 'You are not allowed to modify this recipe!' });
+            res.status(403).json({ message: 'You are not allowed to modify/delete this recipe!' });
         }
     }
 }
@@ -48,7 +49,7 @@ function isNotOwner() {
         if (!userIsOwner) {
             next();
         } else {
-            res.status(403).json({ message: 'You are not allowed to modify this recipe!' });
+            res.status(403).json({ message: 'You are not allowed to like this recipe!' });
         }
     }
 }

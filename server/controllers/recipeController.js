@@ -111,18 +111,19 @@ router.get('/like/:id', isUser(), async (req, res) => {
     res.redirect(`/recipes/details/${hotel._id}`);
 });
 
-router.get('/delete/:id', isUser(), async (req, res) => {
+router.delete('/:id', isUser(), async (req, res) => {
     const recipe = await req.storage.getRecipeById(req.params.id);
+    console.log('deleting', recipe);
 
     if (req.user._id == recipe.owner) {
         try {
             await req.storage.deleteRecipe(req.params.id);
+            res.json({});
         } catch (err) {
             console.log(err.message);
+            res.status(err.status || 404).json({ message: err.message });
         }
     }
-
-    res.redirect('/');
 });
 
 module.exports = router;

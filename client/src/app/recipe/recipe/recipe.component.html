@@ -1,7 +1,12 @@
 <div class="container">
     <!-- {{recipe | json}} -->
-    <div class="card" *ngIf="recipe">
-        <img class="card-image" src="{{recipe.imageUrl}}" alt="">
+    <div class="delete-modal" *ngIf="isDeletingRecipe">
+        <p>Are you sure you want to delete your recipe for {{recipe.name}}?</p>
+        <button routerLink="deleteRecipe()">Yes</button>
+        <button class="no">No</button>
+    </div>
+    <div *ngIf="recipe" [ngClass]="isDeletingRecipe ? 'transparent card' : 'card'">
+        <img [ngClass]="isDeletingRecipe ? 'transparent card-image' : 'card-image'" src="{{recipe.imageUrl}}" alt="">
         <div class="card-content">
             <div class="card-title">
                 <h3>{{recipe.name}}</h3>
@@ -27,17 +32,17 @@
                     </td>
                 </tr>
             </table>
-            <div class="likes">
+            <div [ngClass]="isDeletingRecipe ? 'transparent likes' : 'likes'">
                 <div>
                     <p>Liked by <span>{{recipe.likedBy.length}}</span> people</p>
                 </div>
-                <button *ngIf="recipe.isUser && !recipe.likedBy.includes(user._id)" class="like" (click)="like(recipe._id)">
+                <button *ngIf="recipe.isUser && !recipe.isOwner && !recipe.likedBy.includes(user._id)" class="like" (click)="like(recipe._id)">
                     Like <i class="fas fa-thumbs-up"></i></button>
                 <button *ngIf="recipe.isUser && recipe.likedBy.includes(user._id)" class="unlike" (click)="unlike(recipe._id)">
                     Unlike <i class="fas fa-thumbs-up"></i></button>
                 <div class="owner-buttons" *ngIf="recipe.isOwner">
                     <button class="edit-btn" routerLink="/recipes/{{recipe._id}}/edit">Edit</button>
-                    <button class="delete-btn" (click)="deleteRecipe()">Delete</button>
+                    <button class="delete-btn" (click)="toggleDeleteModal()">Delete</button>
                 </div>
             </div>
         </div>

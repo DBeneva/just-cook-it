@@ -18,6 +18,7 @@
     object-fit: cover;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+    z-inion: relative;
 }
 
 .card-title {
@@ -37,7 +38,7 @@
 }
 
 table {
-    margin: 0 10px;
+    margin: 0 10px 10px 10px;
 }
 
 .card-section {
@@ -54,8 +55,6 @@ td h4, td p {
 
 .ingredients, .directions {
     font-size: 14px;
-    height: 38px;
-    overflow: hidden;
 }
 
 .likes {
@@ -65,10 +64,10 @@ td h4, td p {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     display: flex;
-    /* justify-content: space-around; */
+    justify-content: space-between;
     padding: 0 60px;
     font-family: "Merienda";
-    position: absolute;
+    position: relative;
     bottom: -1px;
 }
 
@@ -106,4 +105,23 @@ button:hover {
 .delete-btn:hover {
     background-color: rgb(239, 94, 94);
     color: lightgray;
+}
+
+.delete-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: #4a6b8b;
+    color: lightgray;
+    width: 500px;
+    height: 200px;
+    border-radius: 20px;
+    text-align: center;
+    padding: 50px;
+}
+
+.transparent {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 }

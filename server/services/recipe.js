@@ -55,5 +55,6 @@ async function likeRecipe(recipeId, userId) {
 }
 
 async function deleteRecipe(id) {
+    console.log('deleting in server recipe service', id);
     return await Recipe.findByIdAndRemove(id);
 }
