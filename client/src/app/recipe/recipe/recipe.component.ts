@@ -14,14 +14,15 @@ export class RecipeComponent {
   isLogged = this.userService.isLogged;
   user = this.userService.user;
   isDeletingRecipe = false;
-
+  previousUrl: string;
+  
   constructor(
     private contentService: ContentService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {
-    this.fetchRecipe();
+    ) {
+      this.fetchRecipe();
   }
 
   fetchRecipe(): void {
@@ -44,4 +45,5 @@ export class RecipeComponent {
   showDeleteModal(show: boolean): void {
     this.isDeletingRecipe = show;
   }
+  
 }
