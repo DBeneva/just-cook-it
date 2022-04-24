@@ -12,6 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthActivate } from './guards/auth.activate';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,10 +29,12 @@ import { AuthActivate } from './guards/auth.activate';
     RecipeModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
-    AuthActivate
+    AuthActivate,
+    NgForm
   ],
   bootstrap: [AppComponent]
 })

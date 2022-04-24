@@ -4,6 +4,7 @@ import { AboutComponent } from './about/about.component';
 import { AuthActivate } from './guards/auth.activate';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { EditRecipeComponent } from './recipe/edit-recipe/edit-recipe.component';
 import { NewRecipeComponent } from './recipe/new-recipe/new-recipe.component';
 import { RecipeComponent } from './recipe/recipe/recipe.component';
 import { RecipesComponent } from './recipe/recipes/recipes.component';
@@ -43,8 +44,14 @@ const routes: Routes = [
   },
   {
     path: 'recipes/:recipeId',
+    pathMatch: 'full',
     component: RecipeComponent
-  },  
+  },
+  {
+    path: 'recipes/:recipeId/edit',
+    pathMatch: 'full',
+    component: EditRecipeComponent
+  },
   { 
     path: 'register',
     component: RegisterComponent,

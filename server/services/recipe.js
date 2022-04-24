@@ -5,7 +5,7 @@ module.exports = {
     getAllRecipes,
     getRecipeById,
     createRecipe,
-    // editRecipe,
+    editRecipe,
     // likeRecipe,
     deleteRecipe
 };
@@ -32,10 +32,10 @@ async function createRecipe(recipeData) {
     return recipe;
 }
 
-// async function editRecipe(id, hotelData) {
-//     const editedRecipe = Recipe.findByIdAndUpdate(id, hotelData, { runValidators: true });
-//     return await editedRecipe.lean();
-// }
+async function editRecipe(recipeId, recipeData) {
+    const editedRecipe = Recipe.findByIdAndUpdate(recipeId, recipeData);
+    return await editedRecipe.lean();
+}
 
 // async function likeRecipe(recipeId, userId) {
 //     const recipe = await Recipe.findById(recipeId);
