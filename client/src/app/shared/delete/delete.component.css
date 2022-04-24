@@ -4,13 +4,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    background-color: #4a6b8b;
-    color: lightgray;
+    background-color: lightgray;
+    color: #4a6b8b;
     width: 500px;
     height: 200px;
     border-radius: 20px;
+    /* border: 2px solid #4a6b8b; */
+    box-shadow: 2px 2px 5px 0 gray;
     text-align: center;
     padding: 50px;
+    outline: 700px solid rgba(0, 0, 0, 0.5);
 }
 
 button {
