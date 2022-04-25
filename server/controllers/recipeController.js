@@ -111,16 +111,14 @@ router.post('/edit/:id', isUser(), async (req, res) => {
     }
 });
 
-router.get('/like/:id', isUser(), async (req, res) => {
+router.put('/:id/like', isUser(), async (req, res) => {
     try {
-        await req.storage.likeRecipe(req.params.id, req.user._id);
-        res.redirect(`/recipes/details/${req.params.id}`);
+        const recipe = await req.storage.likeRecipe(req.params.id, req.user._id);
+        res.json(recipe);
     } catch (err) {
         console.log(err.message);
-        res.redirect('/');
+        res.status(err.status || 404).json(err.message);
     }
-
-    res.redirect(`/recipes/details/${hotel._id}`);
 });
 
 router.delete('/:id', isUser(), async (req, res) => {

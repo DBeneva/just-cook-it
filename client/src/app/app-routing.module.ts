@@ -44,7 +44,6 @@ const routes: Routes = [
   },
   {
     path: 'recipes/:recipeId/edit',
-    // pathMatch: 'full',
     component: EditRecipeComponent,
     canActivate: [AuthActivate],
     data: {
@@ -54,7 +53,6 @@ const routes: Routes = [
   },
   {
     path: 'recipes/:recipeId',
-    // pathMatch: 'full',
     component: RecipeComponent,
     canActivate: [AuthActivate],
     data: {

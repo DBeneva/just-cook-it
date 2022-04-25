@@ -1,6 +1,13 @@
 <div class="container">
     <!-- {{recipe | json}} -->
     <app-delete [recipeName]="recipe.name" [recipeId]="recipe._id" (hideModal)="showDeleteModal(false)" *ngIf="isDeletingRecipe"></app-delete>
+    
+    <ng-container *ngIf="error">
+        <p class="error">
+            {{error}}
+        </p>
+    </ng-container>
+
     <div *ngIf="recipe" class="card">
         <img class="card-image" src="{{recipe.imageUrl}}" alt="Recipe Image">
         <div class="card-content">
@@ -32,7 +39,7 @@
                 <div>
                     <p>Liked by <span>{{recipe.likedBy.length}}</span> people</p>
                 </div>
-                <button *ngIf="recipe.isUser && !recipe.isOwner && !recipe.likedBy.includes(user._id)" class="like" (click)="like(recipe._id)">
+                <button *ngIf="recipe.isUser && !recipe.isOwner && !recipe.likedBy.includes(user._id)" class="like" (click)="likeRecipe(recipe._id)">
                     Like <i class="fas fa-thumbs-up"></i></button>
                 <button *ngIf="recipe.isUser && recipe.likedBy.includes(user._id)" class="unlike" (click)="unlike(recipe._id)">
                     Unlike <i class="fas fa-thumbs-up"></i></button>

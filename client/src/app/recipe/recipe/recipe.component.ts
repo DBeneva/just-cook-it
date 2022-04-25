@@ -16,6 +16,7 @@ export class RecipeComponent {
   user = this.userService.user;
   isDeletingRecipe = false;
   previousUrl: string;
+  error: string = '';
   
   constructor(
     private contentService: ContentService,
@@ -34,11 +35,10 @@ export class RecipeComponent {
     this.contentService.loadRecipe(data).subscribe({
       next: (recipe) => {
         this.recipe = recipe;
-        console.log('user in recipe component', this.user);
       },
       error: (err) => {
         console.log(err);
-        this.router.navigate(['/recipes']);
+        this.error = err.message;
       }
     });
   }
@@ -47,7 +47,17 @@ export class RecipeComponent {
     this.isDeletingRecipe = show;
   }
 
-  likeRecipe() {
-    
+  likeRecipe(recipeId) {
+    const data = { recipeId, user: this.user };
+
+    this.contentService.likeRecipe(data).subscribe({
+      next: (recipe) => {
+        this.recipe = recipe;
+      },
+      error: (err) => {
+        console.log('error in recipe component like', err);
+        this.error = err.error;
+      }
+    });
   }  
 }
