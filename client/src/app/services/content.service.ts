@@ -63,7 +63,11 @@ export class ContentService {
     });
   }
 
-  unlikeRecipe(recipeId: string) {
-    return this.http.put<IRecipe>(`${API_URL}/recipes/unlike/${recipeId}`, {});
+  unlikeRecipe(data: any) {
+    return this.http.put<IRecipe>(`${API_URL}/recipes/${data.recipeId}/unlike`, {}, {
+      headers: new HttpHeaders({
+        'x-authorization': data.user ? data.user.token : ''
+      })
+    });
   }
 }

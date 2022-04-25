@@ -59,5 +59,19 @@ export class RecipeComponent {
         this.error = err.error;
       }
     });
-  }  
+  }
+
+  unlikeRecipe(recipeId) {
+    const data = { recipeId, user: this.user };
+
+    this.contentService.unlikeRecipe(data).subscribe({
+      next: (recipe) => {
+        this.recipe = recipe;
+      },
+      error: (err) => {
+        console.log('error in recipe component unlike', err);
+        this.error = err.message;
+      }
+    });
+  }
 }

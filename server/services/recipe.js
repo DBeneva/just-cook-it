@@ -7,6 +7,7 @@ module.exports = {
     createRecipe,
     editRecipe,
     likeRecipe,
+    unlikeRecipe,
     deleteRecipe
 };
 
@@ -44,10 +45,27 @@ async function likeRecipe(recipeId, userId) {
     if (user._id == recipe.owner) {
         throw new Error('You cannot like your own recipe!');
     }
+
     user.likedRecipes.push(recipeId);
     await user.save();
 
     recipe.likedBy.push(userId);
+
+    return await recipe.save();
+}
+
+async function unlikeRecipe(recipeId, userId) {
+    const recipe = await Recipe.findById(recipeId);
+    const user = await User.findById(userId);
+
+    if (user._id == recipe.owner) {
+        throw new Error('You cannot like your own recipe!');
+    }
+
+    user.likedRecipes.splice(user.likedRecipes.indexOf(recipeId), 1);
+    await user.save();
+
+    recipe.likedBy.splice(user.likedRecipes.indexOf(userId), 1);
 
     return await recipe.save();
 }

@@ -121,6 +121,16 @@ router.put('/:id/like', isUser(), async (req, res) => {
     }
 });
 
+router.put('/:id/unlike', isUser(), async (req, res) => {
+    try {
+        const recipe = await req.storage.unlikeRecipe(req.params.id, req.user._id);
+        res.json(recipe);
+    } catch (err) {
+        console.log(err.message);
+        res.status(err.status || 404).json(err.message);
+    }
+});
+
 router.delete('/:id', isUser(), async (req, res) => {
     const recipe = await req.storage.getRecipeById(req.params.id);
     console.log('deleting', recipe);
