@@ -1,5 +1,8 @@
 <div class="container">
-    <h2>{{user.username}}'s Acount</h2>
+    <h2>
+        <p><img src="/assets/cooking-hat.jpg" alt="Cooking Hat"></p>
+        {{user.username}}'s Account
+    </h2>
 
     <ng-container *ngIf="error">
         <p class="error">
@@ -8,21 +11,33 @@
     </ng-container>
 
     <div class="field field-icon">
-        <p><span><i class="fas fa-user"></i></span></p>
-        <p id="username">{{user.username}}</p>
+        <p id="username"><span><i class="fas fa-user"></i></span> {{user.username}}</p>
     </div>
 
     <div class="field field-icon">
-        <p><span><i class="fas fa-envelope"></i></span></p>
-        <p>{{user.email}}</p>
+        <p><span><i class="fas fa-envelope"></i></span> {{user.email}}</p>
     </div>
 
-    <!-- <button [disabled]="form.invalid">Create Account</button> -->
+    <!-- <div class="login-link">
+        <p>
+            <span><i class="fas fa-lock"></i></span>
+            Want to change your password?
+            <a routerLink="/login">Click here!</a>
+        </p>
+    </div> -->
 
-    <div class="login-link">
-        <p><span><i class="fas fa-lock"></i></span></p>
-        Want to change your password?
-        <a routerLink="/login">Click here!</a>
+    <div class="field field-icon">
+        <p><span><img src="assets/instructions.png"></span> <a routerLink="/">{{user.username}}'s recipes</a></p>
     </div>
+
+    <div class="field field-icon">
+        <p><span><i class="fas fa-heart"></i></span> <a routerLink="/">{{user.username}}'s favourite recipes</a></p>
+    </div>
+
+    <div class="buttons">
+        <button (click)="back()">Go Back</button>
+        <button routerLink="/">Edit Account</button>
+    </div>
+    <!-- <button class="delete-btn">Delete Account</button> -->
 
 </div>

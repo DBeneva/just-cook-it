@@ -79,7 +79,7 @@ const routes: Routes = [
     }
   },
   { 
-    path: 'profile',
+    path: 'users/:userId',
     component: ProfileComponent,
     canActivate: [AuthActivate],
     data: {
