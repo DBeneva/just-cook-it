@@ -61,7 +61,6 @@ router.put('/:id', isUser(), async (req, res) => {
 
     try {
         const recipe = await req.storage.getRecipeById(req.params.id);
-        console.log('recipe owner in recipe controller', recipe.owner);
 
         if (recipe.owner != req.user._id) {
             throw new Error('You cannot edit a recipe that you haven\'t created!');

@@ -46,5 +46,8 @@ export class RecipeComponent {
   showDeleteModal(show: boolean): void {
     this.isDeletingRecipe = show;
   }
-  
+
+  likeRecipe() {
+    
+  }  
 }

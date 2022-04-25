@@ -36,7 +36,6 @@ export class EditRecipeComponent {
         },
         error: (error) => {
           this.error = error.message;
-          console.log(error.message);
         }
       });
   }
@@ -54,7 +53,7 @@ export class EditRecipeComponent {
       },
       error: (err) => {
         console.error(err);
-        this.error = err.error.message;
+        this.error = err.error;
       }
     });
   }
