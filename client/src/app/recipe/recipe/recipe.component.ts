@@ -9,6 +9,7 @@ import { IRecipe } from 'src/app/shared/interfaces';
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.css']
 })
+
 export class RecipeComponent {
   recipe: IRecipe;
   isLogged = this.userService.isLogged;

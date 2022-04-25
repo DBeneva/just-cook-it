@@ -48,6 +48,7 @@ router.get('/:id', isUser(), async (req, res) => {
 });
 
 router.put('/:id', isUser(), async (req, res) => {
+    console.log(req.body, 'req.body in recipe controller');
     const recipeData = {
         name: req.body.recipeName,
         ingredients: req.body.ingredients,
@@ -55,7 +56,7 @@ router.put('/:id', isUser(), async (req, res) => {
         imageUrl: req.body.imageUrl,
         time: req.body.time,
         likedBy: [],
-        owner: req.body.user
+        owner: req.body.owner._id
     };
 
     try {

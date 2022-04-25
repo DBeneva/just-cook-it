@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { timeStamp } from 'console';
 import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
 import { IRecipe, IUser } from 'src/app/shared/interfaces';
@@ -46,8 +45,8 @@ export class EditRecipeComponent {
     if (form.invalid) return;
 
     this.recipeData = form.form.value;
-    console.log('in edit recipe recipeId, recipeData', this.recipeId, form.form.value);
-    const data: any = { recipeId: this.recipeId, recipeData: this.recipeData, user: this.user };
+    console.log('in edit recipe recipeId, recipeData', { ...this.recipeData, owner: this.user });
+    const data: any = { recipeId: this.recipeId, recipeData: { ...this.recipeData, owner: this.user }, user: this.user };
     
     this.contentService.updateRecipe(data).subscribe({
       next: () => {
