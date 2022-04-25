@@ -45,7 +45,7 @@
                     Unlike <i class="fas fa-thumbs-down"></i></button>
                 <div class="owner-buttons" *ngIf="recipe.isOwner">
                     <button class="edit-btn" routerLink="/recipes/{{recipe._id}}/edit">Edit</button>
-                    <button class="delete-btn" (click)="showDeleteModal(true)">Delete</button>
+                    <button class="delete-btn" (click)="showDeleteModal(true)">Delete <i class="fa fa-trash"></i></button>
                 </div>
             </div>
         </div>

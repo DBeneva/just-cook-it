@@ -1,3 +1,28 @@
 <div class="container">
-    Gosho's Profile
+    <h2>{{user.username}}'s Acount</h2>
+
+    <ng-container *ngIf="error">
+        <p class="error">
+            {{error}}
+        </p>
+    </ng-container>
+
+    <div class="field field-icon">
+        <p><span><i class="fas fa-user"></i></span></p>
+        <p id="username">{{user.username}}</p>
+    </div>
+
+    <div class="field field-icon">
+        <p><span><i class="fas fa-envelope"></i></span></p>
+        <p>{{user.email}}</p>
+    </div>
+
+    <!-- <button [disabled]="form.invalid">Create Account</button> -->
+
+    <div class="login-link">
+        <p><span><i class="fas fa-lock"></i></span></p>
+        Want to change your password?
+        <a routerLink="/login">Click here!</a>
+    </div>
+
 </div>
