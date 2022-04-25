@@ -55,12 +55,11 @@ router.put('/:id', isUser(), async (req, res) => {
         imageUrl: req.body.imageUrl,
         time: req.body.time,
         likedBy: [],
-        owner: req.body.user
+        owner: req.body.owner._id
     };
 
     try {
         const recipe = await req.storage.getRecipeById(req.params.id);
-        console.log('recipe owner in recipe controller', recipe.owner);
 
         if (recipe.owner != req.user._id) {
             throw new Error('You cannot edit a recipe that you haven\'t created!');
@@ -75,52 +74,32 @@ router.put('/:id', isUser(), async (req, res) => {
     }
 });
 
-router.post('/edit/:id', isUser(), async (req, res) => {
+router.put('/:id/like', isUser(), async (req, res) => {
     try {
-        const recipe = await req.storage.getRecipeById(req.params.id);
+        const recipe = await req.storage.likeRecipe(req.params.id, req.user._id);
+        recipe._doc.isUser = Boolean(req.user);
+        recipe._doc.isOwner = req.user && recipe.owner == req.user._id;
+        recipe._doc.hasLiked = req.user && recipe.likedBy.find(u => u._id == req.user._id);
 
-        if (recipe.owner != req.user._id) {
-            throw new Error('You cannot edit a recipe that you haven\'t created!');
-        }
-
-        await req.storage.editRecipe(req.params.id, req.body);
-        res.redirect('/');
+        res.json(recipe);
     } catch (err) {
         console.log(err.message);
-
-        let errors;
-
-        if (err.errors) {
-            errors = Object.values(err.errors).map(e => e.properties.message);
-        } else {
-            errors = [err.message];
-        }
-
-        const ctx = {
-            errors,
-            recipe: {
-                _id: req.params.id,
-                name: req.body.name,
-                ingredients: req.body.ingredients,
-                instructions: req.body.instructions,
-                imageUrl: req.body.imageUrl,
-            }
-        };
-
-        res.json(ctx);
+        res.status(err.status || 404).json(err.message);
     }
 });
 
-router.get('/like/:id', isUser(), async (req, res) => {
+router.put('/:id/unlike', isUser(), async (req, res) => {
     try {
-        await req.storage.likeRecipe(req.params.id, req.user._id);
-        res.redirect(`/recipes/details/${req.params.id}`);
+        const recipe = await req.storage.unlikeRecipe(req.params.id, req.user._id);
+        recipe._doc.isUser = Boolean(req.user);
+        recipe._doc.isOwner = req.user && recipe.owner == req.user._id;
+        recipe._doc.hasLiked = req.user && recipe.likedBy.find(u => u._id == req.user._id);
+
+        res.json(recipe);
     } catch (err) {
         console.log(err.message);
-        res.redirect('/');
+        res.status(err.status || 404).json(err.message);
     }
-
-    res.redirect(`/recipes/details/${hotel._id}`);
 });
 
 router.delete('/:id', isUser(), async (req, res) => {

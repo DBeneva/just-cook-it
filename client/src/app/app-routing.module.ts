@@ -43,14 +43,22 @@ const routes: Routes = [
     }
   },
   {
-    path: 'recipes/:recipeId',
-    pathMatch: 'full',
-    component: RecipeComponent
+    path: 'recipes/:recipeId/edit',
+    component: EditRecipeComponent,
+    canActivate: [AuthActivate],
+    data: {
+      authRequired: true,
+      authFailureRedirectUrl: 'recipes'
+    }
   },
   {
-    path: 'recipes/:recipeId/edit',
-    pathMatch: 'full',
-    component: EditRecipeComponent
+    path: 'recipes/:recipeId',
+    component: RecipeComponent,
+    canActivate: [AuthActivate],
+    data: {
+      authRequired: true,
+      authFailureRedirectUrl: 'login'
+    }
   },
   { 
     path: 'register',

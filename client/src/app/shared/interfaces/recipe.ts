@@ -6,5 +6,7 @@ export interface IRecipe {
     time: number;
     imageUrl: string;
     likedBy: string[];
-    // owner: {};
+    hasLiked: boolean;
+    isOwner: boolean;
+    isUser: boolean;
 }

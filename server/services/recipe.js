@@ -6,7 +6,8 @@ module.exports = {
     getRecipeById,
     createRecipe,
     editRecipe,
-    // likeRecipe,
+    likeRecipe,
+    unlikeRecipe,
     deleteRecipe
 };
 
@@ -37,21 +38,50 @@ async function editRecipe(recipeId, recipeData) {
     return await editedRecipe.lean();
 }
 
-// async function likeRecipe(recipeId, userId) {
-//     const recipe = await Recipe.findById(recipeId);
-//     const user = await User.findById(userId);
+async function likeRecipe(recipeId, userId) {
+    const recipe = await Recipe.findById(recipeId);
+    const user = await User.findById(userId);
 
-//     if (user._id == recipe.owner) {
-//         throw new Error('You cannot book your own hotel!');
-//     }
+    if (user._id == recipe.owner) {
+        throw new Error('You cannot like your own recipe!');
+    }
 
-//     user.likedRecipies.push(recipeId);
-//     recipe.likedBy.push(user);
-//     recipe.likes--;
+    if (recipe.likedBy.includes(user._id)) {
+        throw new Error('You have already liked this recipe!');
+    }
 
-//     return Promise.all([user.save(), recipe.save()]);
-// }
+    user.likedRecipes.push(recipeId);
+    await user.save();
 
-async function deleteRecipe(id) {
-    return await Recipe.findByIdAndRemove(id);
+    recipe.likedBy.push(userId);
+
+    return await recipe.save();
+}
+
+async function unlikeRecipe(recipeId, userId) {
+    const recipe = await Recipe.findById(recipeId);
+    const user = await User.findById(userId);
+
+    if (user._id == recipe.owner) {
+        throw new Error('You cannot like your own recipe!');
+    }
+
+    user.likedRecipes.splice(user.likedRecipes.indexOf(recipeId), 1);
+    await user.save();
+
+    recipe.likedBy.splice(user.likedRecipes.indexOf(userId), 1);
+
+    return await recipe.save();
+}
+
+async function deleteRecipe(recipeId) {
+    const recipe = await Recipe.findById(recipeId);
+
+    for (let userId of recipe.likedBy) {
+        const user = await User.findById(userId);
+        user.likedRecipes.splice(user.likedRecipes.indexOf(recipeId), 1);
+        await user.save();
+    }
+
+    return await Recipe.findByIdAndRemove(recipeId);
 }

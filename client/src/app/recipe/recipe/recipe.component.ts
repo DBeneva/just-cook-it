@@ -9,12 +9,14 @@ import { IRecipe } from 'src/app/shared/interfaces';
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.css']
 })
+
 export class RecipeComponent {
   recipe: IRecipe;
   isLogged = this.userService.isLogged;
   user = this.userService.user;
   isDeletingRecipe = false;
   previousUrl: string;
+  error: string = '';
   
   constructor(
     private contentService: ContentService,
@@ -33,11 +35,10 @@ export class RecipeComponent {
     this.contentService.loadRecipe(data).subscribe({
       next: (recipe) => {
         this.recipe = recipe;
-        console.log('user in recipe component', this.user);
       },
       error: (err) => {
         console.log(err);
-        this.router.navigate(['/recipes']);
+        this.error = err.message;
       }
     });
   }
@@ -45,5 +46,35 @@ export class RecipeComponent {
   showDeleteModal(show: boolean): void {
     this.isDeletingRecipe = show;
   }
-  
+
+  likeRecipe(recipeId) {
+    const data = { recipeId, user: this.user };
+
+    this.contentService.likeRecipe(data).subscribe({
+      next: (recipe) => {
+        this.recipe = recipe;
+        console.log('recipe has liked', this.recipe.hasLiked);
+        this.router.navigate([`/recipes/${this.recipe._id}`]);
+      },
+      error: (err) => {
+        console.log('error in recipe component like', err);
+        this.error = err.error;
+      }
+    });
+  }
+
+  unlikeRecipe(recipeId) {
+    const data = { recipeId, user: this.user };
+
+    this.contentService.unlikeRecipe(data).subscribe({
+      next: (recipe) => {
+        this.recipe = recipe;
+        this.router.navigate([`/recipes/${this.recipe._id}`]);
+      },
+      error: (err) => {
+        console.log('error in recipe component unlike', err);
+        this.error = err.message;
+      }
+    });
+  }
 }

@@ -55,11 +55,19 @@ export class ContentService {
     });
   }
 
-  likeRecipe(recipeId: string) {
-    return this.http.put<IRecipe>(`${API_URL}/recipes/like/${recipeId}`, {});
+  likeRecipe(data: any) {
+    return this.http.put<IRecipe>(`${API_URL}/recipes/${data.recipeId}/like`, {}, {
+      headers: new HttpHeaders({
+        'x-authorization': data.user ? data.user.token : ''
+      })
+    });
   }
 
-  unlikeRecipe(recipeId: string) {
-    return this.http.put<IRecipe>(`${API_URL}/recipes/unlike/${recipeId}`, {});
+  unlikeRecipe(data: any) {
+    return this.http.put<IRecipe>(`${API_URL}/recipes/${data.recipeId}/unlike`, {}, {
+      headers: new HttpHeaders({
+        'x-authorization': data.user ? data.user.token : ''
+      })
+    });
   }
 }
