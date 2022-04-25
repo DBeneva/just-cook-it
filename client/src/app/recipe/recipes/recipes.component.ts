@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ContentService } from 'src/app/core/services/content.service';
-import { UserService } from 'src/app/core/services/user.service';
+import { ContentService } from 'src/app/services/content.service';
+import { UserService } from 'src/app/services/user.service';
 import { IRecipe } from 'src/app/shared/interfaces';
 
 @Component({
@@ -20,19 +20,17 @@ export class RecipesComponent {
     private contentService: ContentService,
     private userService: UserService
   ) {
-    console.log('in recipes component');
-    
-    this.fetchRecipes();
-    console.log(this.recipes);
+    setTimeout(() => {
+      this.fetchRecipes();
+    }, 1000);
   }
 
   fetchRecipes(): void {
     this.recipes = undefined;
-    console.log('in fetch recipes', this.user);
-    this.contentService.loadRecipes(this.user)
-    .subscribe(recipes => {
-      this.recipes = recipes;
-    });
-  }  
 
+    this.contentService.loadRecipes(this.user)
+      .subscribe(recipes => {
+        this.recipes = recipes;
+      });
+  }
 }

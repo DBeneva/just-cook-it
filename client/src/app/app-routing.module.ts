@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, NavigationEnd } from '@angular/router';
 import { AboutComponent } from './about/about.component';
-import { AuthActivate } from './core/guards/auth.activate';
+import { AuthActivate } from './guards/auth.activate';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { EditRecipeComponent } from './recipe/edit-recipe/edit-recipe.component';
 import { NewRecipeComponent } from './recipe/new-recipe/new-recipe.component';
 import { RecipeComponent } from './recipe/recipe/recipe.component';
 import { RecipesComponent } from './recipe/recipes/recipes.component';
@@ -13,19 +14,43 @@ import { RegisterComponent } from './user/register/register.component';
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'recipes', component: RecipesComponent },
-  { path: 'recipes/:recipeId', component: RecipeComponent },
   {
-    path: 'new-recipe',
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'recipes',
+    pathMatch: 'full',
+    component: RecipesComponent
+  },
+  {
+    path: 'recipes/new-recipe',
+    pathMatch: 'full',
     component: NewRecipeComponent,
     canActivate: [AuthActivate],
     data: {
       authRequired: true,
       authFailureRedirectUrl: 'login'
     }
+  },
+  {
+    path: 'recipes/:recipeId',
+    pathMatch: 'full',
+    component: RecipeComponent
+  },
+  {
+    path: 'recipes/:recipeId/edit',
+    pathMatch: 'full',
+    component: EditRecipeComponent
   },
   { 
     path: 'register',
@@ -54,7 +79,10 @@ const routes: Routes = [
       authFailureRedirectUrl: 'login'
     }
   },
-  { path: '**', component: NotFoundComponent }
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({

@@ -8,23 +8,27 @@ module.exports = {
 };
 
 async function createUser(username, email, hashedPassword) {
-    const user = await new User({ username, email, hashedPassword }).save();
-    return user;
+    const user = new User({ username, email, hashedPassword });
+    return await user.save();
 }
 
 async function getUserByUsername(username) {
-    const user = await User.findOne({ username: { $regex: `^${username}$`, $options: 'i' } }).lean();
-    console.log('User in server, user service:', user);
-    return user;
+    const user = User.findOne({
+        username: {
+            $regex: `^${username}$`,
+            $options: 'i'
+        }
+    });
+
+    return await user.lean();
 }
 
 async function getUserByEmail(email) {
-    const pattern = new RegExp(`^${email}$`, 'i');
-    const user = await User.findOne({ email: { $regex: pattern } }).lean();
-    return user;
+    const user = User.findOne({ email });
+    return await user.lean();
 }
 
 async function getUserById(id) {
-    const user = await User.findById(id).populate('reservations').lean();
-    return user;
+    const user = User.findById(id).populate('recipes');
+    return await user.lean();
 }

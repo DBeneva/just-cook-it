@@ -21,11 +21,11 @@
                 </tr>
                 <tr class="card-section">
                     <td>
-                        <h4><img src="/assets/directions.png" alt="Directions"></h4>
+                        <h4><img src="/assets/instructions.png" alt="Instructions"></h4>
                     </td>
                     <td>
-                        <p class="directions">{{recipe.directions | slice:0:50}}<span
-                                *ngIf="recipe.directions.length > 50">...</span></p>
+                        <p class="instructions">{{recipe.instructions | slice:0:50}}<span
+                                *ngIf="recipe.instructions.length > 50">...</span></p>
                     </td>
                 </tr>
             </table>
@@ -34,5 +34,16 @@
             </div>
         </div>
     </div>
-    <div *ngIf="!recipes">Loading...</div>
+    <div *ngIf="!recipes" class="loader">Loading...</div>
+    <div *ngIf="recipes && recipes.length == 0" class="no-recipes">
+        <h2>Sorry, there are currently no recipes.</h2>
+        <div *ngIf="user">
+            <p>Be the first to add one!</p>
+            <button routerLink="/recipes/new-recipe">Add New Recipe</button>
+            <button routerLink="/">Go back home</button>
+        </div>
+        <div *ngIf="!user">
+            <button routerLink="/">Go back home</button>
+        </div>
+    </div>
 </div>

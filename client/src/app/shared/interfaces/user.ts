@@ -1,6 +1,8 @@
 export interface IUser {
-    username: string;
-    email: string;
     _id: string;
+    email: string;
+    username: string;
+    recipes: string[];
+    likedRecipes: string[];
     token: string;
 }

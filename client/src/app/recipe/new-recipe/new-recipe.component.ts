@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ContentService } from 'src/app/core/services/content.service';
-import { UserService } from 'src/app/core/services/user.service';
+import { ContentService } from 'src/app/services/content.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-new-recipe',
@@ -20,11 +20,9 @@ export class NewRecipeComponent {
 
   createRecipe(form: NgForm): void {
     if (form.invalid) return;
-    console.log(form.value);
 
     const data = form.value;
     data.user = this.userService.user;
-    console.log('user sent to server', data.user);
 
     this.contentService.saveRecipe(data).subscribe({
       next: () => { 

@@ -10,6 +10,9 @@ import { UserModule } from './user/user.module';
 import { RecipeModule } from './recipe/recipe.module';
 import { SharedModule } from './shared/shared.module';
 import { AboutComponent } from './about/about.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthActivate } from './guards/auth.activate';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,9 +28,14 @@ import { AboutComponent } from './about/about.component';
     UserModule,
     RecipeModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    AuthActivate,
+    NgForm
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

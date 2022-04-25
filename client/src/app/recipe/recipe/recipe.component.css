@@ -53,7 +53,7 @@ td h4, td p {
     margin: 5px;
 }
 
-.ingredients, .directions {
+.ingredients, .instructions {
     font-size: 14px;
 }
 
@@ -67,7 +67,7 @@ td h4, td p {
     justify-content: space-between;
     padding: 0 60px;
     font-family: "Merienda";
-    position: relative;
+    position: absolute;
     bottom: -1px;
 }
 
@@ -105,23 +105,4 @@ button:hover {
 .delete-btn:hover {
     background-color: rgb(239, 94, 94);
     color: lightgray;
-}
-
-.delete-modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    background-color: #4a6b8b;
-    color: lightgray;
-    width: 500px;
-    height: 200px;
-    border-radius: 20px;
-    text-align: center;
-    padding: 50px;
-}
-
-.transparent {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 }

@@ -38,9 +38,17 @@ export class ContentService {
     });
   }
 
+  updateRecipe(data: any) {
+    return this.http.put<IRecipe>(`${API_URL}/recipes/${data.recipeId}`, data.recipeData, {
+      headers: new HttpHeaders({
+        'x-authorization': data.user ? data.user.token : ''
+      })
+    });
+  }
+
   deleteRecipe(data: any) {
-    console.log('deleting in content service', data.recipe._id);
-    return this.http.delete<IRecipe>(`${API_URL}/recipes/${data.recipe._id}`, {
+    console.log('deleting in content service', data.recipeId);
+    return this.http.delete<IRecipe>(`${API_URL}/recipes/${data.recipeId}`, {
       headers: new HttpHeaders({
         'x-authorization': data.user ? data.user.token : ''
       })

@@ -10,7 +10,7 @@ router.post('/', isUser(), async (req, res) => {
     const recipeData = {
         name: req.body.recipeName,
         ingredients: req.body.ingredients,
-        directions: req.body.directions,
+        instructions: req.body.instructions,
         imageUrl: req.body.imageUrl,
         time: req.body.time,
         likedBy: [],
@@ -39,7 +39,6 @@ router.get('/:id', isUser(), async (req, res) => {
         recipe.isUser = Boolean(req.user);
         recipe.isOwner = req.user && recipe.owner == req.user._id;
         recipe.hasLiked = req.user && recipe.likedBy.find(u => u._id == req.user._id);
-        console.log('recipeController', recipe);
 
         res.json(recipe);
     } catch (err) {
@@ -48,18 +47,31 @@ router.get('/:id', isUser(), async (req, res) => {
     }
 });
 
-router.get('/edit/:id', isUser(), async (req, res) => {
+router.put('/:id', isUser(), async (req, res) => {
+    const recipeData = {
+        name: req.body.recipeName,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+        imageUrl: req.body.imageUrl,
+        time: req.body.time,
+        likedBy: [],
+        owner: req.body.user
+    };
+
     try {
         const recipe = await req.storage.getRecipeById(req.params.id);
+        console.log('recipe owner in recipe controller', recipe.owner);
 
         if (recipe.owner != req.user._id) {
             throw new Error('You cannot edit a recipe that you haven\'t created!');
         }
 
-        res.json({ title: 'Edit Recipe', recipe });
+        const editedRecipe = await req.storage.editRecipe(recipe._id, recipeData);
+        console.log('edited recipe in recipe controller', editedRecipe);
+        res.json(editedRecipe);
     } catch (err) {
         console.log(err.message);
-        redirect('/');
+        res.status(err.status || 404).json(err.message);
     }
 });
 
@@ -90,7 +102,7 @@ router.post('/edit/:id', isUser(), async (req, res) => {
                 _id: req.params.id,
                 name: req.body.name,
                 ingredients: req.body.ingredients,
-                directions: req.body.directions,
+                instructions: req.body.instructions,
                 imageUrl: req.body.imageUrl,
             }
         };

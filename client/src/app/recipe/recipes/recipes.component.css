@@ -56,7 +56,7 @@ td h4, td p {
     margin: 5px;
 }
 
-.ingredients, .directions {
+.ingredients, .instructions {
     font-size: 14px;
     height: 38px;
     overflow: hidden;
@@ -83,3 +83,33 @@ h4 img {
     width: 20px;
 }
 
+.no-recipes {
+    color: #4a6b8b;
+    margin: 120px auto;
+    text-align: center;
+}
+
+h2 {
+    font-family: "Merienda";
+}
+
+button {
+    text-decoration: none;
+    font-family: Verdana;
+    font-size: 20px;
+    background-color: #4a6b8b;
+    color: lightgray;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin: 20px 10px;
+}
+
+button:hover {
+    background-color: lightgray;
+    color: #4a6b8b;
+    box-shadow: 2px 2px 5px 0 gray;
+}
+
+.loader {
+    margin: 150px auto;
+}

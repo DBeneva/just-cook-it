@@ -1,6 +1,6 @@
 <div class="container">
     <div class="page-title">
-        <h2>New Recipe</h2>
+        <h2>Edit Recipe</h2>
     </div>
     
     <ng-container *ngIf="error">
@@ -9,11 +9,11 @@
         </p>
     </ng-container>
 
-    <form #form="ngForm" (ngSubmit)="createRecipe(form)">
+    <form *ngIf="recipe" #form="ngForm" (ngSubmit)="editRecipe(form)">
         <div class="title-section">
             <div class="title">
                 <label for="recipeName">Title <span class="red">*</span></label>
-                <input ngModel #recipeName="ngModel" type="text" name="recipeName" id="recipeName" required minlength="5">
+                <input ngModel="{{recipe.name}}" #recipeName="ngModel" type="text" name="recipeName" id="recipeName" required minlength="5" value="form.value.recipeName">
                 <ng-container *ngIf="recipeName.touched">
                     <p class="error" *ngIf="recipeName.errors?.required" class="error">
                         Recipe name is required!
@@ -25,7 +25,7 @@
             </div>
             <div>
                 <label for="time">Cooking Time (minutes) <span class="red">*</span></label>
-                <input ngModel #time="ngModel" type="number" name="time" id="time" required min="0" step="10">
+                <input ngModel="{{recipe.time}}" #time="ngModel" type="number" name="time" id="time" required min="0" step="10">
                 <ng-container *ngIf="time.touched">
                     <p class="error" *ngIf="time.errors?.required" class="error">
                         Cooking time is required!
@@ -35,7 +35,7 @@
         </div>
         <div class="ingredients">
             <label for="ingredients">Ingredients <span class="red">*</span></label>
-            <textarea ngModel #ingredients="ngModel" type="text" name="ingredients" id="ingredients" rows="3" required>
+            <textarea ngModel="{{recipe.ingredients}}" #ingredients="ngModel" type="text" name="ingredients" id="ingredients" rows="3" required>
             </textarea>
             <ng-container *ngIf="ingredients.touched">
                 <p class="error" *ngIf="ingredients.errors?.required" class="error">
@@ -45,7 +45,8 @@
         </div>
         <div class="instructions">
             <label for="instructions">Instructions <span class="red">*</span></label>
-            <textarea ngModel #instructions="ngModel" type="text" name="instructions" id="instructions" rows="3" required>
+            <textarea ngModel="{{recipe.instructions}}" #instructions="ngModel" type="text" name="instructions" id="instructions" rows="3" required>
+                {{recipe.instructions}}
             </textarea>
             <ng-container *ngIf="instructions.touched">
                 <p class="error" *ngIf="instructions.errors?.required" class="error">
@@ -55,7 +56,7 @@
         </div>
         <div class="image">
             <label for="imageUrl">Image URL <span class="red">*</span></label>
-            <input ngModel #imageUrl="ngModel" type="text" name="imageUrl" id="imageUrl" required pattern="https?://.+">
+            <input ngModel="{{recipe.imageUrl}}" #imageUrl="ngModel" type="text" name="imageUrl" id="imageUrl" required pattern="https?://.+">
             <ng-container *ngIf="imageUrl.touched">
                 <p class="error" *ngIf="imageUrl.errors?.required" class="error">
                     Recipe image is required!
@@ -66,8 +67,11 @@
             </ng-container>
         </div>
         <div class="buttons">
-            <button routerLink="/recipes" class="cancel">Cancel</button>
-            <button type="submit" [disabled]="form.invalid" class="submit">Create a New Recipe</button>
+            <button routerLink="/recipes/{{recipeId}}" class="cancel">Cancel</button>
+            <button type="submit" [disabled]="form.invalid" class="submit">Save</button>
         </div>
     </form>
+    <div *ngIf="!recipe">
+        Loading...
+    </div>
 </div>
