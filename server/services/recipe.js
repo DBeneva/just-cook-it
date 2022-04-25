@@ -46,6 +46,10 @@ async function likeRecipe(recipeId, userId) {
         throw new Error('You cannot like your own recipe!');
     }
 
+    if (recipe.likedBy.includes(user._id)) {
+        throw new Error('You have already liked this recipe!');
+    }
+
     user.likedRecipes.push(recipeId);
     await user.save();
 
@@ -70,6 +74,14 @@ async function unlikeRecipe(recipeId, userId) {
     return await recipe.save();
 }
 
-async function deleteRecipe(id) {
-    return await Recipe.findByIdAndRemove(id);
+async function deleteRecipe(recipeId) {
+    const recipe = await Recipe.findById(recipeId);
+
+    for (let userId of recipe.likedBy) {
+        const user = await User.findById(userId);
+        user.likedRecipes.splice(user.likedRecipes.indexOf(recipeId), 1);
+        await user.save();
+    }
+
+    return await Recipe.findByIdAndRemove(recipeId);
 }

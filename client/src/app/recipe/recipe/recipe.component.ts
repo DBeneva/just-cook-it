@@ -53,6 +53,8 @@ export class RecipeComponent {
     this.contentService.likeRecipe(data).subscribe({
       next: (recipe) => {
         this.recipe = recipe;
+        console.log('recipe has liked', this.recipe.hasLiked);
+        this.router.navigate([`/recipes/${this.recipe._id}`]);
       },
       error: (err) => {
         console.log('error in recipe component like', err);
@@ -67,6 +69,7 @@ export class RecipeComponent {
     this.contentService.unlikeRecipe(data).subscribe({
       next: (recipe) => {
         this.recipe = recipe;
+        this.router.navigate([`/recipes/${this.recipe._id}`]);
       },
       error: (err) => {
         console.log('error in recipe component unlike', err);
