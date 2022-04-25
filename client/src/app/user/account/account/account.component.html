@@ -18,14 +18,6 @@
         <p><span><i class="fas fa-envelope"></i></span> {{user.email}}</p>
     </div>
 
-    <!-- <div class="login-link">
-        <p>
-            <span><i class="fas fa-lock"></i></span>
-            Want to change your password?
-            <a routerLink="/login">Click here!</a>
-        </p>
-    </div> -->
-
     <div class="field field-icon">
         <p><span><img src="assets/instructions.png"></span> <a routerLink="/">{{user.username}}'s recipes</a></p>
     </div>
@@ -36,8 +28,6 @@
 
     <div class="buttons">
         <button (click)="back()">Go Back</button>
-        <button routerLink="/">Edit Account</button>
+        <button routerLink="/users/{{user._id}}/edit">Edit Account</button>
     </div>
-    <!-- <button class="delete-btn">Delete Account</button> -->
-
 </div>

@@ -4,7 +4,8 @@ module.exports = {
     createUser,
     getUserByUsername,
     getUserByEmail,
-    getUserById
+    getUserById,
+    editAccount
 };
 
 async function createUser(username, email, hashedPassword) {
@@ -31,4 +32,14 @@ async function getUserByEmail(email) {
 async function getUserById(id) {
     const user = User.findById(id).populate('recipes');
     return await user.lean();
+}
+
+async function editAccount(id, accountData) {
+    console.log('user service', accountData);
+    
+    const editedAccountData = await User.findOneAndUpdate(id, {
+        $set: { username: accountData.username }
+    }, { new: true });
+    
+    return editedAccountData;
 }

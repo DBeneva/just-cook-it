@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, NavigationEnd } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { AuthActivate } from './guards/auth.activate';
 import { HomeComponent } from './home/home.component';
@@ -9,8 +9,9 @@ import { NewRecipeComponent } from './recipe/new-recipe/new-recipe.component';
 import { RecipeComponent } from './recipe/recipe/recipe.component';
 import { RecipesComponent } from './recipe/recipes/recipes.component';
 import { LoginComponent } from './user/login/login.component';
-import { ProfileComponent } from './user/profile/profile.component';
+import { AccountComponent } from './user/account/account/account.component';
 import { RegisterComponent } from './user/register/register.component';
+import { EditAccountComponent } from './user/account/edit-account/edit-account.component';
 
 
 const routes: Routes = [
@@ -80,7 +81,16 @@ const routes: Routes = [
   },
   { 
     path: 'users/:userId',
-    component: ProfileComponent,
+    component: AccountComponent,
+    canActivate: [AuthActivate],
+    data: {
+      authRequired: true,
+      authFailureRedirectUrl: 'login'
+    }
+  },
+  { 
+    path: 'users/:userId/edit',
+    component: EditAccountComponent,
     canActivate: [AuthActivate],
     data: {
       authRequired: true,

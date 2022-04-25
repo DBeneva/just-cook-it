@@ -37,8 +37,7 @@ export class RegisterComponent implements OnDestroy {
     if (this.form.invalid) { return; }
 
     const { username, email, password, repass } = this.form.value;
-    console.log('in register component: this.form.value', username, email, password, repass);
-    this.userService.register(username, email, password).subscribe({
+    this.userService.register({ username, email, password }).subscribe({
       next: () => { this.router.navigate(['/']) },
       error: (err) => {
         this.error = err.error;

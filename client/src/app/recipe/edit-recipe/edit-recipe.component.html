@@ -13,7 +13,7 @@
         <div class="title-section">
             <div class="title">
                 <label for="recipeName">Title <span class="red">*</span></label>
-                <input ngModel="{{recipe.name}}" #recipeName="ngModel" type="text" name="recipeName" id="recipeName" required minlength="5" value="form.value.recipeName">
+                <input ngModel="{{recipe.name}}" #recipeName="ngModel" type="text" name="recipeName" id="recipeName" required minlength="5">
                 <ng-container *ngIf="recipeName.touched">
                     <p class="error" *ngIf="recipeName.errors?.required" class="error">
                         Recipe name is required!
