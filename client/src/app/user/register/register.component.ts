@@ -30,7 +30,6 @@ export class RegisterComponent implements OnDestroy {
         () => this.form ? this.form.get('password') : null, this.killSubscription
         )]]
       });
-      console.log('error email register', this.form.get('username').invalid);
   }
 
   register(): void {
