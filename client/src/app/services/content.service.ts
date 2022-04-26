@@ -29,6 +29,14 @@ export class ContentService {
       })
     });
   }
+
+  loadRecipesByIds(user: IUser) {
+    return this.http.get<IRecipe[]>(`${API_URL}/recipes/my-recipes`, {
+      headers: new HttpHeaders({
+        'x-authorization': user ? user.token : ''
+      })
+    });
+  }
   
   saveRecipe(data: any) {
     return this.http.post<IRecipe>(`${API_URL}/recipes`, data, {

@@ -12,7 +12,6 @@ import { IRecipe } from 'src/app/shared/interfaces';
 
 export class RecipeComponent {
   recipe: IRecipe;
-  isLogged = this.userService.isLogged;
   user = this.userService.user;
   isDeletingRecipe = false;
   previousUrl: string;

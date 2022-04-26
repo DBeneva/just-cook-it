@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthActivate } from './guards/auth.activate';
 import { FormsModule, NgForm } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,

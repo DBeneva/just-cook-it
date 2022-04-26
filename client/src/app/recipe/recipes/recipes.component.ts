@@ -12,10 +12,6 @@ export class RecipesComponent {
   recipes: IRecipe[] | undefined;
   user = this.userService.user;
 
-  get isLogged(): boolean {
-    return this.userService.isLogged;
-  }
-
   constructor(
     private contentService: ContentService,
     private userService: UserService

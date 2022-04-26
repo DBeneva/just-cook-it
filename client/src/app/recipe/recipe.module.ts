@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { DeleteRecipeComponent } from './delete-recipe/delete-recipe.component';
+import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 
 
 
@@ -17,7 +18,8 @@ import { DeleteRecipeComponent } from './delete-recipe/delete-recipe.component';
     RecipeComponent,
     NewRecipeComponent,
     EditRecipeComponent,
-    DeleteRecipeComponent
+    DeleteRecipeComponent,
+    MyRecipesComponent
   ],
   imports: [
     CommonModule,

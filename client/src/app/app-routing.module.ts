@@ -12,6 +12,7 @@ import { LoginComponent } from './user/login/login.component';
 import { AccountComponent } from './user/account/account/account.component';
 import { RegisterComponent } from './user/register/register.component';
 import { EditAccountComponent } from './user/account/edit-account/edit-account.component';
+import { MyRecipesComponent } from './recipe/my-recipes/my-recipes.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,11 @@ const routes: Routes = [
     path: 'recipes',
     pathMatch: 'full',
     component: RecipesComponent
+  },
+  {
+    path: 'recipes/my-recipes',
+    pathMatch: 'full',
+    component: MyRecipesComponent
   },
   {
     path: 'recipes/new-recipe',

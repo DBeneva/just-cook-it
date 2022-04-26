@@ -3,6 +3,7 @@ const User = require('../models/User');
 
 module.exports = {
     getAllRecipes,
+    getRecipesByIds,
     getRecipeById,
     createRecipe,
     editRecipe,
@@ -14,6 +15,17 @@ module.exports = {
 async function getAllRecipes() {
     const recipes = Recipe.find({});
     return await recipes.lean();
+}
+
+async function getRecipesByIds(recipeIds) {
+    const recipes = [];
+    
+    for (let recipeId of recipeIds) {
+        const recipe = await Recipe.findById(recipeId).lean();
+        recipes.push(recipe);
+    }
+
+    return recipes;
 }
 
 async function getRecipeById(id) {
