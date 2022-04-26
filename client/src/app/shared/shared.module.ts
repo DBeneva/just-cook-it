@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomValidatorDirective } from './custom-validator.directive';
-import { DeleteComponent } from './delete/delete.component';
-
 
 
 @NgModule({
-  declarations: [CustomValidatorDirective, DeleteComponent],
+  declarations: [CustomValidatorDirective],
   imports: [
     CommonModule
   ],
   exports: [
-    CustomValidatorDirective,
-    DeleteComponent
+    CustomValidatorDirective
   ]
 })
 export class SharedModule { }

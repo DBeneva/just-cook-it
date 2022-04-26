@@ -1,6 +1,6 @@
 <div class="container">
     <!-- {{recipe | json}} -->
-    <app-delete [recipeName]="recipe.name" [recipeId]="recipe._id" (hideModal)="showDeleteModal(false)" *ngIf="isDeletingRecipe"></app-delete>
+    <app-delete-recipe [recipeName]="recipe.name" [recipeId]="recipe._id" (hideModal)="showDeleteModal(false)" *ngIf="isDeletingRecipe"></app-delete-recipe>
     
     <ng-container *ngIf="error">
         <p class="error">

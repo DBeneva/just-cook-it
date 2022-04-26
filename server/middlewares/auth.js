@@ -43,11 +43,14 @@ module.exports = () => (req, res, next) => {
             throw error;
         }
 
+        const token = generateToken(user);
+        console.log('auth login token', token);
+
         return {
             username: user.username,
             _id: user._id,
             email: user.email,
-            token: generateToken(user)
+            token: token
         };
     }
 }
@@ -62,6 +65,7 @@ function generateToken(userData) {
 
 function parseToken(req, res) {
     const token = req.headers['x-authorization'];
+    console.log('auth parse token', token);
 
     if (token) {
         try {

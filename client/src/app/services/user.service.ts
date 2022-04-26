@@ -20,11 +20,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(data: any) {
-    return this.http.post<IUser>(`${API_URL}/auth/login`, data, {
-      headers: new HttpHeaders({
-        'x-authorization': data.user ? data.user.token : ''
-      })
-    })
+    return this.http.post<IUser>(`${API_URL}/auth/login`, data)
       .pipe(
         tap(user => {
           document.cookie = `USER=${JSON.stringify(user)}`;
@@ -74,6 +70,25 @@ export class UserService {
           this.user = user;
           document.cookie = 'USER=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
           document.cookie = `USER=${JSON.stringify(user)}`;
+        }),
+        catchError(error => {
+          throw error;
+        })
+      );
+  }
+
+  deleteAccount(user: IUser) {
+    console.log('in delete userService', user);
+    return this.http.delete<IUser>(`${API_URL}/users/${user._id}`, {
+      headers: new HttpHeaders({
+        'x-authorization': user ? user.token : ''
+      })
+    })
+      .pipe(
+        tap(() => {
+          document.cookie = 'USER=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+          this.user = undefined;
+          console.log('delete account in user service');
         }),
         catchError(error => {
           throw error;

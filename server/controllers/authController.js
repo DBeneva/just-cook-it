@@ -7,7 +7,6 @@ router.post(
     isGuest(),
     async (req, res) => {
         const { errors } = validationResult(req);
-        console.log(req);
 
         try {
             if (errors.length > 0) {

@@ -7,10 +7,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { EditAccountComponent } from './account/edit-account/edit-account.component';
+import { DeleteAccountComponent } from './account/delete-account/delete-account.component';
 
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, AccountComponent, EditAccountComponent],
+  declarations: [RegisterComponent, LoginComponent, AccountComponent, EditAccountComponent, DeleteAccountComponent],
   imports: [
     CommonModule,
     RouterModule,

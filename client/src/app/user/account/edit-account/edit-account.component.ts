@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 
 export class EditAccountComponent {
   error: string;
+  isDeletingAccount: boolean = false;
 
   get user(): IUser {
     return this.userService.user;
@@ -32,9 +33,12 @@ export class EditAccountComponent {
       accountData: form.form.value,
       user: this.user
     };
+
+    console.log('edit account component, data', data);
     
     this.userService.updateAccount(data).subscribe({
       next: (user) => {
+        console.log('edit account component, user', user);
         this.userService.user = user;
         this.router.navigate([`/users/${this.user._id}`]);
       },
@@ -47,5 +51,9 @@ export class EditAccountComponent {
 
   back() {
     this.location.back();
+  }
+
+  showDeleteModal(show: boolean): void {
+    this.isDeletingAccount = show;
   }
 }
