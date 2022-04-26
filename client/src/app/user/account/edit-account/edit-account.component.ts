@@ -44,7 +44,7 @@ export class EditAccountComponent {
       },
       error: (err) => {
         console.error(err);
-        this.error = err.error;
+        this.error = err.error.message;
       }
     });
   }

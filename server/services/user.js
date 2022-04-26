@@ -36,17 +36,19 @@ async function getUserById(id) {
     return await user.lean();
 }
 
-async function editAccount(id, accountData) {
-    const editedAccountData = await User.findOneAndUpdate(id, {
-        $set: { username: accountData.username, email: accountData.email }
-    }, { new: true });
+async function editAccount(userId, accountData) {
+    console.log('user service account data', accountData);
+    console.log('user service userId', userId);
+    await User.findByIdAndUpdate(userId, accountData).lean();
+    const editedAccountData = await User.findById(userId).lean();
+    console.log('user service edited account data', editedAccountData);
     
     return {
         username: editedAccountData.username,
         email: editedAccountData.email,
         _id: editedAccountData._id,
         recipes: editedAccountData.recipes,
-        likedRecipes: editedAccountData.likedrecipes 
+        likedRecipes: editedAccountData.likedRecipes 
     };
 }
 

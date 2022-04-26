@@ -44,7 +44,7 @@ export class EditRecipeComponent {
     if (form.invalid) return;
 
     this.recipeData = form.form.value;
-    console.log('in edit recipe recipeId, recipeData', { ...this.recipeData, owner: this.user });
+    console.log('in edit recipe recipeData', { ...this.recipeData, owner: this.user });
     const data: any = { recipeId: this.recipeId, recipeData: { ...this.recipeData, owner: this.user }, user: this.user };
     
     this.contentService.updateRecipe(data).subscribe({

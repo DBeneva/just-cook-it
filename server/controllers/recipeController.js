@@ -77,11 +77,14 @@ router.put('/:id', isUser(), async (req, res) => {
 router.put('/:id/like', isUser(), async (req, res) => {
     try {
         const recipe = await req.storage.likeRecipe(req.params.id, req.user._id);
-        recipe._doc.isUser = Boolean(req.user);
-        recipe._doc.isOwner = req.user && recipe.owner == req.user._id;
-        recipe._doc.hasLiked = req.user && recipe.likedBy.find(u => u._id == req.user._id);
+        const updatedRecipe = {
+            ...recipe,
+            isUser: Boolean(req.user),
+            isOwner: req.user && recipe.owner == req.user._id,
+            hasLiked: req.user && recipe.likedBy.find(u => u._id == req.user._id)        
+        }
 
-        res.json(recipe);
+        res.json(updatedRecipe);
     } catch (err) {
         console.log(err.message);
         res.status(err.status || 404).json(err.message);
@@ -91,11 +94,14 @@ router.put('/:id/like', isUser(), async (req, res) => {
 router.put('/:id/unlike', isUser(), async (req, res) => {
     try {
         const recipe = await req.storage.unlikeRecipe(req.params.id, req.user._id);
-        recipe._doc.isUser = Boolean(req.user);
-        recipe._doc.isOwner = req.user && recipe.owner == req.user._id;
-        recipe._doc.hasLiked = req.user && recipe.likedBy.find(u => u._id == req.user._id);
-
-        res.json(recipe);
+        const updatedRecipe = {
+            ...recipe,
+            isUser: Boolean(req.user),
+            isOwner: req.user && recipe.owner == req.user._id,
+            hasLiked: req.user && recipe.likedBy.find(u => u._id == req.user._id)        
+        }
+               
+        res.json(updatedRecipe);
     } catch (err) {
         console.log(err.message);
         res.status(err.status || 404).json(err.message);
@@ -108,7 +114,7 @@ router.delete('/:id', isUser(), async (req, res) => {
 
     if (req.user._id == recipe.owner) {
         try {
-            await req.storage.deleteRecipe(req.params.id);
+            await req.storage.deleteRecipe(req.params.id, req.user._id);
             res.json({});
         } catch (err) {
             console.log(err.message);

@@ -2,23 +2,23 @@ const router = require('express').Router();
 const { isUser } = require('../middlewares/guards');
 
 router.put('/:id', isUser(), async (req, res) => {
-    const user = await req.storage.getUserById(req.params.id);
-
-    if (user._id != req.user._id) {
+    console.log('usercontroller edit req.params.id, req.user.id', req.params.id, req.user._id);
+    console.log('usercontroller edit token', req.user.token);
+    if (req.params.id != req.user._id) {
         throw new Error('You are not allowed to edit this account!');
     }
     
     const accountData = {
         username: req.body.username,
-        email: req.body.email,
+        email: req.body.email
     };
 
     console.log('usercontroller account data', accountData);
 
     try {
         const editedAccountData = await req.storage.editAccount(req.params.id, accountData);
-        
-        console.log('usercontroller', { ...editedAccountData, token: req.user.token });
+        console.log('usercontroller', editedAccountData);        
+        console.log('usercontroller', { ...editedAccountData, token: req.headers['x-authorization'] });
         res.json({ ...editedAccountData, token: req.headers['x-authorization'] });
     } catch (err) {
         console.log(err.message);
