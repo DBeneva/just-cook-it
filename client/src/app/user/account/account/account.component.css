@@ -1,0 +1,90 @@
+.container {
+    width: 30%;
+    color: #4a6b8b;
+    margin: 44px auto;
+    min-height: 66vh;
+    background-color: rgba(211, 211, 211, 0.499);
+    padding: 0px 40px 20px 40px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px 0px #4a6a8b9c;
+}
+
+h2 img {
+    width: 110px;
+}
+
+h2 {
+    font-family: "Merienda";
+    text-align: center;
+}
+
+h2 p {
+    margin: 0;
+}
+
+a {
+    color: #4a6b8b;
+}
+
+.delete-btn {
+    background-color: lightcoral;
+    color: #33485e;
+}
+
+.delete-btn:hover {
+    background-color: rgb(239, 94, 94);
+    color: lightgray;
+}
+
+.field {
+    padding: 1px 0;
+}
+
+img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.fas {
+    margin-right: 10px;
+}
+
+.buttons {
+    margin: 10px auto 0px auto;
+    width: 90%;
+}
+
+button {
+    text-decoration: none;
+    font-family: Verdana;
+    font-size: 18px;
+    background-color: #4a6b8b;
+    color: lightgray;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin: 10px;
+    cursor: pointer;
+}
+    
+button:hover {
+    background-color: lightgray;
+    color: #4a6b8b;
+    box-shadow: 2px 2px 5px 0 gray;
+}
+
+button[disabled], button[disabled]:hover {
+    background-color: #4a6a8b8c;
+    color: lightgray;
+    box-shadow: none;
+}
+
+.login-link a {
+    color: #4a6b8b;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    padding: 0 0 0 20px;
+    margin: 0;
+}

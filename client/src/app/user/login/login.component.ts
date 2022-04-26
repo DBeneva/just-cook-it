@@ -31,7 +31,7 @@ export class LoginComponent {
   
       const { username, password } = form.value;
 
-      this.userService.login(username, password).subscribe({
+      this.userService.login({ username, password }).subscribe({
         next: () => {
           const redirectUrl = this.activatedRoute.snapshot.queryParams.redirectUrl || '/';
           this.router.navigate([redirectUrl]);

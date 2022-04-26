@@ -4,11 +4,11 @@ import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-delete',
-  templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.css']
+  selector: 'app-delete-recipe',
+  templateUrl: './delete-recipe.component.html',
+  styleUrls: ['./delete-recipe.component.css']
 })
-export class DeleteComponent {
+export class DeleteRecipeComponent {
   @Input() recipeName: string | undefined;
   @Input() recipeId: string | undefined;
   @Output() hideModal: EventEmitter<any> = new EventEmitter();

@@ -1,6 +1,6 @@
 <div class="container">
     <!-- {{recipe | json}} -->
-    <app-delete [recipeName]="recipe.name" [recipeId]="recipe._id" (hideModal)="showDeleteModal(false)" *ngIf="isDeletingRecipe"></app-delete>
+    <app-delete-recipe [recipeName]="recipe.name" [recipeId]="recipe._id" (hideModal)="showDeleteModal(false)" *ngIf="isDeletingRecipe"></app-delete-recipe>
     
     <ng-container *ngIf="error">
         <p class="error">
@@ -45,7 +45,7 @@
                     Unlike <i class="fas fa-thumbs-down"></i></button>
                 <div class="owner-buttons" *ngIf="recipe.isOwner">
                     <button class="edit-btn" routerLink="/recipes/{{recipe._id}}/edit">Edit</button>
-                    <button class="delete-btn" (click)="showDeleteModal(true)">Delete</button>
+                    <button class="delete-btn" (click)="showDeleteModal(true)">Delete <i class="fa fa-trash"></i></button>
                 </div>
             </div>
         </div>

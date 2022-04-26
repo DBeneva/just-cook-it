@@ -1,0 +1,33 @@
+<div class="container">
+    <h2>
+        <p><img src="/assets/cooking-hat.jpg" alt="Cooking Hat"></p>
+        {{user.username}}'s Account
+    </h2>
+
+    <ng-container *ngIf="error">
+        <p class="error">
+            {{error}}
+        </p>
+    </ng-container>
+
+    <div class="field field-icon">
+        <p id="username"><span><i class="fas fa-user"></i></span> {{user.username}}</p>
+    </div>
+
+    <div class="field field-icon">
+        <p><span><i class="fas fa-envelope"></i></span> {{user.email}}</p>
+    </div>
+
+    <div class="field field-icon">
+        <p><span><img src="assets/instructions.png"></span> <a routerLink="/">{{user.username}}'s recipes</a></p>
+    </div>
+
+    <div class="field field-icon">
+        <p><span><i class="fas fa-heart"></i></span> <a routerLink="/">{{user.username}}'s favourite recipes</a></p>
+    </div>
+
+    <div class="buttons">
+        <button (click)="back()">Go Back</button>
+        <button routerLink="/users/{{user._id}}/edit">Edit Account</button>
+    </div>
+</div>

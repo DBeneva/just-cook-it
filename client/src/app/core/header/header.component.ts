@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IUser } from 'src/app/shared/interfaces';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -7,23 +8,27 @@ import { UserService } from '../../services/user.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent {
+  get user(): IUser {
+    return this.userService.user;
+  };
+
   get isLogged(): boolean {
     return this.userService.isLogged;
   }
 
   get username(): string {
-    return this.userService.user ? this.userService.user.username : '';
+    return this.user ? this.user.username : '';
   }
-  
+
   errorMessage: string;
-  
+
   constructor(
     private userService: UserService,
     private router: Router,
     activatedRoute: ActivatedRoute
-    ) {
-    console.log(this.username);
+  ) {
     this.errorMessage = activatedRoute.snapshot.queryParams.error;
   }
 

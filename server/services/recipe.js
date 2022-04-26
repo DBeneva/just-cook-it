@@ -34,8 +34,8 @@ async function createRecipe(recipeData) {
 }
 
 async function editRecipe(recipeId, recipeData) {
-    const editedRecipe = Recipe.findByIdAndUpdate(recipeId, recipeData);
-    return await editedRecipe.lean();
+    await Recipe.findByIdAndUpdate(recipeId, recipeData).lean();
+    return await Recipe.findById(recipeId).lean();
 }
 
 async function likeRecipe(recipeId, userId) {
@@ -54,8 +54,9 @@ async function likeRecipe(recipeId, userId) {
     await user.save();
 
     recipe.likedBy.push(userId);
+    await recipe.save();
 
-    return await recipe.save();
+    return await Recipe.findById(recipeId).lean();
 }
 
 async function unlikeRecipe(recipeId, userId) {
@@ -70,12 +71,17 @@ async function unlikeRecipe(recipeId, userId) {
     await user.save();
 
     recipe.likedBy.splice(user.likedRecipes.indexOf(userId), 1);
+    await recipe.save();
 
-    return await recipe.save();
+    return await Recipe.findById(recipeId).lean();
 }
 
-async function deleteRecipe(recipeId) {
+async function deleteRecipe(recipeId, userId) {
     const recipe = await Recipe.findById(recipeId);
+    const user = await User.findById(userId);
+
+    user.recipes.splice(user.recipes.indexOf(recipeId), 1);
+    await user.save();
 
     for (let userId of recipe.likedBy) {
         const user = await User.findById(userId);
