@@ -1,11 +1,16 @@
+.container {
+    margin: 50px auto;
+    width: 30%;
+}
+
 .login {
-    text-align: center;
     color: #4a6b8b;
-    margin: 30px 0 244px 0;
+    min-height: 71.1vh;
 }
 
 h2 {
     font-family: "Merienda";
+    margin-left: 100px;
 }
 
 .field {
@@ -14,6 +19,7 @@ h2 {
 
 input {
     font-size: 16px;
+    color: #4a6b8b;
     width: 300px;
     padding: 15px;
     border-radius: 10px;
@@ -21,12 +27,16 @@ input {
     border-left: 0.3em solid green;
 }
 
+input:-webkit-autofill {
+    color: #4a6b8b !important;
+}
+
 input.ng-invalid.ng-touched {
     border-left: 0.3em solid red;
 }
 
 .fas {
-    margin-right: 10px;
+    margin: 0 10px;
 }
 
 button {
@@ -37,7 +47,8 @@ button {
     color: lightgray;
     padding: 10px 20px;
     border-radius: 15px;
-    margin: 15px 0 0 15px;
+    display: inline-block;
+    margin: 15px auto;
 }
     
 button:hover {
@@ -60,4 +71,9 @@ button[disabled], button[disabled]:hover {
     color: red;
     font-size: 14px;
     padding: 0 0 0 20px;
+}
+
+.links {
+    text-align: center;
+    margin-right: 90px;
 }

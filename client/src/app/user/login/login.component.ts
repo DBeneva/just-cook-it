@@ -11,9 +11,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 
 export class LoginComponent {
-
   form: FormGroup;
   error: string = '';
+  visiblePassword: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -40,5 +40,9 @@ export class LoginComponent {
           this.error = err.error;
         }
       });
+    }
+
+    showPassword() {
+      this.visiblePassword = !this.visiblePassword;
     }
 }
