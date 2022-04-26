@@ -13,6 +13,7 @@ import { AccountComponent } from './user/account/account/account.component';
 import { RegisterComponent } from './user/register/register.component';
 import { EditAccountComponent } from './user/account/edit-account/edit-account.component';
 import { MyRecipesComponent } from './recipe/my-recipes/my-recipes.component';
+import { MyFavoritesComponent } from './recipe/my-favorites/my-favorites.component';
 
 
 const routes: Routes = [
@@ -37,7 +38,22 @@ const routes: Routes = [
   {
     path: 'recipes/my-recipes',
     pathMatch: 'full',
-    component: MyRecipesComponent
+    component: MyRecipesComponent,
+    canActivate: [AuthActivate],
+    data: {
+      authRequired: true,
+      authFailureRedirectUrl: 'login'
+    }
+  },
+  {
+    path: 'recipes/my-favorites',
+    pathMatch: 'full',
+    component: MyFavoritesComponent,
+    canActivate: [AuthActivate],
+    data: {
+      authRequired: true,
+      authFailureRedirectUrl: 'login'
+    }
   },
   {
     path: 'recipes/new-recipe',

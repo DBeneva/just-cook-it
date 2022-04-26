@@ -8,8 +8,17 @@ router.get('/', async (req, res) => {
 
 router.get('/my-recipes', async (req, res) => {
     console.log('recipe controller my-recipes', req.user);
+
     const user = await req.storage.getUserById(req.user._id);
     const recipes = await req.storage.getRecipesByIds(user.recipes);
+    res.json(recipes);
+});
+
+router.get('/my-favorites', async (req, res) => {
+    console.log('recipe controller my-favorites', req.user);
+    
+    const user = await req.storage.getUserById(req.user._id);
+    const recipes = await req.storage.getRecipesByIds(user.likedRecipes);
     res.json(recipes);
 });
 

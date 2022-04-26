@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { DeleteRecipeComponent } from './delete-recipe/delete-recipe.component';
 import { MyRecipesComponent } from './my-recipes/my-recipes.component';
+import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
 
 
 
@@ -19,7 +20,8 @@ import { MyRecipesComponent } from './my-recipes/my-recipes.component';
     NewRecipeComponent,
     EditRecipeComponent,
     DeleteRecipeComponent,
-    MyRecipesComponent
+    MyRecipesComponent,
+    MyFavoritesComponent
   ],
   imports: [
     CommonModule,

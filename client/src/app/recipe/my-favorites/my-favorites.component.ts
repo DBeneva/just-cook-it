@@ -3,14 +3,13 @@ import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
 import { IRecipe } from 'src/app/shared/interfaces';
 
-
 @Component({
-  selector: 'app-my-recipes',
-  templateUrl: './my-recipes.component.html',
-  styleUrls: ['./my-recipes.component.css']
+  selector: 'app-my-favorites',
+  templateUrl: './my-favorites.component.html',
+  styleUrls: ['./my-favorites.component.css']
 })
-export class MyRecipesComponent {
-  myRecipes: IRecipe[] | undefined;
+export class MyFavoritesComponent {
+  myFavorites: IRecipe[] | undefined;
   user = this.userService.user;
   error: string;
 
@@ -18,16 +17,16 @@ export class MyRecipesComponent {
     private contentService: ContentService,
     private userService: UserService
   ) {
-    this.fetchMyRecipes();
+    this.fetchMyFavorites();
   }
 
-  fetchMyRecipes(): void {
-    this.myRecipes = undefined;
+  fetchMyFavorites(): void {
+    this.myFavorites = undefined;
 
-    this.contentService.loadMyRecipes(this.user)
+    this.contentService.loadMyFavorites(this.user)
       .subscribe({
         next: (recipes) => {
-          this.myRecipes = recipes;
+          this.myFavorites = recipes;
         },
         error: (err) => {
           this.error = err.error;

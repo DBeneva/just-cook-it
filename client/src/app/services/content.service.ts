@@ -30,8 +30,16 @@ export class ContentService {
     });
   }
 
-  loadRecipesByIds(user: IUser) {
+  loadMyRecipes(user: IUser) {
     return this.http.get<IRecipe[]>(`${API_URL}/recipes/my-recipes`, {
+      headers: new HttpHeaders({
+        'x-authorization': user ? user.token : ''
+      })
+    });
+  }
+
+  loadMyFavorites(user: IUser) {
+    return this.http.get<IRecipe[]>(`${API_URL}/recipes/my-favorites`, {
       headers: new HttpHeaders({
         'x-authorization': user ? user.token : ''
       })

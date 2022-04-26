@@ -1,5 +1,5 @@
-<div *ngIf="myRecipes && myRecipes.length > 0" class="page-title">
-    <h2>My Recipes</h2>
+<div *ngIf="myFavorites && myFavorites.length > 0" class="page-title">
+    <h2>My Favorites</h2>
 </div>
 <div class="recipes">
     <ng-container *ngIf="error">
@@ -8,7 +8,7 @@
         </p>
     </ng-container>
     
-    <div class="card" [routerLink]="['/recipes', recipe._id]" *ngFor="let recipe of myRecipes">
+    <div class="card" [routerLink]="['/recipes', recipe._id]" *ngFor="let recipe of myFavorites">
         <!-- {{recipes | json}} -->
         <img class="card-image" src="{{recipe.imageUrl}}" alt="">
         <div class="card-content">
@@ -43,12 +43,12 @@
             </div>
         </div>
     </div>
-    <div *ngIf="!myRecipes" class="loader">Loading...</div>
-    <div *ngIf="myRecipes && myRecipes.length == 0" class="no-recipes">
-        <h2>Sorry, you have currently no recipes.</h2>
+    <div *ngIf="!myFavorites" class="loader">Loading...</div>
+    <div *ngIf="myFavorites && myFavorites.length == 0" class="no-recipes">
+        <h2>Sorry, you haven't liked any recipes yet.</h2>
         <div *ngIf="user">
-            <p>Add one right away!</p>
-            <button routerLink="/recipes/new-recipe">Add New Recipe</button>
+            <p>Have a look at all the recipes and like them for easy access!</p>
+            <button routerLink="/recipes">See Recipes</button>
             <button routerLink="/">Go back home</button>
         </div>
         <div *ngIf="!user">
