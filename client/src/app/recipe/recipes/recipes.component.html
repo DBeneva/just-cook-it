@@ -9,26 +9,17 @@
                     <i class="fas fa-clock"></i><span> {{recipe.time}} min</span>
                 </p>
             </div>
-            <table>
+            <!-- <table>
                 <tr class="card-section">
                     <td>
                         <h4><i class="fas fa-list"></i></h4>
                     </td>
                     <td>
-                        <p class="ingredients">{{recipe.ingredients | slice:0:50}}<span
+                        <p class="ingredients">{{recipe.ingredients | slice:0:145}}<span
                                 *ngIf="recipe.ingredients.length > 50">...</span></p>
                     </td>
                 </tr>
-                <tr class="card-section">
-                    <td>
-                        <h4><img src="/assets/instructions.png" alt="Instructions"></h4>
-                    </td>
-                    <td>
-                        <p class="instructions">{{recipe.instructions | slice:0:50}}<span
-                                *ngIf="recipe.instructions.length > 50">...</span></p>
-                    </td>
-                </tr>
-            </table>
+            </table> -->
             <div class="likes">
                 <p>Liked by <span>{{recipe.likedBy.length}}</span> people</p>
             </div>

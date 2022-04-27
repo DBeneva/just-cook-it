@@ -18,7 +18,7 @@
     object-fit: cover;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    z-inion: relative;
+    position: relative;
 }
 
 .card-title {
@@ -53,8 +53,23 @@ td h4, td p {
     margin: 5px;
 }
 
-.ingredients, .instructions {
+.ingredients-section {
+    margin-top: 4px;
+    columns: 2;
+    padding: 0 0 0 20px;
+}
+
+.ingredients-item {
     font-size: 14px;
+    width: 97%;
+}
+
+.instructions {
+    font-size: 14px;
+}
+
+li {
+    min-height: 20px;
 }
 
 .likes {
@@ -68,7 +83,6 @@ td h4, td p {
     justify-content: space-between;
     padding: 0 60px;
     font-family: "Merienda";
-    position: absolute;
     bottom: -1px;
 }
 
