@@ -20,7 +20,7 @@
                 <li routerLinkActive="active"><a routerLink="recipes/my-recipes">My Recipes</a></li>
                 <li routerLinkActive="active"><a routerLink="recipes/my-favorites">My Favorites</a></li>
                 <li *ngIf="user" routerLinkActive="active"><a routerLink="/users/{{user._id}}">{{username}}'s Account</a></li>
-                <li class="button" (click)="logout()" routerLinkActive="active">Logout</li>
+                <li class="button logout" (click)="logout()" routerLinkActive="active">Logout</li>
             </div>
             
         </ul>
