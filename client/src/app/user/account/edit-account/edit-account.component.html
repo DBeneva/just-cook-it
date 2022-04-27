@@ -19,12 +19,30 @@
                 minlength="3">
         </div>
 
+        <ng-container *ngIf="username.touched">
+            <p *ngIf="username.errors?.required" class="error">
+                Username is required!
+            </p>
+            <p *ngIf="username.errors?.minlength" class="error">
+                Username must be at least 3 characters long!
+            </p>
+        </ng-container>
+
         <div class="field field-icon">
-            <label for="username"><span><i class="fas fa-envelope"></i></span></label>
-            <input ngModel="{{user.email}}" #email="ngModel" type="text" name="email" id="email" required>
+            <label for="email"><span><i class="fas fa-envelope"></i></span></label>
+            <input ngModel="{{user.email}}" #email="ngModel" type="email" name="email" id="email" required email>
         </div>
 
-        <div class="login-link">
+        <ng-container *ngIf="email.touched">
+            <p *ngIf="email.errors?.required" class="error">
+                Email is required!
+            </p>
+            <p *ngIf="!email.errors?.required && email.invalid" class="error">
+                Email is not valid!
+            </p>
+        </ng-container>
+
+        <div class="change-password">
             <p>
                 <span><i class="fas fa-lock"></i></span>                 
                 <a routerLink="/">Change your password</a>
