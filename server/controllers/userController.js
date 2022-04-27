@@ -44,4 +44,29 @@ router.delete('/:id', isUser(), async (req, res) => {
     }
 });
 
+router.put('/:id/change-password', isUser(), async (req, res) => {
+    console.log('usercontroller password req.params.id, req.user.id', req.params.id, req.user._id);
+    console.log('usercontroller password user', req.user);
+    
+    if (req.params.id != req.user._id) {
+        throw new Error('You are not allowed to edit this account!');
+    }
+    
+    const passwordData = {
+        oldPassword: req.body.oldPassword,
+        newPassword: req.body.newPassword
+    };
+
+    console.log('usercontroller password data', passwordData);
+
+    try {
+        const editedUserData = await req.auth.changePassword(req.params.id, passwordData);
+        console.log('change password controller sending to FE', editedUserData);
+        res.json(editedUserData);
+    } catch (err) {
+        console.log(err.message);
+        res.status(err.status || 404).json(err.message);
+    }
+});
+
 module.exports = router;

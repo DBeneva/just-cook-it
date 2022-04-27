@@ -7,6 +7,7 @@ module.exports = {
     getUserByEmail,
     getUserById,
     editAccount,
+    changePassword,
     deleteAccount
 };
 
@@ -49,6 +50,18 @@ async function editAccount(userId, accountData) {
         _id: editedAccountData._id,
         recipes: editedAccountData.recipes,
         likedRecipes: editedAccountData.likedRecipes 
+    };
+}
+
+async function changePassword(userId, hashedPassword) {
+    await User.findByIdAndUpdate(userId, { hashedPassword }).lean();
+    const user = await User.findById(userId).lean();
+    console.log('user service edited account data', user);
+    
+    return {
+        username: user.username,
+        email: user.email,
+        _id: user._id
     };
 }
 

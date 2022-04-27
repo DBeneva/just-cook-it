@@ -6,7 +6,8 @@ module.exports = () => (req, res, next) => {
     if (parseToken(req, res)) {
         req.auth = {
             register,
-            login
+            login,
+            changePassword
         };
 
         next();
@@ -51,6 +52,34 @@ module.exports = () => (req, res, next) => {
             _id: user._id,
             email: user.email,
             token: token
+        };
+    }
+
+    async function changePassword(userId, passwordData) {
+        const user = await req.storage.getUserById(userId);
+        const isCorrectPassword = user ? await bcrypt.compare(passwordData.oldPassword, user.hashedPassword) : false;
+
+        if (!isCorrectPassword) {
+            throw new Error('The old password you entered does not match your current password!');
+        }
+
+        const isSamePassword = await bcrypt.compare(passwordData.newPassword, user.hashedPassword);
+
+        if (isSamePassword) {
+            throw new Error('Please enter a new password different than your current one!');
+        }
+
+        const newHashedPassword = await bcrypt.hash(passwordData.newPassword, 10);
+        const updatedUserData = await req.storage.changePassword(userId, newHashedPassword);
+        const newToken = generateToken(updatedUserData);
+
+        console.log('auth change password token', newToken);
+
+        return {
+            username: updatedUserData.username,
+            _id: updatedUserData._id,
+            email: updatedUserData.email,
+            token: newToken
         };
     }
 }

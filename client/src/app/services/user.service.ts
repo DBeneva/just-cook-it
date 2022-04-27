@@ -51,6 +51,24 @@ export class UserService {
       );
   }
 
+  changePassword(data: any) {
+    console.log('user service password data', data);
+    return this.http.put<IUser>(`${API_URL}/users/${data.user._id}/change-password`, data, {
+      headers: new HttpHeaders({
+        'x-authorization': data.user ? data.user.token : ''
+      })
+    })
+      .pipe(
+        tap(user => {
+          this.user = user;
+          document.cookie = `USER=${JSON.stringify(user)}`;
+        }),
+        catchError(error => {
+          throw error;
+        })
+      );
+  }
+
   logout() {
     document.cookie = 'USER=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
 

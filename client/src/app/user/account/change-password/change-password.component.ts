@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { passwordValidator, sameValueAsFactory } from 'src/app/shared/validators';
@@ -19,12 +19,14 @@ export class ChangePasswordComponent {
   passwordValidator = passwordValidator;
   killSubscription = new Subject();
   form: FormGroup;
+  user = this.userService.user;
 
-  constructor(private userService: UserService,
-    private activatedRoute: ActivatedRoute,
+  constructor(
+    private userService: UserService,
     private router: Router,
     private location: Location,
-    private fb: FormBuilder) {
+    private fb: FormBuilder
+    ) {
     this.form = this.fb.group({
       oldPassword: ['', [Validators.required, Validators.minLength(5)]],
       newPassword: ['', [Validators.required, Validators.minLength(5), passwordValidator]],
@@ -34,8 +36,26 @@ export class ChangePasswordComponent {
     });
   }
 
-  changePassword(form) {
+  changePassword(): void {
+    if (this.form.invalid) { return; }
 
+    const { oldPassword, newPassword } = this.form.value;
+
+    const data = {
+      oldPassword,
+      newPassword,
+      user: this.user
+    };
+
+    console.log('edit pass component data', data);
+
+    this.userService.changePassword(data).subscribe({
+      next: () => { this.router.navigate([`/users/${this.user._id}`]) },
+      error: (err) => {
+        this.error = err.error;
+        console.error(err);
+      }
+    });
   }
 
   showOldPassword() {
