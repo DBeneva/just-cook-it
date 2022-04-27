@@ -3,7 +3,7 @@
     color: lightgray;
     display: flex;
     justify-content: space-between;
-    padding: 15px 50px;
+    padding: 0px 50px;
     margin: 0;
 }
 
@@ -20,12 +20,22 @@ a, .button {
     cursor: pointer;
 }
 
+.logo {
+    padding: 15px 0;
+}
+
 li {
     display: inline-block;
+    padding: 15px 0;
+}
+
+.navigation, ul {
+    padding: 0;
 }
 
 .navigation li {
     font-size: 18px;
+    border-radius: 10px;
 }
 
 img {
@@ -35,4 +45,12 @@ img {
 
 .button:hover {
     cursor: pointer;
+}
+
+.active {
+    background-color: lightgray;
+}
+
+.active a {
+    color: #4a6b8b;
 }

@@ -10,17 +10,17 @@
         <ul>
             
             <div *ngIf="!isLogged">
-                <li><a routerLink="login">Login</a></li>
-                <li><a routerLink="register">Register</a></li>
+                <li routerLinkActive="active"><a routerLink="login">Login</a></li>
+                <li routerLinkActive="active"><a routerLink="register">Register</a></li>
             </div>
             
             <div *ngIf="isLogged">
-                <li><a routerLink="recipes">Recipes</a></li>
-                <li><a routerLink="recipes/new-recipe">New Recipe</a></li>
-                <li><a routerLink="recipes/my-recipes">My Recipes</a></li>
-                <li><a routerLink="recipes/my-favorites">My Favorites</a></li>
-                <li *ngIf="user"><a routerLink="/users/{{user._id}}">{{username}}'s Account</a></li>
-                <li class="button" (click)="logout()">Logout</li>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="recipes">Recipes</a></li>
+                <li routerLinkActive="active"><a routerLink="recipes/new-recipe">New Recipe</a></li>
+                <li routerLinkActive="active"><a routerLink="recipes/my-recipes">My Recipes</a></li>
+                <li routerLinkActive="active"><a routerLink="recipes/my-favorites">My Favorites</a></li>
+                <li *ngIf="user" routerLinkActive="active"><a routerLink="/users/{{user._id}}">{{username}}'s Account</a></li>
+                <li class="button" (click)="logout()" routerLinkActive="active">Logout</li>
             </div>
             
         </ul>
