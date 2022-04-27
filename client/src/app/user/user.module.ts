@@ -8,10 +8,11 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { EditAccountComponent } from './account/edit-account/edit-account.component';
 import { DeleteAccountComponent } from './account/delete-account/delete-account.component';
+import { ChangePasswordComponent } from './account/change-password/change-password.component';
 
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, AccountComponent, EditAccountComponent, DeleteAccountComponent],
+  declarations: [RegisterComponent, LoginComponent, AccountComponent, EditAccountComponent, DeleteAccountComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     RouterModule,

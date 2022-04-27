@@ -14,6 +14,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { EditAccountComponent } from './user/account/edit-account/edit-account.component';
 import { MyRecipesComponent } from './recipe/my-recipes/my-recipes.component';
 import { MyFavoritesComponent } from './recipe/my-favorites/my-favorites.component';
+import { ChangePasswordComponent } from './user/account/change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -113,6 +114,15 @@ const routes: Routes = [
   { 
     path: 'users/:userId/edit',
     component: EditAccountComponent,
+    canActivate: [AuthActivate],
+    data: {
+      authRequired: true,
+      authFailureRedirectUrl: 'login'
+    }
+  },
+  { 
+    path: 'users/:userId/change-password',
+    component: ChangePasswordComponent,
     canActivate: [AuthActivate],
     data: {
       authRequired: true,
