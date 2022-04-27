@@ -1,6 +1,7 @@
 .container {
     margin: 50px auto;
     width: 30%;
+    min-height: 65.55vh;
 }
 
 .register {
