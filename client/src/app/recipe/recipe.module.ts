@@ -10,6 +10,7 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { DeleteRecipeComponent } from './delete-recipe/delete-recipe.component';
 import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
+import { LoadingRecipesComponent } from './loading/loading-recipes/loading-recipes.component';
 
 
 
@@ -21,7 +22,8 @@ import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
     EditRecipeComponent,
     DeleteRecipeComponent,
     MyRecipesComponent,
-    MyFavoritesComponent
+    MyFavoritesComponent,
+    LoadingRecipesComponent
   ],
   imports: [
     CommonModule,
