@@ -12,6 +12,8 @@ import { UserService } from '../../services/user.service';
 })
 
 export class RegisterComponent implements OnDestroy {
+  visiblePassword: boolean = false;
+  visibleRepass: boolean = false;
   killSubscription = new Subject();
   form: FormGroup;
   error: string = '';
@@ -48,5 +50,13 @@ export class RegisterComponent implements OnDestroy {
   ngOnDestroy() {
     this.killSubscription.next();
     this.killSubscription.complete();
+  }
+
+  showPassword() {
+    this.visiblePassword = !this.visiblePassword;
+  }
+
+  showRepass() {
+    this.visibleRepass = !this.visibleRepass;
   }
 }
