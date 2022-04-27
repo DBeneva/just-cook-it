@@ -1,10 +1,10 @@
 # Just Cook It!
 
-A single-page application created for the SoftUni Angular exam (April 2022)
+This single-page application was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.25. for the SoftUni Angular exam (April 2022).
 
 ## Public Part
 
-Guest users can visit the Home Page, the About Page and browse through all recipe previews on the Recipes Page.
+Guest users can visit the Home Page, the About Page, see the recipe previews on the Recipes Page and the recipe details on the Recipe Page.
 
 In order to gain access to more functionality, guest users can register and log in from the Register/Login Page.
 
@@ -12,7 +12,7 @@ In order to gain access to more functionality, guest users can register and log 
 
 ### Recipes
 
-Authenticated users can view recipe details on the Recipe Page and post their own recipe from the New-Recipe Page. They can like and unlike recipes created by other users, as well as edit and delete their own recipes.
+Authenticated users can post their own recipe from the New-Recipe Page. They can like and unlike recipes created by other users, as well as edit and delete their own recipes.
 
 ### Account
 

@@ -77,12 +77,7 @@ const routes: Routes = [
   },
   {
     path: 'recipes/:recipeId',
-    component: RecipeComponent,
-    canActivate: [AuthActivate],
-    data: {
-      authRequired: true,
-      authFailureRedirectUrl: 'login'
-    }
+    component: RecipeComponent
   },
   { 
     path: 'register',

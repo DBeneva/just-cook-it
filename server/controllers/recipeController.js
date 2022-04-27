@@ -49,7 +49,7 @@ router.post('/', isUser(), async (req, res) => {
     }
 });
 
-router.get('/:id', isUser(), async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const recipe = await req.storage.getRecipeById(req.params.id);
         recipe.isUser = Boolean(req.user);
