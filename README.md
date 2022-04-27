@@ -10,11 +10,17 @@ In order to gain access to more functionality, guest users can register and log 
 
 ## Private Part
 
+### Recipes
+
 Authenticated users can view recipe details on the Recipe Page and post their own recipe from the New-Recipe Page. They can like and unlike recipes created by other users, as well as edit and delete their own recipes.
+
+### Account
 
 They can view their account details on the Account Page.
 
 From the Edit Account Page they can edit their account information (username or email), access the Change Password Page or delete their account.
+
+### My Recipes & My Favorites
 
 A list of the user's recipes, as well as one of the recipes the user has liked, is available both from the header navigation of the page and from the Account Page.
 
