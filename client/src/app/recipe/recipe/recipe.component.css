@@ -1,5 +1,12 @@
 .container {
     min-height: 73.9vh;
+    opacity: 1;
+    animation: 'appearing' .5s;
+}
+
+@keyframes appearing {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .card {

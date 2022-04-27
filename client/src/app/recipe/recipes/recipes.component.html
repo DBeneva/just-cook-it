@@ -25,7 +25,6 @@
             </div>
         </div>
     </div>
-    <app-loading-recipes *ngIf="!recipes"></app-loading-recipes>
     <div *ngIf="recipes && recipes.length == 0" class="no-recipes">
         <h2>Sorry, there are currently no recipes.</h2>
         <div *ngIf="user">
@@ -38,3 +37,4 @@
         </div>
     </div>
 </div>
+<app-loading-recipes *ngIf="!recipes"></app-loading-recipes>

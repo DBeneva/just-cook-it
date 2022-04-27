@@ -3,6 +3,13 @@
     flex-wrap: wrap;
     min-height: 67.7vh;
     margin: 0 10%;
+    opacity: 1;
+    animation: 'appearing' .5s;
+}
+
+@keyframes appearing {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 h2 {
