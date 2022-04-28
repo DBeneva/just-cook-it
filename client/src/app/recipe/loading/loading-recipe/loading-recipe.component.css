@@ -1,10 +1,10 @@
 .container {
-    min-height: 73.9vh;
+    height: 49vh;
 }
 
 .card {
     width: 50%;
-    min-height: 400px;
+    height: 500px;
     box-shadow: 2px 2px 20px 0 gray;
     border-radius: 20px;
     margin: 40px auto;
@@ -83,5 +83,5 @@ li {
     padding: 0 60px;
     font-family: "Merienda";
     position: relative;
-    bottom: 0px;
+    bottom: -82px;
 }
