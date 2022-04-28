@@ -17,7 +17,9 @@ export class MyFavoritesComponent {
     private contentService: ContentService,
     private userService: UserService
   ) {
-    this.fetchMyFavorites();
+    setTimeout(() => {
+      this.fetchMyFavorites();
+    }, 1000);
   }
 
   fetchMyFavorites(): void {

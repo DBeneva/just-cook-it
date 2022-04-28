@@ -18,7 +18,9 @@ export class MyRecipesComponent {
     private contentService: ContentService,
     private userService: UserService
   ) {
-    this.fetchMyRecipes();
+    setTimeout(() => {
+      this.fetchMyRecipes();
+    }, 1000);
   }
 
   fetchMyRecipes(): void {

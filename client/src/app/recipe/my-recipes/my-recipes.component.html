@@ -1,7 +1,8 @@
-<div *ngIf="myRecipes && myRecipes.length > 0" class="page-title">
+<div class="page-title">
     <h2>My Recipes</h2>
 </div>
-<div class="recipes">
+<app-loading-recipes *ngIf="!myRecipes"></app-loading-recipes>
+<div *ngIf="myRecipes && myRecipes.length > 0" class="recipes">
     <ng-container *ngIf="error">
         <p class="error">
             {{error}}
@@ -18,32 +19,11 @@
                     <i class="fas fa-clock"></i><span> {{recipe.time}} min</span>
                 </p>
             </div>
-            <!-- <table>
-                <tr class="card-section">
-                    <td>
-                        <h4><i class="fas fa-list"></i></h4>
-                    </td>
-                    <td>
-                        <p class="ingredients">{{recipe.ingredients | slice:0:50}}<span
-                                *ngIf="recipe.ingredients.length > 50">...</span></p>
-                    </td>
-                </tr>
-                <tr class="card-section">
-                    <td>
-                        <h4><img src="/assets/instructions.png" alt="Instructions"></h4>
-                    </td>
-                    <td>
-                        <p class="instructions">{{recipe.instructions | slice:0:50}}<span
-                                *ngIf="recipe.instructions.length > 50">...</span></p>
-                    </td>
-                </tr>
-            </table> -->
             <div class="likes">
                 <p>Liked by <span>{{recipe.likedBy.length}}</span> people</p>
             </div>
         </div>
     </div>
-    <div *ngIf="!myRecipes" class="loader">Loading...</div>
     <div *ngIf="myRecipes && myRecipes.length == 0" class="no-recipes">
         <h2>Sorry, you have currently no recipes.</h2>
         <div *ngIf="user">

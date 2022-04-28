@@ -23,7 +23,9 @@ export class RecipeComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router
     ) {
-      this.fetchRecipe();
+      setTimeout(() => {
+        this.fetchRecipe();
+      }, 1000);
   }
 
   fetchRecipe(): void {
