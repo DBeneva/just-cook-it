@@ -49,7 +49,7 @@ export class EditRecipeComponent {
     
     this.contentService.updateRecipe(data).subscribe({
       next: () => {
-        this.router.navigate(['/recipes']);
+        this.router.navigate([`/recipes/${this.recipeId}`]);
       },
       error: (err) => {
         console.error(err);
