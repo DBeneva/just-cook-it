@@ -24,7 +24,7 @@
                 </ng-container>
             </div>
             <div>
-                <label for="time">Cooking Time (minutes) <span class="red">*</span></label>
+                <label for="time">Cooking Time (Minutes) <span class="red">*</span></label>
                 <input ngModel #time="ngModel" type="number" name="time" id="time" required min="0" step="10">
                 <ng-container *ngIf="time.touched">
                     <p class="error" *ngIf="time.errors?.required" class="error">
@@ -34,8 +34,8 @@
             </div>
         </div>
         <div class="ingredients">
-            <label for="ingredients">Ingredients <span class="red">*</span></label>
-            <textarea ngModel #ingredients="ngModel" type="text" name="ingredients" id="ingredients" rows="3" required>
+            <label for="ingredients">Ingredients (Comma-Separated) <span class="red">*</span></label>
+            <textarea ngModel #ingredients="ngModel" type="text" name="ingredients" id="ingredients" rows="3" required  placeholder="Ingredient 1, Ingredient 2, Ingredient 3">
             </textarea>
             <ng-container *ngIf="ingredients.touched">
                 <p class="error" *ngIf="ingredients.errors?.required" class="error">
@@ -55,7 +55,7 @@
         </div>
         <div class="image">
             <label for="imageUrl">Image URL <span class="red">*</span></label>
-            <input ngModel #imageUrl="ngModel" type="text" name="imageUrl" id="imageUrl" required pattern="https?://.+">
+            <input ngModel #imageUrl="ngModel" type="text" name="imageUrl" id="imageUrl" required pattern="https?://.+" placeholder="http(s)://">
             <ng-container *ngIf="imageUrl.touched">
                 <p class="error" *ngIf="imageUrl.errors?.required" class="error">
                     Recipe image is required!
