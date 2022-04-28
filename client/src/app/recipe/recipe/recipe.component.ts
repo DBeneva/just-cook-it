@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from 'src/app/services/content.service';
@@ -21,7 +22,8 @@ export class RecipeComponent {
     private contentService: ContentService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
     ) {
       setTimeout(() => {
         this.fetchRecipe();
@@ -77,5 +79,9 @@ export class RecipeComponent {
         this.error = err.message;
       }
     });
+  }
+
+  back() {
+    this.location.back();
   }
 }

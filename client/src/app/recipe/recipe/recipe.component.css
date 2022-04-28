@@ -107,7 +107,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button:hover, .back-btn i:hover {
     background-color: #4a6b8b;
     color: lightgray;
     box-shadow: 2px 2px 5px 0 gray;
@@ -133,4 +133,19 @@ button:hover {
     padding: 40px 10px 0px 10px;
     margin: 0px auto;
     width: 40%;
+}
+
+.back-btn i {
+    position: absolute;
+    color: #4a6b8b;
+    top: 250px;
+    left: 250px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.back-btn i:hover {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 0 gray;
+    border: none;
 }
