@@ -10,3 +10,21 @@ div {
 h2 {
     font-family: "Merienda";
 }
+
+.back-btn {
+    position: absolute;
+    color: #4a6b8b;
+    top: 100px;
+    left: -300px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.back-btn i:hover {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 0 gray;
+    border: none;
+    background-color: #4a6b8b;
+    color: lightgray;
+    box-shadow: 2px 2px 5px 0 gray;
+}
