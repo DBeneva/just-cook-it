@@ -1,38 +1,40 @@
-<div class="page-title">
-    <h2>My Recipes</h2>
-</div>
-<app-loading-recipes *ngIf="!myRecipes"></app-loading-recipes>
-<div *ngIf="myRecipes && myRecipes.length > 0" class="recipes">
-    <ng-container *ngIf="error">
-        <p class="error">
-            {{error}}
-        </p>
-    </ng-container>
-    
-    <div class="card" [routerLink]="['/recipes', recipe._id]" *ngFor="let recipe of myRecipes">
-        <!-- {{recipes | json}} -->
-        <img class="card-image" src="{{recipe.imageUrl}}" alt="">
-        <div class="card-content">
-            <div class="card-title">
-                <h3>{{recipe.name}}</h3>
-                <p>
-                    <i class="fas fa-clock"></i><span> {{recipe.time}} min</span>
-                </p>
-            </div>
-            <div class="likes">
-                <p>Liked by <span>{{recipe.likedBy.length}}</span> people</p>
-            </div>
-        </div>
+<div class="container">
+    <div class="page-title">
+        <h2>My Recipes</h2>
     </div>
-    <div *ngIf="myRecipes && myRecipes.length == 0" class="no-recipes">
-        <h2>Sorry, you have currently no recipes.</h2>
-        <div *ngIf="user">
-            <p>Add one right away!</p>
-            <button routerLink="/recipes/new-recipe">Add New Recipe</button>
-            <button routerLink="/">Go back home</button>
+    <app-loading-recipes *ngIf="!myRecipes"></app-loading-recipes>
+    <div *ngIf="myRecipes && myRecipes.length > 0" class="recipes">
+        <ng-container *ngIf="error">
+            <p class="error">
+                {{error}}
+            </p>
+        </ng-container>
+
+        <div class="card" [routerLink]="['/recipes', recipe._id]" *ngFor="let recipe of myRecipes">
+            <!-- {{recipes | json}} -->
+            <img class="card-image" src="{{recipe.imageUrl}}" alt="">
+            <div class="card-content">
+                <div class="card-title">
+                    <h3>{{recipe.name}}</h3>
+                    <p>
+                        <i class="fas fa-clock"></i><span> {{recipe.time}} min</span>
+                    </p>
+                </div>
+                <div class="likes">
+                    <p>Liked by <span>{{recipe.likedBy.length}}</span> people</p>
+                </div>
+            </div>
         </div>
-        <div *ngIf="!user">
-            <button routerLink="/">Go back home</button>
+        <div *ngIf="myRecipes && myRecipes.length == 0" class="no-recipes">
+            <h2>Sorry, you have currently no recipes.</h2>
+            <div *ngIf="user">
+                <p>Add one right away!</p>
+                <button routerLink="/recipes/new-recipe">Add New Recipe</button>
+                <button routerLink="/">Go back home</button>
+            </div>
+            <div *ngIf="!user">
+                <button routerLink="/">Go back home</button>
+            </div>
         </div>
     </div>
 </div>

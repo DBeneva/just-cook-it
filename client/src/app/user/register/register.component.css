@@ -65,7 +65,7 @@ button[disabled], button[disabled]:hover {
 .error {
     color: red;
     font-size: 14px;
-    padding: 0 0 0 20px;
+    padding: 0 0 0 35px;
     margin: 0;
 }
 
