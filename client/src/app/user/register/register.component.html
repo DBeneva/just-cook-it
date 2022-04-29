@@ -62,7 +62,7 @@
 
         <p class="field field-icon">
             <label for="repass"><span><i class="fas fa-lock"></i></span></label>
-            <input  ngClass="{{form.get('password').touched ? 'ng-touched' : ''}}" formControlName="repass" type="{{visibleRepass ? 'text' : 'password'}}" name="repass" id="repass" placeholder="******">
+            <input ngClass="{{form.get('password').touched ? 'ng-touched' : ''}}" formControlName="repass" type="{{visibleRepass ? 'text' : 'password'}}" name="repass" id="repass" placeholder="******">
             <i *ngIf="!visibleRepass" class="fas fa-eye" (click)="showRepass()"></i>
             <i *ngIf="visibleRepass" class="fas fa-eye-slash" (click)="showRepass()"></i>
         </p>

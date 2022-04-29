@@ -10,7 +10,7 @@ router.put('/:id', isUser(), async (req, res) => {
         email: req.body.email
     };
 
-    console.log('usercontroller username', req.user.username, );
+    console.log('usercontroller username', req.body, req.user);
 
     try {
         if (req.user.username != req.body.username && existingUsername) {
