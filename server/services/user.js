@@ -38,8 +38,7 @@ async function getUserById(id) {
 }
 
 async function editAccount(userId, accountData) {
-    console.log('user service account data', accountData);
-    console.log('user service userId', userId);
+   
     await User.findByIdAndUpdate(userId, accountData).lean();
     const editedAccountData = await User.findById(userId).lean();
     console.log('user service edited account data', editedAccountData);

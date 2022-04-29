@@ -14,6 +14,8 @@ router.post(
                 throw new Error(message);
             }
 
+            console.log('register controller req.user', req.user);
+
             const user = await req.auth.register(req.body.username.trim(), req.body.email.trim(), req.body.password.trim());
             res.json(user);
         } catch (err) {

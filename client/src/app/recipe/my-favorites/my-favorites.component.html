@@ -1,26 +1,28 @@
-<div class="page-title">
-    <h2>My Favorites</h2>
-</div>
-<app-loading-recipes *ngIf="!myFavorites"></app-loading-recipes>
-<div *ngIf="myFavorites && myFavorites.length > 0" class="recipes">
-    <ng-container *ngIf="error">
-        <p class="error">
-            {{error}}
-        </p>
-    </ng-container>
-    
-    <div class="card" [routerLink]="['/recipes', recipe._id]" *ngFor="let recipe of myFavorites">
-        <!-- {{recipes | json}} -->
-        <img class="card-image" src="{{recipe.imageUrl}}" alt="">
-        <div class="card-content">
-            <div class="card-title">
-                <h3>{{recipe.name}}</h3>
-                <p>
-                    <i class="fas fa-clock"></i><span> {{recipe.time}} min</span>
-                </p>
-            </div>
-            <div class="likes">
-                <p>Liked by <span>{{recipe.likedBy.length}}</span> people</p>
+<div class="container">
+    <div class="page-title">
+        <h2>My Favorites</h2>
+    </div>
+    <!-- <app-loading-recipes *ngIf="!myFavorites"></app-loading-recipes> -->
+    <div *ngIf="myFavorites && myFavorites.length > 0" class="recipes">
+        <ng-container *ngIf="error">
+            <p class="error">
+                {{error}}
+            </p>
+        </ng-container>
+
+        <div class="card" [routerLink]="['/recipes', recipe._id]" *ngFor="let recipe of myFavorites">
+            <!-- {{recipes | json}} -->
+            <img class="card-image" src="{{recipe.imageUrl}}" alt="">
+            <div class="card-content">
+                <div class="card-title">
+                    <h3>{{recipe.name}}</h3>
+                    <p>
+                        <i class="fas fa-clock"></i><span> {{recipe.time}} min</span>
+                    </p>
+                </div>
+                <div class="likes">
+                    <p>Liked by <span>{{recipe.likedBy.length}}</span> people</p>
+                </div>
             </div>
         </div>
     </div>
@@ -29,7 +31,7 @@
         <div *ngIf="user">
             <p>Have a look at all the recipes and like them for easy access!</p>
             <button routerLink="/recipes">See Recipes</button>
-            <button routerLink="/">Go back home</button>
+            <button (click)="back()">Go Back</button>
         </div>
         <div *ngIf="!user">
             <button routerLink="/">Go back home</button>

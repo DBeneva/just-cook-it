@@ -76,7 +76,7 @@ img {
 }
 
 .buttons {
-    margin: 50px auto 0px auto;
+    margin: 50px 0px 0 7px;
     width: 100%;
 }
 
@@ -88,7 +88,7 @@ button {
     color: lightgray;
     padding: 10px 20px;
     border-radius: 15px;
-    margin: 10px;
+    margin: 7px;
     cursor: pointer;
 }
     

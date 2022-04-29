@@ -1,4 +1,4 @@
-<app-loading-recipes *ngIf="!recipes"></app-loading-recipes>
+<!-- <app-loading-recipes *ngIf="!recipes"></app-loading-recipes> -->
 <div class="recipes">
     <div class="card" [routerLink]="['/recipes', recipe._id]" *ngFor="let recipe of recipes">
         <!-- {{recipes | json}} -->

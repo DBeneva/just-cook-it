@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
@@ -16,7 +17,8 @@ export class MyRecipesComponent {
 
   constructor(
     private contentService: ContentService,
-    private userService: UserService
+    private userService: UserService,
+    private location: Location
   ) {
     setTimeout(() => {
       this.fetchMyRecipes();
@@ -35,5 +37,9 @@ export class MyRecipesComponent {
           this.error = err.error;
         }
       });
+  }
+
+  back() {
+    this.location.back();
   }
 }

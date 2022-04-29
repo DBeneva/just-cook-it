@@ -2,7 +2,7 @@
     <div class="page-title">
         <h2>My Recipes</h2>
     </div>
-    <app-loading-recipes *ngIf="!myRecipes"></app-loading-recipes>
+    <!-- <app-loading-recipes *ngIf="!myRecipes"></app-loading-recipes> -->
     <div *ngIf="myRecipes && myRecipes.length > 0" class="recipes">
         <ng-container *ngIf="error">
             <p class="error">
@@ -25,16 +25,16 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="myRecipes && myRecipes.length == 0" class="no-recipes">
-            <h2>Sorry, you have currently no recipes.</h2>
-            <div *ngIf="user">
-                <p>Add one right away!</p>
-                <button routerLink="/recipes/new-recipe">Add New Recipe</button>
-                <button routerLink="/">Go back home</button>
-            </div>
-            <div *ngIf="!user">
-                <button routerLink="/">Go back home</button>
-            </div>
+    </div>
+    <div *ngIf="myRecipes.length == 0" class="no-recipes">
+        <h2>Sorry, you have currently no recipes.</h2>
+        <div *ngIf="user">
+            <p>Add one right away!</p>
+            <button routerLink="/recipes/new-recipe">Add New Recipe</button>
+            <button (click)="back()">Go Back</button>
+        </div>
+        <div *ngIf="!user">
+            <button routerLink="/">Go back home</button>
         </div>
     </div>
 </div>

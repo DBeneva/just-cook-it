@@ -16,9 +16,8 @@
     outline: 700px solid rgba(0, 0, 0, 0.5);
 }
 
-span {
-    font-family: "Merienda";
-    color: red;
+p {
+    margin: 20px 10px;
 }
 
 button {

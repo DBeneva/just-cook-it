@@ -2,22 +2,29 @@ const router = require('express').Router();
 const { isUser } = require('../middlewares/guards');
 
 router.put('/:id', isUser(), async (req, res) => {
-    console.log('usercontroller edit req.params.id, req.user.id', req.params.id, req.user._id);
-    console.log('usercontroller edit token', req.user.token);
-    if (req.params.id != req.user._id) {
-        throw new Error('You are not allowed to edit this account!');
-    }
-    
+    const existingUsername = await req.storage.getUserByUsername(req.body.username);
+    const existingEmail = await req.storage.getUserByEmail(req.body.email);
+
     const accountData = {
         username: req.body.username,
         email: req.body.email
     };
 
-    console.log('usercontroller account data', accountData);
+    console.log('usercontroller username', req.user.username, );
 
     try {
+        if (req.user.username != req.body.username && existingUsername) {
+            throw new Error('Sorry, this username is taken!');
+        } else if (req.user.email != req.body.email && existingEmail) {
+            throw new Error('Sorry, this email is taken!');
+        }
+
+        if (req.params.id != req.user._id) {
+            throw new Error('You are not allowed to edit this account!');
+        }
+
         const editedAccountData = await req.storage.editAccount(req.params.id, accountData);
-        console.log('usercontroller', editedAccountData);        
+        console.log('usercontroller', editedAccountData);
         console.log('usercontroller', { ...editedAccountData, token: req.headers['x-authorization'] });
         res.json({ ...editedAccountData, token: req.headers['x-authorization'] });
     } catch (err) {
@@ -28,7 +35,7 @@ router.put('/:id', isUser(), async (req, res) => {
 
 router.delete('/:id', isUser(), async (req, res) => {
     console.log('delete controller req.user._id', req.user._id, req.params.id);
-    
+
     if (req.params.id !== req.user._id) {
         throw new Error('You are not allowed to delete this account!');
     }
@@ -47,11 +54,11 @@ router.delete('/:id', isUser(), async (req, res) => {
 router.put('/:id/change-password', isUser(), async (req, res) => {
     console.log('usercontroller password req.params.id, req.user.id', req.params.id, req.user._id);
     console.log('usercontroller password user', req.user);
-    
+
     if (req.params.id != req.user._id) {
         throw new Error('You are not allowed to edit this account!');
     }
-    
+
     const passwordData = {
         oldPassword: req.body.oldPassword,
         newPassword: req.body.newPassword

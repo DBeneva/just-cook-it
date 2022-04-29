@@ -1,4 +1,4 @@
-<app-loading-recipe *ngIf="!recipe"></app-loading-recipe>
+<!-- <app-loading-recipe *ngIf="!recipe"></app-loading-recipe> -->
 <div class="container">
     <!-- {{recipe | json}} -->
     <app-delete-recipe [recipeName]="recipe.name" [recipeId]="recipe._id" (hideModal)="showDeleteModal(false)" *ngIf="isDeletingRecipe"></app-delete-recipe>
@@ -10,7 +10,7 @@
     </ng-container>
 
     <div *ngIf="recipe" class="card">
-        <img class="card-image" src="{{recipe.imageUrl}}" alt="Recipe Image">
+        <div class="card-image"><img src="{{recipe.imageUrl}}" alt="Recipe Image"></div>
         <div class="card-content">
             <div class="card-title">
                 <h3>{{recipe.name}}</h3>

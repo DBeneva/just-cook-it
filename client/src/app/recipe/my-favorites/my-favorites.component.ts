@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,7 +16,8 @@ export class MyFavoritesComponent {
 
   constructor(
     private contentService: ContentService,
-    private userService: UserService
+    private userService: UserService,
+    private location: Location
   ) {
     setTimeout(() => {
       this.fetchMyFavorites();
@@ -34,5 +36,9 @@ export class MyFavoritesComponent {
           this.error = err.error;
         }
       });
+  }
+
+  back() {
+    this.location.back();
   }
 }
