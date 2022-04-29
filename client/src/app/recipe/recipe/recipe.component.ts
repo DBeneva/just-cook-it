@@ -27,7 +27,7 @@ export class RecipeComponent {
     ) {
       setTimeout(() => {
         this.fetchRecipe();
-      }, 1000);
+      }, 0);
   }
 
   fetchRecipe(): void {

@@ -21,7 +21,8 @@
                     </p>
                 </div>
                 <div class="likes">
-                    <p>Liked by <span>{{recipe.likedBy.length}}</span> people</p>
+                    <p *ngIf="recipe.likedBy.length != 1">Liked by <span>{{recipe.likedBy.length}}</span> people</p>
+                    <p *ngIf="recipe.likedBy.length == 1">Liked by <span>{{recipe.likedBy.length}}</span> person</p>
                 </div>
             </div>
         </div>
