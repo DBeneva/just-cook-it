@@ -24,9 +24,7 @@ export class UserService {
       .pipe(
         tap(user => {
           document.cookie = `USER=${JSON.stringify(user)}`;
-          console.log('cookie in user service login', document.cookie);
           this.user = user;
-          console.log('user in user service login', this.user);
         }),
         catchError(error => {
           throw error;
@@ -52,7 +50,6 @@ export class UserService {
   }
 
   changePassword(data: any) {
-    console.log('user service password data', data);
     return this.http.put<IUser>(`${API_URL}/users/${data.user._id}/change-password`, data, {
       headers: new HttpHeaders({
         'x-authorization': data.user ? data.user.token : ''
@@ -86,7 +83,6 @@ export class UserService {
       .pipe(
         tap((user) => {
           this.user = user;
-          document.cookie = 'USER=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
           document.cookie = `USER=${JSON.stringify(user)}`;
         }),
         catchError(error => {
@@ -106,7 +102,6 @@ export class UserService {
         tap(() => {
           document.cookie = 'USER=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
           this.user = undefined;
-          console.log('delete account in user service');
         }),
         catchError(error => {
           throw error;

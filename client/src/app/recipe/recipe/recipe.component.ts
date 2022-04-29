@@ -15,7 +15,6 @@ export class RecipeComponent {
   recipe: IRecipe;
   user = this.userService.user;
   isDeletingRecipe = false;
-  previousUrl: string;
   error: string = '';
   
   constructor(
@@ -50,7 +49,7 @@ export class RecipeComponent {
     this.isDeletingRecipe = show;
   }
 
-  likeRecipe(recipeId) {
+  likeRecipe(recipeId: string): void {
     const data = { recipeId, user: this.user };
 
     this.contentService.likeRecipe(data).subscribe({
@@ -66,7 +65,7 @@ export class RecipeComponent {
     });
   }
 
-  unlikeRecipe(recipeId) {
+  unlikeRecipe(recipeId: string): void {
     const data = { recipeId, user: this.user };
 
     this.contentService.unlikeRecipe(data).subscribe({

@@ -24,11 +24,15 @@ input {
     padding: 15px;
     border-radius: 10px;
     border: 1px solid #4a6b8b;
-    border-left: 0.3em solid green;
+    border-left: 0.3em solid #4a6b8b;
 }
 
 input:-webkit-autofill {
     color: #4a6b8b !important;
+}
+
+input.ng-valid {
+    border-left: 0.3em solid green;
 }
 
 input.ng-invalid.ng-touched {

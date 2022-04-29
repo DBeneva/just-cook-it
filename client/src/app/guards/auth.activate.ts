@@ -8,7 +8,7 @@ export class AuthActivate implements CanActivate {
     constructor(private router: Router, private userService: UserService) { }
 
     canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        const { authRequired, authFailureRedirectUrl } = route.data;
+        let { authRequired, authFailureRedirectUrl } = route.data;
         
         if (
             typeof authRequired == 'boolean'
@@ -17,13 +17,11 @@ export class AuthActivate implements CanActivate {
             return true;
         }
 
-        let authRedirectUrl = authFailureRedirectUrl;
-
         if (authRequired) {
             const previousUrl = route.url.reduce((acc, s) => `${acc}/${s.path}`, '');
-            authRedirectUrl += `?redirectUrl=${previousUrl}`;
+            authFailureRedirectUrl += `?redirectUrl=${previousUrl}`;
         }
 
-        return this.router.parseUrl(authRedirectUrl || '/');
+        return this.router.parseUrl(authFailureRedirectUrl || '/');
     }
 }

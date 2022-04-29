@@ -22,15 +22,10 @@ export class HeaderComponent {
     return this.user ? this.user.username : '';
   }
 
-  errorMessage: string;
-
   constructor(
     private userService: UserService,
     private router: Router,
-    activatedRoute: ActivatedRoute
-  ) {
-    this.errorMessage = activatedRoute.snapshot.queryParams.error;
-  }
+  ) { }
 
   logout(): void {
     this.userService.logout().subscribe(() => {

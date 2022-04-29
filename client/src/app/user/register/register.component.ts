@@ -28,17 +28,20 @@ export class RegisterComponent implements OnDestroy {
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, passwordValidator]],
-      repass: ['', [Validators.required, sameValueAsFactory(
-        () => this.form ? this.form.get('password') : null, this.killSubscription
-        )]]
-      });
+      repass: [
+        '',
+        [Validators.required, sameValueAsFactory(
+          () => this.form ? this.form.get('password') : null, this.killSubscription
+        )]
+      ]
+    });
   }
 
   register(): void {
     if (this.form.invalid) { return; }
 
     const { username, email, password } = this.form.value;
-    
+
     this.userService.register({ username, email, password }).subscribe({
       next: () => { this.router.navigate(['/']) },
       error: (err) => {

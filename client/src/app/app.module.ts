@@ -24,7 +24,6 @@ import { FormsModule, NgForm } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
     UserModule,
     RecipeModule,
