@@ -8,3 +8,9 @@ body {
     margin: 0;
     padding: 0;
 }
+
+*::selection {
+    color: lightgray;
+    background-color: #4a6b8b;
+    border-radius: 8px;
+}

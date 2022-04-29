@@ -21,7 +21,7 @@ export class MyFavoritesComponent {
   ) {
     setTimeout(() => {
       this.fetchMyFavorites();
-    }, 0);
+    }, 1000);
   }
 
   fetchMyFavorites(): void {

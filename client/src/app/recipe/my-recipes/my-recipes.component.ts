@@ -22,7 +22,7 @@ export class MyRecipesComponent {
   ) {
     setTimeout(() => {
       this.fetchMyRecipes();
-    }, 0);
+    }, 1000);
   }
 
   fetchMyRecipes(): void {

@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="myRecipes.length == 0" class="no-recipes">
+    <div *ngIf="myRecipes && myRecipes.length == 0" class="no-recipes">
         <h2>Sorry, you have currently no recipes.</h2>
         <div *ngIf="user">
             <p>Add one right away!</p>
@@ -37,4 +37,5 @@
             <button routerLink="/">Go back home</button>
         </div>
     </div>
+    <div *ngIf="!myRecipes" class="loader"></div>
 </div>
