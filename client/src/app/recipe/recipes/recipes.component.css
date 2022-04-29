@@ -1,7 +1,7 @@
 .recipes {
     display: flex;
     flex-wrap: wrap;
-    min-height: 79.5vh;
+    min-height: 76.1vh;
     margin: 0 10%;
     opacity: 1;
     animation: 'appearing' .5s;
