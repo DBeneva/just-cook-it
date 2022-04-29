@@ -26,4 +26,4 @@ A list of the user's recipes, as well as one of the recipes the user has liked, 
 
 ## Back End
 
-The application communicates with a REST API written in NodeJS and using Express. MongoDB and Mongoose take care of the data storage.
+The application communicates with a REST API written in NodeJS with Express. MongoDB and Mongoose take care of the data storage and manipulation.
